@@ -1,0 +1,47 @@
+<div class="politicianLibrary">
+    <div class="politicianLibraryControls">
+        <button class="btn btn-primary" style="width:150px; margin-top:10px" ng-click="moveToComparison()" >
+            Move to Comparison
+        </button>
+    </div>
+
+    <div class="repeatedOffices" ng-repeat="office in store.partitionedPols">
+
+        <div> hello </div>
+        <div style="font-size:20px;" ng-click="isCollapsed = !isCollapsed">
+            <i
+               class="glyphicon"
+               ng-if="office[0].office"
+               ng-class="{'glyphicon-chevron-down': !isCollapsed, 'glyphicon-chevron-right': isCollapsed}">
+            </i>
+            {{office[0].office}}
+        </div>
+
+            <section class="politicianRepeat" uib-collapse="isCollapsed">
+                <table>
+                    <tr>
+                        <th> </th>
+                        <th> Name </th>
+                        <th> Questions Answered </th>
+                        <th> Resume </th>
+                        <th> Statement </th>
+                        <th> Website </th>
+                        <th> Incumbent </th>
+                        <th> Performance Review </th>
+                        <th> Party </th>
+                    </tr>
+                    <tr class="repeatedPolitician" ng-repeat="politician in office" ng-click="pushPolToLineup(politician, $index, $parent.$index)">
+                        <!-- in the case of potential absence column has two ng-if td elements -->
+                        <td id="selected" style="font-size:50px" ng-class="politician.checked ? 'fa fa-check-square-o' : 'fa fa-square-o'"></td>
+                        <td> {{politician.name}} </td>
+                        <td> {{politician.answerCount}} </td>
+                        <td ng ng-show="politician.answerCount >= 20 && politician.resume"> {{politician.resume}} </td>  <td ng-show="politician.answerCount < 20 || !politician.resume"> Pending  </td>
+                        <td ng-show="politician.answerCount >= 30 && politician.statement"> {{politician.statement}} </td>  <td ng-if="politician.answerCount < 30 || !politician.statement"> Pending </td>
+                        <td ng-show="politician.answerCount >= 40 && politician.website">  {{politician.website }}</td>  <td ng-if="politician.answerCount < 40 ||!politician.website "> Pending  </td>
+                        <td ng-if="politician.incumbent"> Yes </td>  <td ng-if="!politician.incumbent"> No </td>
+                        <td ng-if="politician.performanceReview"> {{politician.performanceReview }}</td> <td ng-if="!politician.performanceReview"> Pending</td>
+                        <td> {{politician.party}} </td>
+                </table>
+            </section>
+    </div>
+</div>

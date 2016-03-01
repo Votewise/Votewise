@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>Splash Page</title>
+</head>
+<div>
+<img class="votewise" src="img/VotewiseLogo.png"/></div>
+
+<div class="verticle-text">
+	<a href="#/register">
+		<h1>New Users  <span class="bounce arrow"> < </span></h1>
+	</a>
+</div>
+
+<!-- <div class="row">
+	<input value="Username" class="log-in-info">
+	<input value="Password" class="log-in-info">
+	<input type="button" value="Login" class="log-in">
+</div>
+ -->
+
+<form name="loginForm" class="form-horizontal" role="form">
+    <div class="form-group">
+        <div class="col-sm-7">
+           <span class="block input-icon input-icon-right">
+                <input type="text" class="log-in-info" placeholder="Email" name="email" ng-model="login.email" required focus/>
+                <input type="password" class="log-in-info" placeholder="Password" ng-model="login.password" required/>
+           </span>
+        </div>
+    </div>
+        <div class="col-sm-7">
+            <button type="submit" class="log-in" ng-click="doLogin(login)">
+                <i class="ace-icon fa fa-key"></i>
+                Login
+            </button>
+        </div>
+</form>
+
+<br>
+<div class="wrapper">
+	<div><p></p></div>
+<style type="text/css">
+
+body{background-color: #ccccff}
+
+img {
+   width: 24%;
+   min-width: 150px;
+   max-width: 300px;
+} 
+ a img:hover {transform:scale(1.1);}
+ a img:active {transform:scale(1.5);}
+.votewise {align:center;}
+.votewise {width:100%; max-width:600px;}
+.log-in {text-align: center;}
+.wrapper{text-align: center;}
+
+</style>
+<a href="#/register" ng-click="setAccountType(1)"><img src="img/VOTER.svg"/> </a>
+<a href="#/register" ng-click="setAccountType(2)"><img src="img/POLITICIAN.svg"/></a>
+<a href="#/register" ng-click="setAccountType(3)"><img src="img/INTEREST_GROUP.svg"/></a>
+<a href="#/register" ng-click="setAccountType(4)"><img src="img/PRESS.svg"/></a>
+</div>
+</html>

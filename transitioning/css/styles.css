@@ -1,0 +1,1032 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+
+
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.nameAndImportance {
+border:1px solid silver;
+float:left;
+margin:2px;
+min-height:100px;
+padding:2px;
+width:50px;
+display: inline-block;
+};
+
+.testItem {
+border:1px solid silver;
+float:left;
+margin:2px;
+min-height:100px;
+padding:2px;
+width:50px;
+display: inline-block;
+};
+
+.skinnyVerticle {
+	margin:2px;
+	padding:2px;
+	width:50px;
+	min-height: 100px;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  border:1px solid silver;
+}
+
+.opinion {
+border:1px solid silver;
+float:left;
+margin:5px;
+min-height:100px;
+padding:5px;
+width:300px;
+display: inline block;
+};
+
+
+
+/*------
+*
+*
+*  styles.css - VoteWise
+*  Version 1.0
+*
+*  Matias Salas
+*  3-16-2015
+*
+*-------*/
+
+body {
+	line-height: 1;
+	background-color: #c4e2fa;
+	text-align: center;
+	font-family: 'Gentium Basic', serif;
+}
+
+
+
+li {
+	text-decoration: none;
+}
+
+a {
+	text-decoration: none;
+	color: #000;
+}
+
+a:hover {
+	cursor: pointer;
+}
+
+
+/*
+.backgroundImage {
+	position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: .4;
+    width: 100%;
+    height: 100%;
+}
+*/
+/*.main:after {
+	background-size: 110%;
+	opacity: 0.05;
+	position: absolute;
+	top: 2rem;
+	left: 0;
+	z-index: 1;
+	width: 100%;
+	height: 150%;
+}*/
+
+footer {
+	height: 5.625rem;
+}
+
+.log-in{
+	width: 150px;
+	height: 35px;
+	background-color:#fff;
+	margin: .625rem auto 0;
+	border: 5px solid #000;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	font-size: 1.2rem;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+.log-in-info{
+	width: 120px;
+	height: 30px;
+	background-color:#fff;
+	margin: .625rem auto 0;
+	border: 5px solid #000;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	font-size: 1.2rem;
+	letter-spacing: 2px;
+}
+
+.register{
+	width: 200px;
+	height: 30px;
+	background-color:#fff;
+	margin: .625rem auto 0;
+	border: 5px solid #000;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	font-size: 1.2rem;
+	letter-spacing: 2px;
+}
+
+.register-button {
+	width: 150px;
+	height: 35px;
+	background-color:#fff;
+	margin: .625rem auto 0;
+	border: 5px solid #000;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	font-size: 1.2rem;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+.clearFix{
+	height: 1px;
+	clear: both;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.logo-home{
+	background-image: url("../img/VotewiseLogo.png");
+	background-size: 22.5rem 7.7rem;
+	width: 22.5rem;
+	height:7.7rem;
+	margin: 0 auto;
+}
+
+.verticle-text {
+	-webkit-transform: rotate(270deg);
+	transform: rotate(270deg);
+	
+
+	-webkit-transform-origin: left top 0;
+	transform-origin: left top 0;
+	bottom: 8.125rem;
+	
+	position: absolute;
+	font-size: 2.5rem;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+.verticle-text a {
+	text-decoration: none;
+	color: #000;
+}
+
+.verticle-text a:hover {
+	cursor: pointer;
+	color: #ff4500;
+}
+
+.v-right {
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+	
+
+	-webkit-transform-origin: left top 0;
+	transform-origin: left top 0;
+	top: 3rem;
+	left:21.8rem;
+	width: 80%;
+	
+	position: absolute;
+	font-size: 1.4rem;
+	text-transform: uppercase;
+	font-weight: 700;
+	background-color: #dedede;
+	border-radius: 20px;
+	border:1px solid black;
+	padding: .1rem 0;
+}
+
+.v-left {
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+	
+
+	-webkit-transform-origin: left top 0;
+	transform-origin: left top 0;
+	top: 3rem;
+	left:1.6rem;
+	width: 70%;
+	
+	position: absolute;
+	font-size: 1.4rem;
+	text-transform: uppercase;
+	font-weight: 700;
+	background-color: #dedede;
+	border-radius: 20px;
+	border:1px solid black;
+	padding: .1rem 0;
+}
+
+.portal{
+	background-size: 8.4375rem 12.7rem;
+	width: 8.4375rem;
+	height:12.7rem;
+	-webkit-transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+}
+
+.portal:hover {
+	-webkit-transform: scale(1.05);
+	-moz-transform: scale(1.05);
+	transform: scale(1.05);
+}
+
+ .row a {
+	width: 8.4375rem;
+	height:13.4375rem;
+}
+
+.voterbox {
+	background-image: url("../img/VOTER.svg");
+	background-repeat: no-repeat;
+	float: left;
+}
+
+.politicianbox {
+	background-image: url("../img/POLITICIAN.svg");
+	background-repeat: no-repeat;
+	float: right;
+}
+
+.overflow {
+	max-height:350px;
+	overflow:scroll;
+}
+
+.flex-container-interests {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  display: -webkit-flex;
+  
+  flex-flow: row wrap;
+  -webkit-box-flex-flow: row wrap;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  -moz-flex-flow: row wrap;
+
+
+  justify-content: space-around;
+  -webkit-justify-content: space-around;
+}
+
+.politicianAnswers {
+	width:360px;
+	height:360px;
+	overflow: scroll;
+}
+
+/*.main{
+	width:40rem;
+	margin: 0 auto;
+	position: relative;
+	font-weight: 700;
+}*/
+
+
+
+@media screen and (max-width: 767px){
+
+	.main{
+		width:90%;
+		margin: 0 auto;
+		position: relative;
+	}
+
+	.comparisons {
+		margin-bottom: 1rem;
+		line-height: 2em;
+		/*word-spacing: px;*/
+		/*letter-spacing: .05rem;*/
+		width:100%;
+	}
+
+	.comparisonButton {
+	  display: block;
+	  width: 200px;
+	  height: 43px;
+	  background: navy;
+	  padding: 7px;
+	  text-align: center;
+	  border-radius: 20px;
+	  color: white;
+	  font-weight: bold;
+	}
+
+	.comparisons p {
+		text-transform: none;
+		text-align: justify;
+		line-height: 2rem;
+		width: 85%;
+		margin: 0 auto;
+		font-size: 1.75rem;
+	}
+
+	.result {
+	    float: right;
+	    width: 100%;
+	    display: inline-block
+	    ;
+	}
+	.center {
+		text-align: center;
+	}
+	.right {
+		/*text-align: right;*/
+		position:relative;
+		float:left;
+	}
+	.left {
+		text-align: left;
+	}
+
+	.result ul li{
+	    display: inline-block;
+	    list-style-type: none;
+	    padding: 1em;
+	    width: .4em;
+	    text-align: right;
+	    font-size:1em;
+	    position:relative;
+	    float:right ;
+	}
+
+	.brd {
+		border: 1px solid black;
+	}
+
+	.result tr td table{
+		display: inline-block;
+		padding: 4em;
+		width: 1em;
+		display: ;
+	}
+	.result-b {
+	    float: right;
+	    width: 100%;
+	    display: inline-block;
+	}
+
+	.result-b ul li{
+	    display: inline-block;
+	    list-style-type: none;
+	    padding: 1em;
+	    width: .4em;
+	    text-align: right;
+	    font-size:1em;
+	    position:relative;
+	    float:right ;
+	}
+
+	.result-b tr td table{
+		display: inline-block;
+		padding: 4em;
+		width: 1em;
+		display: ;
+	}
+
+
+	.result1 {
+	    float: left;
+	    width: 34%;
+	    position:relative;
+	    left: 10px;
+
+	}
+
+	.result1 ul li{
+	    display: inline-block;
+	    list-style-type: none;
+	    padding: 1em;
+	    width: .4em;
+	    text-align: right;
+	    font-size:1em;
+	    position:relative;
+	    right:25px;
+	}
+
+	.flex-item-interests {
+
+		padding: 0px;
+		min-height: 125px;
+		min-width: 125px;
+		max-height: 125px;
+		max-width: 125px;
+		width: 100%;
+		height: 100%;
+		margin-top: 10px;
+		margin-bottom: 40px;
+		margin-right: 3px;
+		margin-left: 2px;
+
+		-webkit-flex: 1 1 7em;
+		-moz-flex: 1 1 15em;
+		flex: 1 1 15em;
+
+		line-height: 20px;
+		color: white;
+
+	}
+
+	.flex-item-interests img {
+		-webkit-transition: all .2s ease-in-out;
+		-moz-transition: all .2s ease-in-out;
+		transition: all .2s ease-in-out;
+		min-height: 125px;
+		min-width: 125px;
+		width: 100%;
+
+	}
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px){
+	
+	.comparisons {
+		font-size: 1.4rem;
+		margin-bottom: 1rem;
+		line-height: 140%;
+		/*word-spacing: px;*/
+		/*letter-spacing: .05rem;*/
+	}
+
+	.comparisons p {
+		text-transform: none;
+		text-align: justify;
+		line-height: 1.rem;
+		width: 80%;
+		margin: 0 auto;
+	}
+
+	.result1 {
+	    float: left;
+	    width: 30%;
+	    position:relative;
+	    left: 10px;
+	    font-size:1.4em;
+
+	}
+
+	.result1 ul li{
+	    display: inline-block;
+	    list-style-type: none;
+	    padding: 1em;
+	    width: .4em;
+	    text-align: right;
+	    font-size:1em;
+	    position:relative;
+	    right:25px;
+	}
+
+	.result {
+	    float: left;
+	}
+
+	.result ul li{
+	    display: inline-block;
+	    list-style-type: none;
+	    padding: 1em;
+	    width: .4em;
+	    text-align: right;
+	    font-size:1.6em;
+	    position:relative;
+	    right:25px;
+	}
+
+	.result tr td table{
+		display: inline-block;
+		padding: 4em;
+		width: 1em;
+		display: ;
+	}
+
+	.result tr td table{
+		display: inline-block;
+		padding: 4em;
+		width: 1em;
+		display: ;
+	}
+
+	.flex-item-interests {
+
+	  padding: 0px;
+	  min-height: 150px;
+	  min-width: 150px;
+	  max-height: 150px;
+	  max-width: 150px;
+	  width: 100%;
+	  height: 100%;
+	  margin-top: 10px;
+	  margin-bottom: 30px;
+	  -webkit-flex: 1 1 10em;
+	  -moz-flex: 1 1 15em;
+	  flex: 1 1 15em;
+
+	  line-height: 10px;
+	  color: white;
+	}
+
+	.flex-item-interests img {
+	    -webkit-transition: all .2s ease-in-out;
+		-moz-transition: all .2s ease-in-out;
+		transition: all .2s ease-in-out;
+		min-height: 150px;
+		min-width: 150px;
+		width: 70%;
+	}
+}
+
+@media screen and (min-width: 993px){
+	.flex-item-interests {
+
+	  padding: 0px;
+	  min-height: 200px;
+	  min-width: 200px;
+	  max-height: 200px;
+	  max-width: 200px;
+	  width: 100%;
+	  height: 100%;
+	  margin-top: 10px;
+	  margin-bottom: 30px;
+	  margin-right: 10px;
+	  margin-left: 10px;
+	  -webkit-flex: 1 1 12em;
+	  -moz-flex: 1 1 15em;
+	  flex: 1 1 15em;
+
+	  line-height: 10px;
+	  color: white;
+
+	}
+
+	.flex-item-interests img {
+	    -webkit-transition: all .2s ease-in-out;
+		-moz-transition: all .2s ease-in-out;
+		transition: all .2s ease-in-out;
+		min-height: 200px;
+		min-width: 200px;
+		width: 70%;
+
+	}
+}
+
+.flex-item-interests p {
+
+}
+
+.flex-item-interests a {
+  font-weight: bold;
+  line-height: 15px;
+  font-size: 1em;
+  text-align: center;
+  	-webkit-transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+/*  line-height: 100px;
+*/}
+
+.flex-item-interests a:hover {
+	-webkit-transform: scale(1.05);
+	-moz-transform: scale(1.05);
+	transform: scale(1.05);
+}
+
+
+.interest-group {
+	background-image: url("../img/INTEREST_GROUP.svg");
+	background-repeat: no-repeat;
+	float: left;
+}
+
+.press {
+	background-image: url("../img/PRESS.svg");
+	background-repeat: no-repeat;
+	float: right;
+}
+
+nav {
+  width: 100%;
+  height: 100%;
+  border-bottom: 10px solid #000080;
+  margin-bottom: 1rem;
+}
+
+.nav-link {
+	width:22.5rem;
+	margin: 0 auto;
+	height: 2.5rem;
+	/*display: inline;*/
+}
+
+
+.nav-link li {
+	opacity: 1;
+	height: 2rem;
+	width: 3.75rem;
+	float: left;
+}
+
+
+.nav-link img {
+	height: 2rem;
+	width: 2rem;
+	margin: 2px .5rem;
+}
+
+
+.nav-link a {
+	height: 48px;
+	cursor: pointer;
+}
+
+.nav-link li.hide {
+	opacity: 0;
+}
+
+.overlay img{
+	background-size: 110%;
+	opacity: 0.05;
+	position: absolute;
+	top: 2rem;
+	left: 0;
+	z-index: 1;
+	width: 100%;
+	height: 150%;
+
+}
+
+.red { 
+	color: red;
+}
+
+.green {
+	color: forestgreen;
+}
+
+._100pcnt {
+	color:#990000;
+}
+
+._80pcnt {
+	color: #cc3300;
+}
+
+._60pcnt {
+	color:#ff9933;
+}
+
+._40pcnt {
+	color:#FCDC3B;
+}
+
+._20pcnt {
+	color:#99cc00;
+}
+
+._0pcnt {
+	color:#009900;
+}
+
+.orange {
+	color:darkorange;
+}
+
+.black {
+	color:black;
+}
+
+.blue {
+	color: navy;
+}
+
+.comparison-true {
+
+}
+
+.comparison-false {
+
+}
+
+.comparison-list li
+{
+display: inline;
+list-style-type: none;
+padding-right: 20px;
+}
+
+.comparisonsOpinion {
+	font-size: .8em;
+	display: inline;
+	text-align: right;
+}
+
+.comparisonProfile {
+	display: inline;
+	text-align: left;
+}
+
+
+.comparisons-background {
+/*	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);*/
+	
+
+/*	-webkit-transform-origin: center top 0;
+	transform-origin: center top 0;*/
+	margin: 0 auto;
+	top: 3rem;
+	left:1.6rem;
+	width: 90%;
+	text-align:center;
+	float:center;
+	vertical-align: baseline;
+
+/*	position: absolute;
+
+*/	font-size: 1rem;
+	text-transform: uppercase;
+	font-weight: 700;
+	background-color: teal;
+	border-radius: 20px;
+	border: 1px solid black;
+	padding: .1rem 0;
+}
+
+.comparisons-background a {
+	text-align: center;
+}
+
+.talking-points {
+	text-transform: uppercase;	
+	z-index: 2;
+}
+
+.talking-points div:after {
+
+}
+
+.talking-points h2 {
+	font-size: 2rem;
+	margin-bottom: 2rem;
+	letter-spacing: .3rem;
+	opacity: 1;	
+}
+.talking-points h3 {
+	font-size: 1.2rem;
+	margin-bottom: 1.5rem;
+	letter-spacing: .3rem; 
+}
+
+.talking-points li {
+	list-style: disc;
+	font-size: 1.5rem;
+	text-align: left;
+	margin-left: 3rem;
+	margin-bottom: 0.8rem;
+}
+
+.talking-points p {
+	text-transform: none;
+	text-align: justify;
+	line-height: 1.5rem;
+	width: 70%;
+	margin: 0 auto;
+}
+
+.talking-points span {
+	font-size: .7rem;
+}
+
+p.privacy {
+	float: left;
+	margin: -1rem 0 0 1rem;
+	text-transform: uppercase;
+}
+
+form {
+	text-align: center;
+	width: 75%;
+	font-weight: 700;
+	margin: 0 auto;
+}
+
+form h4 {
+	text-transform: uppercase;
+	margin: .5rem 0;
+	font-size: 1rem;
+}
+
+form p {
+	font-size: .7rem;
+
+
+}
+
+form p.right {
+	text-align: right;
+	width: 4rem;
+	line-height: .7rem;
+}
+
+form div.left.poll input {
+	margin: 0.5rem .7rem;
+	float: left;
+
+}
+
+form div.left.poll {
+	border-right: 1px solid black;
+}
+
+form div.right.poll input {
+	margin: 0.5rem .7rem;
+	float: right;
+}
+
+form p.left {
+	text-align: left;
+	width: 4rem;
+	line-height: .7rem;
+}
+
+form .poll {
+	height: 3rem;
+	width: 49%;
+	margin-bottom: .7rem;
+}
+
+
+form input[type="button"] {
+	margin: 0 .2rem 1rem .2rem;
+	background-color: white;
+	border: 1px solid black;
+}
+
+
+form .next-question {
+	font-size: 1rem;
+	margin-top: 2rem;
+	float: right;
+}
+
+form .fa-arrow-circle-right {
+	margin-top: 2rem;
+	float: right;
+}
+
+form .fa-arrow-circle-right:hover {
+	cursor: pointer;
+}
+
+form input.comments {
+	margin-left: 3.5rem;
+}
+
+
+
+.error-msg {
+	font-size: 2rem;
+	text-transform: uppercase;
+	margin-top: 6.25rem;
+}
+
+
+/*--animations--*/
+
+
+@-webkit-keyframes bounce {
+  0%{
+    right:-10px;
+  }
+  
+  25%, 75% {
+    right:-20px;
+  }
+  
+  
+  50% {
+    right:-25px;
+  }
+  
+  100% {
+    right:-10px;
+  }
+}
+
+
+@keyframes bounce {
+  0%{
+    right:-10px;
+  }
+  
+  25%, 75% {
+    right:-20px;
+  }
+  
+  50% {
+    right:-25px;
+  }
+  
+  100% {
+    right:-10px;
+  }
+}
+
+.bounce {
+	position:fixed;
+  	bottom:0;
+  	right:-10;
+  	-webkit-animation: bounce .8s linear infinite;
+  	animation: bounce .8s linear infinite;
+
+}
+
+
+/*---ng-cloak---*/
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}

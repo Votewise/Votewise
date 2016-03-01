@@ -1,0 +1,5 @@
+#!/bin/bash -ue
+pushd test/server
+node api.js
+node auth.js
+popd

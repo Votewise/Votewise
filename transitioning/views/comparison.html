@@ -1,0 +1,117 @@
+<nav>
+	<div class="nav-link">
+	<ul>
+		<li><a href="#/portals"><img class="portal" src="img/Expand-Tool.png"></a></li>
+		<li><a href="#/"><img class="portal" src="img/Question.png"></a></li>
+		<li><a href="#/"><img class="portal" src="img/EDUCATION.svg"></a></li>
+		<li><a href="#/"><img class="portal" src="img/Chat.png"></a></li>
+		<li><a href="#/"><img class="portal" src="img/Politician-Info.png"></a></li>
+		<li><a href="#/"><img class="portal" src="img/Settings.png"></a></li>
+	</ul>
+	</div>
+</nav>
+<div class="main box">
+<br>
+	<div class="comparisons">
+		<p>{{set.question}}</p>
+	</div>
+</div>
+
+<div class="row brd">
+	<div class="col-xs-2" >
+		<p style="position:relative; left:7px; top:13px">Previous</p>
+	</div>
+	<div class="col-xs-3">
+		<p style="position:relative; text-align:right">Question {{set.current}} of {{set.total}}</p>
+	</div>
+	<div class="col-xs-4 brd">
+	  	<a style="bottom:10px" href="#/cl-background">
+	  		read question background
+	  	</a>
+	</div>
+	<div class="col-xs-2">
+		<p style="position:relative; left:15px; top:13px;">Next</p>
+	</div>
+</div>
+
+<button type="button" ng-click="setDifference()"> Button Test </button>
+<button type="button" ng-click="printValue()">Value Test</button>
+
+
+<div>
+ 	<br>
+    <div class="currentUserAnswer row" >
+      <div class="col-xs-3 center" style="overflow-x:visible">
+		<p style="display:inline; position:relative; left: 10px; font-size:1.5em" class="fa"> <b>You: </b> <i style="font-size:.7em">{{currentUser.You.questionImportance}}</i> </p>
+	  </div>
+      <div class="col-xs-9 center" style="position:relative; left:9px">
+      	<br>
+      	
+        <p class="fa" style="display:inline; position:relative; font-size:1.57em" ng-if="currentUser.You.questionAnswer" ng-class="{green:currentUser.You.questionAnswer[0], blue:!currentUser.You.questionAnswer[0], 'fa-check-square':currentUser.You.questionAnswer[0], 'fa-square':!currentUser.You.questionAnswer[0]}">
+        	&nbsp
+        	<i style="position:absolute; bottom:30px; font-size:.4em; right: 8px; color:black;">
+        		Agree
+    			<i style="position:absolute; font-size:1em; color:black; bottom: 0px; left:72px">
+    				Ambivalent
+    			</i>
+        	</i>
+        </p> 
+        <p class="fa" style="display:inline; position:relative; font-size:1.57em" ng-if="currentUser.You.questionAnswer" ng-class="{green:currentUser.You.questionAnswer[1], blue:!currentUser.You.questionAnswer[1], 'fa-check-square':currentUser.You.questionAnswer[1], 'fa-square':!currentUser.You.questionAnswer[1]}">
+        	&nbsp
+        </p> 
+        <p class="fa" style="display:inline; position:relative; font-size:1.57em" ng-if="currentUser.You.questionAnswer" ng-class="{green:currentUser.You.questionAnswer[2], blue:!currentUser.You.questionAnswer[2], 'fa-check-square':currentUser.You.questionAnswer[2], 'fa-square':!currentUser.You.questionAnswer[2]}">
+        	&nbsp
+        </p> 
+        <p class="fa" style="display:inline; position:relative; font-size:1.57em" ng-if="currentUser.You.questionAnswer" ng-class="{green:currentUser.You.questionAnswer[3], blue:!currentUser.You.questionAnswer[3], 'fa-check-square':currentUser.You.questionAnswer[3], 'fa-square':!currentUser.You.questionAnswer[3]}">
+        	&nbsp
+        </p> 
+        <p class="fa" style="display:inline; position:relative; font-size:1.57em" ng-if="currentUser.You.questionAnswer" ng-class="{green:currentUser.You.questionAnswer[4], blue:!currentUser.You.questionAnswer[4], 'fa-check-square':currentUser.You.questionAnswer[4], 'fa-square':!currentUser.You.questionAnswer[4]}">
+        	&nbsp
+        </p>
+        <p class="fa" style="display:inline; position:relative; font-size:1.57em" ng-if="currentUser.You.questionAnswer" ng-class="{green:currentUser.You.questionAnswer[5], blue:!currentUser.You.questionAnswer[5], 'fa-check-square':currentUser.You.questionAnswer[5], 'fa-square':!currentUser.You.questionAnswer[5]}">
+        	<i style="position:absolute; font-size:.4em; color:black; bottom:30px; right:-5px">Disagree</i>
+        </p>
+      </div> 
+    </div> 
+    <br>
+   
+</div>
+
+<div class="overflow">
+
+	<div class="row">
+		<div class="col-xs-3">
+			<div style="line-height:70%; height:100px; width:300px" class="right" ng-repeat="(key,profile) in profileCompare track by $index">
+				<p style="font-size:1.5em; position:relative; top:10px; left:10px">{{profile.name}}:&nbsp
+					<i ng-if="profile.questionImportance=='Very Important'" style="font-size:.7em;">
+						{{profile.questionImportance}}
+					</i>
+				</p>
+				<p style="font-size:1em; position:relative; top:15px; left:10px">{{profile.office}}</p>
+				<p style="font-size:1em; position:relative; top:15px; left:10px;">Comments</p>
+			</div>
+		</div>
+		<div class="col-xs-9 center">
+			<div class="" style="height: 100px"ng-repeat="(key,profile) in profileCompare track by $index">
+				<ul style="position:relative; left:15px"> 
+					<br style="font-size:1.3em">
+			        <li ng-repeat="answer in profile.questionAnswer track by $index" style="top:10px; display:inline; font-size:1.57em;right: 10px; width:25px" class="">
+
+			        	<i class="fa center {{profile.difference}}" ng-class="{'fa-check-square':answer, 'fa-square':!answer, 'black':!answer}">
+			        		&nbsp&nbsp
+			        		<i ng-if="$first" style="position:absolute; font-size:.45em; color:black; right: 2px; top:25px">
+			        			Agree
+			        			<i style="position:absolute; font-size:1em; color:black; bottom: 0px; left:72px">
+			        			Ambivalent
+			        			</i>
+			        		</i>
+			        		<i ng-if="$last" style="position:absolute; font-size:.45em; color:black; right: 11px; top:25px;">
+			        			Disagree
+			        		</i>
+			        	</i>
+			        </li>
+	       		</ul>
+			</div>	
+		</div>
+	</div>
+</div>

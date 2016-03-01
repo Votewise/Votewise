@@ -1,0 +1,758 @@
+// Vendor Styles
+@import "../../node_modules/font-awesome/scss/font-awesome";
+@import "../../node_modules/bootstrap/dist/css/bootstrap";
+@import "../../node_modules/bootstrap/dist/css/bootstrap-theme";
+@import "../../node_modules/angular-awesome-slider/dist/css/angular-awesome-slider.min";
+@import "./coloredButtons";
+/*!
+angular-xeditable - 0.1.9
+Edit-in-place for angular.js
+Build date: 2015-03-26
+*/
+
+.editable-wrap{display:inline-block;white-space:nowrap;margin:0}.editable-wrap .editable-controls,.editable-wrap .editable-error{margin-bottom:0}.editable-wrap .editable-controls>input,.editable-wrap .editable-controls>select,.editable-wrap .editable-controls>textarea{margin-bottom:0}.editable-wrap .editable-input{display:inline-block}.editable-buttons{display:inline-block;vertical-align:top}.editable-buttons button{margin-left:5px}.editable-input.editable-has-buttons{width:auto}.editable-bstime .editable-input input[type=text]{width:46px}.editable-bstime .well-small{margin-bottom:0;padding:10px}.editable-range output{display:inline-block;min-width:30px;vertical-align:top;text-align:center}.editable-color input[type=color]{width:50px}.editable-checkbox label span,.editable-checklist label span,.editable-radiolist label span{margin-left:7px;margin-right:10px}.editable-hide{display:none!important}.editable-click,a.editable-click{text-decoration:none;color:#428bca;border-bottom:dashed 1px #428bca}.editable-click:hover,a.editable-click:hover{text-decoration:none;color:#2a6496;border-bottom-color:#2a6496}.editable-empty,.editable-empty:hover,.editable-empty:focus,a.editable-empty,a.editable-empty:hover,a.editable-empty:focus{font-style:italic;color:#D14;text-decoration:none}
+
+
+/* VoteWise CSS styles
+ *
+ */
+
+html, body {
+  width:   100%;
+  display: block;
+  margin:  0;
+  padding: 0;
+  border:  0;
+  font-family:      sans-serif;
+  //background-color: #dedede;
+  overflow-x:       hidden;
+  background-color: #c4e2fa;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  padding:  0;
+  margin:   0;
+}
+
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: #202020;
+}
+
+/* Basic Layout Styles
+ *
+ * Used for Global Organization.
+ */
+
+.header {
+  height:            60px;
+  width:             100%;
+  background-color:  #c4e2fa;
+}
+.header #logo {
+  height:  50px;
+  margin:  5px;
+  width:   auto;
+}
+.header #topBarButtons {
+  float: right;
+}
+.header #topBarButtons img {
+  height:  70px;
+  width:   70px;
+  padding: 10px;
+  //display:;
+}
+
+/* TEMPORARY BLOCK END */
+
+.centerEl {
+  margin-left:  auto;
+  margin-right: auto;
+  display:      block;
+}
+.centerTx {
+  text-align: center;
+}
+
+.content {
+  padding: 10px 15px 0px 15px;
+}
+
+.headerText {
+  padding:          25px 0;
+  text-decoration:  underline;
+}
+
+
+/*
+
+  Splash Page
+
+*/
+
+.splashHeader {
+  text-align: center;
+  padding-top:20px;
+}
+.splashHeader img {
+  width: 100%;
+  max-width: 600px;
+}
+.splash div {
+  display: inline-block;
+}
+#container {
+  width: 95%;
+  margin: auto;
+}
+
+.splashLoginRegister  {
+  text-align: center;
+  display: inline-block;
+}
+.goToLogin {
+  width:100px;
+  height:60px;
+  font-size:20px;
+  display: inline-block;
+}
+.splash p {
+  float: left;
+  width: 40%;
+  margin-top:10%;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 40px;
+}
+#secondRegisterRow img{
+  min-width:180px;
+  max-width:180px;
+}
+.splash span{
+  display: inline-block;
+}
+.splash img {
+  //width: 40%;
+  min-width: 200px;
+  max-width: 200px;
+}
+.splash img:hover { transform: scale(1.1); }
+.splash img:active { transform: scale(1.5); }
+
+/*
+
+  Login/Signup Styles
+
+*/
+.loginForm {
+  text-align:center;
+}
+.loginForm input {
+}
+.loginForm button {
+}
+
+.authPage button {
+  width:            100px;
+  height:           50px;
+  background-color: #202020;
+  border:           0px;
+  color:            #c4e2fa;
+  border-radius:    10px;
+  font-size:        1em;
+  margin-top:       15px;
+  margin-bottom:    15px;
+}
+.authPage .signupButton {
+  width: 345px;
+  background-color: white;
+  color: black;
+}
+
+/* Settings page styles */
+
+.toDelete {
+  font-size: 8px;
+}
+
+#settingsHeader{
+  text-align:center;
+  margin: auto;
+  font-size: 25px;
+}
+
+.settings {
+  margin: 10px;
+  background-color: #91CDFD;
+  border-radius: 30px;
+
+};
+
+.userSettings {
+  margin-top: 30px;
+  margin: 20px;
+  padding:10px;
+  border-radius: 20px;
+  background-color: #cee0ff;
+}
+
+.userSettings p {
+  margin: 15px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.userGroups {
+  margin: 20px;
+  padding:10px;
+  border-radius: 20px;
+  background-color: #cee0ff;
+}
+.userGroups h3 {
+  font-weight: bold;
+}
+.userGroups h4 {
+  font-weight: bold;
+}
+.userGroups div{
+  margin-left: 15px;
+}
+.userParties {
+  margin: 20px;
+  padding:10px;
+  border-radius: 20px;
+  background-color: #cee0ff;
+}
+.userParties h3 {
+  font-weight: bold;
+}
+.userParties h4 {
+  font-weight: bold;
+}
+.userParties div{
+  margin-left: 15px;
+}
+
+/*
+
+  Politician Library Styles
+
+*/
+
+.checked {
+  font-weight: bold;
+}
+.politicianLibrary {
+  //background-color:
+}
+.politicianLibraryControls {
+  display: flex;
+  justify-content: space-around;
+}
+.repeatedOffices {
+  padding: 10px;
+  margin: 10px;
+  background: #6da9ff;
+  border-radius: 10px;
+  overflow-x: scroll;
+}
+.repeatedOffices div {
+  display: inline-block;
+}
+.repeatedPolitician {
+  background-color: #3bafd2;
+  padding: 5px;
+}
+.politicianRepeat table {
+  background-color: #2aabd2;
+  border-radius: 8px;
+}
+.politicianRepeat th {
+  padding: 6px;
+}
+.politicianRepeat td {
+   padding: 6px;
+   border-top: 1px solid black;
+ }
+.politicianRepeat #selected {
+  padding: 6px;
+  border-top: 1px solid black;
+  width: 110%;
+}
+
+/* Politician Comparison Page */
+
+.politicianComparison {
+
+}
+.politicianComparisonControls {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  padding: 20px;
+  padding-top: 0px;
+}
+.politicianComparisonControls div {
+  width: 30%;
+  text-align: center;
+}
+.comparedPoliticianQuestion {
+  background: #6da9ff;
+  padding: 20px;
+}
+.comparedPoliticianQuestion #politicianCompareBackground {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+.comparedPoliticianQuestion #concurrence {
+  padding: 10px;
+  padding-bottom: 20px;
+}
+.comparedPoliticianQuestion #concurrence table {
+  margin-top: 20px;
+}
+.comparedPoliticianQuestion #concurrence th {
+  padding: 6px;
+}
+.comparedPoliticianQuestion #concurrence td {
+  padding: 10px;
+  border-top: 1px solid black;
+}
+.comparisonCheckBoxes {
+  margin: 4px;
+}
+
+.comparisonAgreeDisagree {
+  background: white;
+  padding-top: 10px;
+  margin: 50px;
+  border-radius: 15px;
+}
+
+.comparedPoliticianQuestion #politicianCompareQuestion {
+  font-size: 18px;
+  font-style: italic;
+  text-align: center;
+  padding-top: 20px;
+}
+.comparedPoliticianQuestion #ranking {
+
+}
+
+
+/* Topic Page Styles */
+
+.flex-container-topics {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  display: -webkit-flex;
+
+  flex-flow: row wrap;
+  -webkit-box-flex-flow: row wrap;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  -moz-flex-flow: row wrap;
+
+
+  justify-content: space-around;
+  -webkit-justify-content: space-around;
+
+}
+
+.flex-item-topics img {
+  width: 100px;
+}
+
+.flex-item-topics a {
+  font-weight: bold;
+  line-height: 15px;
+  font-size: 1em;
+  text-align: center;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  /*  line-height: 100px;
+  */}
+
+.flex-item-topics a:hover {
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.topicPage div {
+  text-align: center;
+}
+
+/* Subtopic Choosing Styles */
+.subtopicChoose {
+  border-radius:    8px;
+  width:            800px;
+  height:           auto;
+  background-color: white;
+  padding:          2px 0 2px 0;
+  margin-bottom:    20px;
+}
+.subtopicSingle {
+  margin:   10px 10px;
+  padding:  10px;
+}
+.subtopicSingle h1 {
+  vertical-align: top;
+  padding:        10px 0 0 40px;
+  display:        inline-block;
+}
+.totalQuestions {
+  float:    right;
+  height:   50px;
+  width:    50px;
+  display:  inline-block;
+  border:   1px black solid;
+}
+.tnumBox {
+  margin-top: 1px;
+}
+.tnumBox hr {
+  margin: 0 10px 2px;
+}
+.tnumBox p {
+  font-size: 1.2em;
+}
+
+.subtopicBottomButtons {
+  width:          405px;
+  margin-bottom:  20px;
+}
+.compareButton {
+  border-radius:    10px;
+  height:           50px;
+  width:            200px;
+  background-color: green;
+  display:          inline-block;
+}
+.continueButton {
+  border-radius:    10px;
+  height:           50px;
+  width:            200px;
+  background-color: red;
+  display:          inline-block;
+}
+.subtopicBottomButtons h1 {
+  margin-top: 10px;
+  color:      white;
+}
+/* Question page styles
+ *
+ *
+ */
+
+.questionSetBackground {
+  text-align: center;
+  background: #aceeff;
+  padding: 20px;
+  padding-bottom: 0px;
+}
+.questionSetBackground #backgroundScroll {
+  height: 200px;
+  overflow-y: scroll;
+  padding: 10px;
+}
+.showBackgroundBtn {
+  align: center;
+  width:150px;
+  margin-top:10px
+}
+
+.questionSetBackground #backgroundHeader {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.questionSetBackground #backgroundDescription {
+  font-size: 15px;
+}
+
+.questionSetQuestion  {
+  background: #aceeff;
+  text-align: center;
+  padding: 20px;
+  padding-bottom: 40px;
+}
+.questionSetQuestion #questionHeader {
+  font-weight: bold;
+  font-size: 22px;
+}
+.questionSetQuestion #questionDescription {
+  font-style: italic;
+  font-size: 18px;
+}
+
+.questionSetConcurrence {
+  text-align:center;
+  width: 100%;
+  margin: auto;
+  background: #92ccff;
+  border-radius: 20px 20px 0px 0px;
+  padding-bottom: 10px;
+  padding: 10px;
+}
+
+.questionSetConcurrenceBtns {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.aBtns div {
+  margin: auto;
+  margin-right: 10%;
+  float:right;
+  text-align: center;
+}
+
+.dBtns div {
+  margin: auto;
+  margin-left:10%;
+  float:left;
+  text-align: center;
+}
+
+.questionSetImportanceAndComment {
+  text-align:center;
+  width: 100%;
+  margin: auto;
+  padding: 20px;
+  background: #88c1ff;
+  display: flex;
+  justify-content: space-around;
+}
+
+.questionSetImportance {
+  padding: 10px;
+  width: 80%;
+}
+
+.questionSetComment {
+  padding: 10px;
+}
+
+.questionTraversingButtons {
+  display: flex;
+  justify-content: space-around;
+  background: #72b7ff;
+  padding-bottom: 20px;
+}
+
+
+.agreeBtn {
+  -moz-box-shadow: 3px 3px 0px 0px #3dc21b;
+  -webkit-box-shadow: 3px 3px 0px 0px #3dc21b;
+  box-shadow: 3px 3px 0px 0px #3dc21b;
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #44c767), color-stop(1, #5cbf2a));
+  background:-moz-linear-gradient(top, #44c767 5%, #5cbf2a 100%);
+  background:-webkit-linear-gradient(top, #44c767 5%, #5cbf2a 100%);
+  background:-o-linear-gradient(top, #44c767 5%, #5cbf2a 100%);
+  background:-ms-linear-gradient(top, #44c767 5%, #5cbf2a 100%);
+  background:linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#44c767', endColorstr='#5cbf2a',GradientType=0);
+  background-color:#44c767;
+  -moz-border-radius:7px;
+  -webkit-border-radius:7px;
+  border-radius:10px;
+  border:1px solid #18ab29;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:14px;
+  padding:10px 1px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #810e05;
+  width: 30px;
+  height: 30px;
+  margin: 4px;
+}
+.agreeBtn:hover {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #5cbf2a), color-stop(1, #44c767));
+  background:-moz-linear-gradient(top, #5cbf2a 5%, #44c767 100%);
+  background:-webkit-linear-gradient(top, #5cbf2a 5%, #44c767 100%);
+  background:-o-linear-gradient(top, #5cbf2a 5%, #44c767 100%);
+  background:-ms-linear-gradient(top, #5cbf2a 5%, #44c767 100%);
+  background:linear-gradient(to bottom, #5cbf2a 5%, #44c767 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5cbf2a', endColorstr='#44c767',GradientType=0);
+  background-color:#5cbf2a;
+}
+.agreeBtn:active {
+  position:relative;
+  background-color: darkgreen;
+  top:1px;
+}
+
+.disagreeBtn {
+  -moz-box-shadow: -3px 3px 0px 0px #8a2a21;
+  -webkit-box-shadow: -3px 3px 0px 0px #8a2a21;
+  box-shadow: -3px 3px 0px 0px #8a2a21;
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #f24437));
+  background:-moz-linear-gradient(top, #c62d1f 5%, #f24437 100%);
+  background:-webkit-linear-gradient(top, #c62d1f 5%, #f24437 100%);
+  background:-o-linear-gradient(top, #c62d1f 5%, #f24437 100%);
+  background:-ms-linear-gradient(top, #c62d1f 5%, #f24437 100%);
+  background:linear-gradient(to bottom, #c62d1f 5%, #f24437 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c62d1f', endColorstr='#f24437',GradientType=0);
+  background-color:#c62d1f;
+  -moz-border-radius:10px;
+  -webkit-border-radius:7px;
+  border-radius:12px;
+  border:1px solid #d02718;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:14px;
+  padding:10px 1px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #810e05;
+  width: 30px;
+  height: 30px;
+  margin: 4px;
+}
+.disagreeBtn:hover {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f24437), color-stop(1, #c62d1f));
+  background:-moz-linear-gradient(top, #f24437 5%, #c62d1f 100%);
+  background:-webkit-linear-gradient(top, #f24437 5%, #c62d1f 100%);
+  background:-o-linear-gradient(top, #f24437 5%, #c62d1f 100%);
+  background:-ms-linear-gradient(top, #f24437 5%, #c62d1f 100%);
+  background:linear-gradient(to bottom, #f24437 5%, #c62d1f 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f24437', endColorstr='#c62d1f',GradientType=0);
+  background-color:#f24437;
+}
+.disagreeBtn:active {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, pink), color-stop(1, #c62d1f));
+  background:-moz-linear-gradient(top, pink 5%, pink 100%);
+  background:-webkit-linear-gradient(top, pink 5%, pink 100%);
+  background:-o-linear-gradient(top, pink 5%, pink 100%);
+  background:-ms-linear-gradient(top, pink 5%, pink 100%);
+  background:linear-gradient(to bottom, pink 5%, pink 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='pink', endColorstr='pink',GradientType=0);
+  background-color:pink;
+}
+
+
+
+/*
+ *
+  Polling Page
+ *
+ */
+
+.flex-container-topics-small {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  display: -webkit-flex;
+
+  flex-flow: row wrap;
+  -webkit-box-flex-flow: row wrap;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  -moz-flex-flow: row wrap;
+  justify-content: space-around;
+  -webkit-justify-content: space-around;
+
+}
+
+.flex-item-topics-small img {
+  width: 50px;
+}
+
+.flex-item-topics-small a {
+  font-weight: bold;
+  line-height: 15px;
+  font-size: .7em;
+  text-align: center;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  /*  line-height: 100px;
+  */}
+
+.flex-item-topics-small a:hover {
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+
+/* Secondary (Global) Design Styles
+ *
+ * Styles used between pages to convey information or as general design improvements.
+ */
+
+/* Used to represent the topic and typically below the main nav bar */
+.topicTopBar {
+  height:           auto;
+  width:            100%;
+  background-color: #FFF;
+  padding:          10px;
+}
+.topicTopBar img {
+  width:  auto;
+  height: 60px;
+}
+.topicTopBar h1 {
+  display:        inline-block;
+  vertical-align: top;
+  margin:         0px;
+  padding:        15px 0 0 10px;
+}
+.topicTopBar hr {
+  margin-right: 20px;
+}
+.topicTopBar .subtopicBar {
+  margin: 5px 0;
+}
+.topicTopBar .subtopicBar h3 {
+  display: inline-block;
+}
+.topicTopBar .subtopicBar h3.answeredQuestions {
+  float:        right;
+  margin-right: 20px;
+}
+
+.illuminateIcon {
+  box-shadow: 0 0 10px 10px #FFF;
+}
+
+/* Media Queries
+ *
+ * Breakpoints only for major design differences
+ * between Desktop and Tablet/Mobile.
+ */
+
+
+@media (max-width: 401px){
+  header {
+    min-height: 120px;
+    height: auto;
+    width:  100%;
+  }
+
+}

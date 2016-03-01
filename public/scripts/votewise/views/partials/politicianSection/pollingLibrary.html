@@ -1,0 +1,39 @@
+<div class="flex-container-topics">
+    <div class="flex-item-topics-small"><a ng-click="selectTopic('Civil Liberties')"><img src="./images/app/finalIcons/civil_liberties.svg"></br>Civil Liberties</a></div>
+    <div class="flex-item-topics-small"><a ng-click="selectTopic('Crime And Punishment')"><img src="images/app/finalIcons/crime_punishment.svg"></br>Crime and<br>Punishment</a></div>
+    <div class="flex-item-topics-small"><a ng-click="selectTopic('Education')"><img src="images/app/finalIcons/education.svg"></br>Education</a></div>
+    <div class="flex-item-topics-small"><a ng-click="selectTopic('Energy')"><img src="images/app/finalIcons/energy.svg"></br>Energy</a></div>
+    <div class="flex-item-topics-small"><a ng-click="selectTopic('Environment')"><img src="images/app/finalIcons/environment.svg"></br>Environment</a></div>
+    <div class="flex-item-topics-small"><a ng-click="selectTopic('Gun Control')"><img src="images/app/finalIcons/gun_control.svg"></br>Gun Control</a></div>
+    <div class="flex-item-topics-small"><a ng-click="selectTopic('Healthcare And Safety')"><img src="images/app/finalIcons/health_safety.svg"></br>Health/Safety</a></div>
+    <div class="flex-item-topics-small"><a ng-click="selectTopic('Immigration')"><img src="images/app/finalIcons/immigration-01.svg"> </br> Immigration</a></div>
+    <div class="flex-item-topics-small"><a ng-click="selectTopic('Infrastructure')"><img src="images/app/finalIcons/infrastructure-01.svg"></br>Infrastructure</a></div>
+    <div class="flex-item-topics-small"><a ng-click="selectTopic('Foreign Policy')"><img src="images/app/finalIcons/international_relations-01.svg"></br>Foreign Policy</a></div>
+    <div class="flex-item-topics-small"><a ng-click="selectTopic('Jobs And The Economy')"><img src="images/app/finalIcons/jobs_economy-01.svg"></br>Jobs/Economy</a></div>
+    <div class="flex-item-topics-small"><a ng-click="selectTopic('Quality Of Life')"><img src="images/app/finalIcons/quality_of_life-01.svg"></br>Life Quality</a></div>
+    <div class="flex-item-topics-small"><a ng-click="selectTopic('Reproduction')"><img src="images/app/finalIcons/reproduction-01.svg"></br>Reproduction</a></div>
+    <div class="flex-item-topics-small"><a ng-click="selectTopic('Taxes')"><img src="images/app/finalIcons/taxes-01.svg"></br>Taxes</a></div>
+    <div class="flex-item-topics-small"><a ng-click="selectTopic('Social Services')"><img src="images/app/finalIcons/social_services-01.svg"></br>Social Services</a></div>
+</div>
+
+<div>
+    <div ng-if="queryStager">
+
+
+        <h4> Enter Polling specifications below and click this button to add to report  <button class="btn btn-default" ng-click="addQuery(newQuery)"> Add </button> </h4>
+        <p>Choose Subtopic</p>
+        <select ng-model="newQuery" ng-options="o.name for o in topicSelectOptions"></select>
+
+        <p> Select by sex: </p>
+        <p> Select by martial status </p>
+        <p> Select by age: </p>
+        <p> Select by ethnicity: </p>
+        <p> Select by religion: </p>
+        <p> Select by ownership status </p>
+        <p> Select by household income </p>
+        <p> Select by interest group: </p>
+        <p> Select by answer importance: </p>
+
+    </div>
+
+</div>

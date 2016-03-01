@@ -1,0 +1,229 @@
+/* VoteWise CSS styles
+ *
+ */
+
+html, body {
+    width:   100%;
+    display: block;
+    margin:  0;
+    padding: 0;
+    border:  0;
+    font-family:      sans-serif;
+    background-color: #dedede;
+    overflow-x:       hidden;
+}
+h1, h2, h3, h4, h5, h6, p {
+    padding:  0;
+    margin:   0;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #202020;
+}
+
+/* Basic Layout Styles
+ *
+ * Used for Global Organization.
+ */
+
+header {
+    height:            60px;
+    width:             100%;
+    background-color:  #c4e2fa;
+}
+header #logo {
+    height:  50px;
+    margin:  5px;
+    width:   auto;
+}
+header #topBarButtons {
+    float: right;
+}
+header #topBarButtons img {
+    height:  30px;
+    width:   30px;
+    padding: 10px;
+    display: inline-block;
+}
+/* TEMPORARY */
+header #topBarButtons span {
+    font-size:  44px;
+    padding:    5px 10px;
+    display:    inline-block;
+    color:      black;
+}
+/* TEMPORARY BLOCK END */
+
+.centerEl {
+    margin-left:  auto;
+    margin-right: auto;
+    display:      block;
+}
+.centerTx {
+    text-align: center;
+}
+
+.content {
+    padding: 10px 15px 0px 15px;
+}
+
+.headerText {
+    padding:          25px 0;
+    text-decoration:  underline;
+}
+
+/* Login/Signup Styles */
+.loginForm {
+    border-radius:    10px;
+    width:            300px;
+    height:           220px;
+    background-color: white;
+    padding:          20px 25px 20px 20px;
+}
+.loginForm input {
+    width:            100%;
+    height:           50px;
+    margin-top:       10px;
+    margin-bottom:    10px;
+    font-size:        1.4em;
+    font-weight:      lighter;
+    text-align:       center;
+}
+.authPage button {
+    width:            100px;
+    height:           50px;
+    background-color: #202020;
+    border:           0px;
+    color:            #c4e2fa;
+    border-radius:    10px;
+    font-size:        1em;
+    margin-top:       15px;
+    margin-bottom:    15px;
+}
+.authPage .signupButton {
+    width: 345px;
+    background-color: white;
+    color: black;
+}
+
+/* Topic Page Styles */
+.topicPage {
+
+}
+
+/* Subtopic Choosing Styles */
+.subtopicChoose {
+    border-radius:    8px;
+    width:            800px;
+    height:           auto;
+    background-color: white;
+    padding:          2px 0 2px 0;
+    margin-bottom:    20px;
+}
+.subtopicSingle {
+    width:    760px;
+    height:   50px;
+    margin:   10px 10px;
+    padding:  10px;
+}
+.subtopicSingle h1 {
+    vertical-align: top;
+    padding:        10px 0 0 40px;
+    display:        inline-block;
+}
+.totalQuestions {
+    float:    right;
+    height:   50px;
+    width:    50px;
+    display:  inline-block;
+    border:   1px black solid;
+}
+.tnumBox {
+    margin-top: 1px;
+}
+.tnumBox hr {
+    margin: 0 10px 2px;
+}
+.tnumBox p {
+    font-size: 1.2em;
+}
+
+.subtopicBottomButtons {
+    width:          405px;
+    margin-bottom:  20px;
+}
+.compareButton {
+    border-radius:    10px;
+    height:           50px;
+    width:            200px;
+    background-color: green;
+    display:          inline-block;
+}
+.continueButton {
+    border-radius:    10px;
+    height:           50px;
+    width:            200px;
+    background-color: red;
+    display:          inline-block;
+}
+.subtopicBottomButtons h1 {
+    margin-top: 10px;
+    color:      white;
+}
+
+/* Secondary (Global) Design Styles
+ *
+ * Styles used between pages to convey information or as general design improvements.
+ */
+
+/* Used to represent the topic and typically below the main nav bar */
+.topicTopBar {
+    height:           auto;
+    width:            100%;
+    background-color: #FFF;
+    padding:          10px;
+}
+.topicTopBar img {
+    width:  auto;
+    height: 60px;
+}
+.topicTopBar h1 {
+    display:        inline-block;
+    vertical-align: top;
+    margin:         0px;
+    padding:        15px 0 0 10px;
+}
+.topicTopBar hr {
+    margin-right: 20px;
+}
+.topicTopBar .subtopicBar {
+    margin: 5px 0;
+}
+.topicTopBar .subtopicBar h3 {
+    display: inline-block;
+}
+.topicTopBar .subtopicBar h3.answeredQuestions {
+    float:        right;
+    margin-right: 20px;
+}
+
+ .illuminateIcon {
+    box-shadow: 0 0 10px 10px #FFF;
+ }
+
+/* Media Queries
+ *
+ * Breakpoints only for major design differences
+ * between Desktop and Tablet/Mobile.
+ */
+
+@media (max-width: 401px){
+    header {
+        min-height: 120px;
+        height: auto;
+        width:  100%;
+    }
+
+}

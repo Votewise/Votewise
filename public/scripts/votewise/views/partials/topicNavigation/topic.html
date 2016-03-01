@@ -1,0 +1,50 @@
+<p> Topic page </p>
+
+
+
+<div class="topicTopBar">
+	<img class="topicIcon" ng-src="../../images/app/{{store.topic}}.svg"></img>
+	<h1>{{store.topic}} Questions</h1>
+</div>
+
+
+<div class="content">
+	<h1 class="centerTx headerText">Choose a Subtopic</h1>
+	<div class="subtopicChoose centerEl">
+		<!-- REPEAT: subtopics-->
+
+		<div ng-repeat="topic in store.topicCascade.Subtopics" class="subtopicSingle" id="subtopicID">
+			<!-- Dot in the beginning of the title: <span class=""></span> -->
+			<div ng-click="(topic.background === 0) ? null : moveToQuestionSet(topic.background, testUser)">
+				<h1>{{topic.description}}</h1>
+			</div>
+
+			<div ng-if="topic.Subtopics.length === 0"
+				 class="totalQuestions centerTx"
+				 title="Total Amount of Questions Answered by You or Politicians.">
+				<div class="tnumBox"><p>0</p><hr /><p>20</p></div>
+			</div>
+
+			<div ng-show="store.userInfo.answerCount >= 5"ng-repeat="subtopic in topic.Subtopics"
+				 ng-click="(subtopic.background === 0) ? null : moveToQuestionSet(subtopic.background, testUser)"
+				 ng-if="topic.Subtopics.length != 0"
+				 class="subtopicSingle">
+
+				<h1>{{subtopic.description}}</h1>
+
+			</div>
+
+			<hr/>
+		</div>
+
+
+
+		<!-- END REPEAT -->
+	</div>
+
+	<div class="centerEl centerTx subtopicBottomButtons">
+		<div class="compareButton"><h1 style="vertical-align: top;">Compare</h1></div>
+		<div class="continueButton"><h1>Answer</h1></div>
+	</div>
+
+</div>

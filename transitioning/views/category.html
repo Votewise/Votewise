@@ -1,0 +1,30 @@
+<nav>
+	<div class="nav-link">
+	<ul>
+		<li><a href="#/home"><img class="portal" src="img/Expand-Tool.png"></a></li>
+		<li><a href="#/"><img class="portal" src="img/Question.png"></a></li>
+		<li><a href="#/"><img class="portal" src="img/EDUCATION.svg"></a></li>
+		<li><a href="#/"><img class="portal" src="img/Chat.png"></a></li>
+		<li><a href="#/"><img class="portal" src="img/Politician-Info.png"></a></li>
+		<li><a href="#/"><img class="portal" src="img/Settings.png"></a></li>
+		
+	</ul>
+	</div>
+</nav>
+
+<div class="main">
+
+<div class="talking-points">
+	<div class="backgroundImage" style="background: url({{talkingPointsImage}}) center center;"></div>
+
+	<h2>{{title}}</h2>
+	<ul>
+	    <li ng-repeat="issue in subCategories" style="list-style-type:none; opacity: 1;">
+	        <input type="radio" name="radio" ng-model="question.stance" ng-value="-1"> {{issue.issue}}
+	    </li>
+	</ul>
+	
+
+</div>
+</div>
+<!-- </div> -->

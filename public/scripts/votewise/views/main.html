@@ -1,0 +1,13 @@
+<div class="header" ng-show="!store.hideMainHeader">
+	<a href="/"><img id="logo" src="../../images/app/votewiselogo.png" /></a>
+	<div id="topBarButtons">
+		<img src="../../images/app/expand-tool.png" />
+		<a ng-click="moveToQuestions()"><img src="../../images/app/question.png" /></a>
+		<a><img src="../../images/app/chat.png" /> </a>
+		<a ng-click="moveToComparisons(store.userInfo.type)"> <img  src="../../images/app/politician-info.png" /> </a>
+		<a style="margin-right: 10px;"ng-click="moveToSettings()"> <img src="../../images/app/settings.png" /> </a>
+	</div>
+</div>
+<br>
+<div ui-view></div>
+

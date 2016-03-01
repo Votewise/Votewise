@@ -1,0 +1,2 @@
+#!/bin/bash -ue
+cat schema.sql backgrounds.sql concurrenceQuestions.sql topics.sql users.sql

@@ -1,0 +1,49 @@
+<div>
+
+    <div>
+      <img src="../../images/app/votewiselogo.png" style="width: 70%; margin: auto; display:block;">
+    </div>
+   
+    <div class="container-fluid">
+        <div class="row">
+             <div class="loginForm col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10" >
+
+                 <form class="form-group" name="loginForm" ng-submit="login(loginCredentials)" novalidate>
+                     <label> User Name Or Email </label>
+                     <span ng-show="loginForm.userName.$error.required && loginForm.userName.$dirty">required</span>
+                     <input class="form-control"
+                            type="text"
+                            name="userName"
+                            ng-model="loginCredentials.userName"
+                            required>
+                             <!--ng-minlength="5"-->
+                             <!--ng-maxlength="20"-->
+                             <!--ng-pattern="/^[A-z][A-z0-9]*$/"-->
+                     <span ng-show="!loginForm.userName.$error.minLength && !loginForm.userName.$error.maxLength && loginForm.userName.$error.pattern && loginForm.userName.$dirty">Must start with a letter, and contain letters &amp; numbers only.</span>
+                     <span ng-show="!loginForm.userName.$error.required && (loginForm.userName.$error.minlength || loginForm.userName.$error.maxlength) && loginForm.userName.$dirty">Username must be between 5 and 20 characters.</span>
+                     <br>
+                     <label> Password </label>
+                     <span ng-show="loginForm.password.$error.required && loginForm.password.$dirty">required</span>
+                     <input name="password"
+                            class="form-control"
+                            type="password"
+                            ng-model="loginCredentials.password"
+                            required>
+                            <!--ng-minlength="8"-->
+                            <!--ng-maxlength="20"-->
+                            <!--ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/"-->
+                     <span ng-show="!loginForm.password.$error.required && (loginForm.password.$error.minlength || loginForm.password.$error.maxlength) && loginForm.password.$dirty">Passwords must be between 8 and 20 characters.</span>
+                     <span ng-show="!loginForm.password.$error.required && !loginForm.password.$error.minlength && !loginForm.password.$error.maxlength && loginForm.password.$error.pattern && loginForm.password.$dirty">Must contain one lower &amp; uppercase letter, and one non-alpha character (a number or a symbol.)</span>
+                     <button class="btn btn-primary"
+                             type="submit"
+                             style="width:150px;
+                             margin-top:10px"
+                             ng-disabled="!loginForm.$valid">
+                         Login
+                     </button>
+                 </form>
+
+        </div>
+   </div>
+
+</div>

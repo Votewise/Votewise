@@ -1,0 +1,14 @@
+{
+  "generator-mcfly": {
+    "filenameCase": "camel",
+    "filenameSuffix": true,
+    "appname": "voteWise",
+    "clientFolder": "public",
+    "ionic": false,
+    "famous": false,
+    "ngCordova": false,
+    "fontawesome": true,
+    "bootstrap": true,
+    "material": false
+  }
+}

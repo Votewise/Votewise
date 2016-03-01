@@ -1,0 +1,62 @@
+<nav>
+	<div class="nav-link">
+	<ul>
+		<li><a href="#/portals"><img class="portal" src="img/Expand-Tool.png"></a></li>
+		<li><a href="#/"><img class="portal" src="img/Question.png"></a></li>
+		<li><a href="#/"><img class="portal" src="img/EDUCATION.svg"></a></li>
+		<li><a href="#/"><img class="portal" src="img/Chat.png"></a></li>
+		<li class="hide"><a href="#/"><img class="portal" src="img/Politician-Info.png"></a></li>
+		<li><a href="#/"><img class="portal" src="img/Settings.png"></a></li>
+	</ul>
+	</div>
+</nav>
+<div class="main">
+
+<div class="talking-points">
+<p class="privacy">{{privacy}}</p>
+<h3>Questions <span>({{current}} of {{total}})</span></h3>
+	
+<p class="info-background">{{info}}</p>
+
+<div class="v-left">
+	<a href="#/cl-background">
+		<h1>go to background</h1>
+	</a>
+</div>
+
+<form>
+	<h4>disagree/agree</h4>
+	<div class="left poll">
+		<p class="left">Completely Disagree</p>
+		<div class="clearFix"></div>
+		<input type="radio" name="radio" ng-model="question.stance" ng-value="-3" checked>
+		<input type="radio" name="radio" ng-model="question.stance" ng-value="-2">
+		<input type="radio" name="radio" ng-model="question.stance" ng-value="-1">
+	</div>
+	
+	<div class="right poll">
+		<p class="right">Completely Agree</p>
+		<div class="clearFix"></div>
+		<input type="radio" name="radio" ng-model="question.stance" ng-value="3">
+		<input type="radio" name="radio" ng-model="question.stance" ng-value="2">
+		<input type="radio" name="radio" ng-model="question.stance" ng-value="1">
+	</div>
+	<input type="radio" name="radio" ng-model="question.stance" ng-value="0" class="no-comment"><span>I can't answer this question</span>
+	<h4>importance</h4>
+
+	<input type="button" value="Not Important" ng-click="question.importance = 'notImportant'">
+	<input type="button" value="Important"  ng-click="question.importance = 'important'">
+	<input type="button" value="Extremely"  ng-click="question.importance = 'veryImportant'">
+	<input type="button" value="test" ng-click="importance()">
+	<div class="clearFix"></div>
+	<input type="button" class="comments" value="ADD COMMENTS">
+	
+	<div class="fa fa-arrow-circle-right fa-3x"></div>
+
+</form>
+
+</div>
+
+
+			
+</div>

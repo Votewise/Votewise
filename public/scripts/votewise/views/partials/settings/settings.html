@@ -1,0 +1,85 @@
+<div>
+    <div class="settings">
+
+        <div id="settingsHeader">
+            User Account Settings
+        </div>
+
+        <div class="userSettings">
+            <p> Username: <span editable-text="store.userInfo.userName">{{store.userInfo.userName}}</span> </p>
+            <p> First Name: <span editable-text="store.userInfo.firstName">{{store.userInfo.firstName || 'Click to add First Name' }}</span> </p>
+            <p> Last Name: <span editable-text="store.userInfo.lastName">{{store.userInfo.lastName || 'Click to add Last Name' }}</span> </p>
+            <p> Email: <span editable-text="store.userInfo.email">{{store.userInfo.email}}</span> </p>
+            <p> Phone: <span editable-text="store.userInfo.phone">{{store.userInfo.phone || 'Click to add phone number'}}</span> </p>
+            <p> Address: <span editable-text="store.userInfo.address">{{store.userInfo.address || 'Click to add address'}}</span></p>
+            <p> District: <span editable-text="store.userInfo.district">{{store.userInfo.district || 'Click to select district'}}</span> </p>
+            <p> County: <span editable-text="store.userInfo.county">{{store.userInfo.county || 'Click to select county'}}</span> </p>
+            <p> City: <span editable-text="store.userInfo.city">{{store.userInfo.city || 'Click to select city'}}</span> </p>
+            <p> State: <span editable-text="store.userInfo.state">{{store.userInfo.state || 'Click to select state'}}</span> </p>
+        </div>
+
+        <div class="userGroups">
+            <h3>Lifestyle Groups</h3>
+
+            <div>
+
+                Click here to Add a Category <button class="btn btn-default" ng-click="populateCategorySelects()"> Choose Catgeory </button>
+            </div>
+
+            <div ng-if="!_.isEmpty(store.userInfo.Groups)" ng-repeat="category in store.userInfo.Groups">
+
+                <div ng-if="!category[0].category">
+                    <select name="newCategory" ng-model="newCategory" ng-options="o.name for o in categoriesSelectOptions"></select>
+                    <button class="btn btn-default" ng-click="submitNewElement('Categories', newCategory, $index)"> Add </button>
+                    <button class="btn btn-default" ng-click="removeElement(true, 'Categories', $index)"> Cancel </button>
+                </div>
+
+                <div ng-if="!category.showSelect">
+                    <h4> {{category[0].category}}  </h4>
+                    <div>
+                        <div ng-repeat="group in category" onshow="populateCategorySelects($parent.$parent.$index)" >
+                            <div ng-if="!group.showSelect">
+                                <p ng-class="group.delete ? 'toDelete' : 'hello' "> {{group.name}} </p>
+                                <button style="display:inline" ng-show="!group.delete" class="btn btn-default" ng-click="removeElement(true, 'Groups', $index, $parent.$parent.$index)">Remove</button>
+                                <button style="display:inline-block" ng-show="group.delete" class="btn btn-default" ng-click="removeElement(false, 'Groups', $index, $parent.$parent.$index)">Cancel Delete</button>
+                            </div>
+                            <div ng-if="group.showSelect">
+                                <select name="newGroup" ng-model="newGroup" ng-options="o.name for o in categoriesSelectOptions"></select>
+                                <button class="btn btn-default" ng-click="submitNewElement('Groups', newGroup, $index, $parent.$parent.$index)"> Add </button>
+                                <button class="btn btn-default" ng-click="removeElement(true, 'Groups', $index, $parent.$parent.$index)"> Cancel </button>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    <button class="btn btn-default" style="display:inline-block" ng-click="populateCategorySelects($parent.$index)">Add Group</button>
+                </div>
+                <br>
+            </div>
+
+        </div>
+
+        <div class="userParties">
+            <h4>Political Parties</h4>
+            <div ng-if="_.isEmpty(store.userInfo.Parties)">
+                You have no parties selected.
+            </div>
+            <div ng-if="!_.isEmpty(store.userInfo.Parties)" ng-repeat="party in store.userInfo.Parties">
+                <div ng-if="!party.showSelect">
+                    <p ng-class="party.delete ? 'toDelete' : null "> {{party.name}} </p>
+                    <button style="display:inline" ng-show="!party.delete" class="btn btn-default" ng-click="removeElement(true, 'Parties', $index)">Remove</button>
+                    <button style="display:inline-block" ng-show="party.delete" class="btn btn-default" ng-click="removeElement(false, 'Parties', $index)">Cancel Delete</button>
+                </div>
+                <div ng-if="party.showSelect">
+                    <select name="newParty" ng-model="newParty" ng-options="o.name for o in selectPartyOptions"></select>
+                    <button class="btn btn-default" ng-click="submitNewElement('Party', newParty, $index)"> Add </button>
+                    <button class="btn btn-default" ng-click="removeElement(true, 'Parties', $index)"> Cancel </button>
+                </div>
+            </div>
+            <button class="btn btn-default" ng-click="populatePartySelect()">Add Party</button>
+        </div>
+
+        <button class="btn btn-default" ng-click="updateUser()">Update</button>
+
+    </div>
+
+</div>

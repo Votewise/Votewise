@@ -1,0 +1,12 @@
+
+module.exports = {
+    db: {
+        host:            'localhost',
+        user:            '',
+        password:        '',
+        database:        'votewise',
+        connectionLimit: 10,
+        port:            null
+    }
+};
+

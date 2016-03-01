@@ -1,0 +1,96 @@
+<div>
+	<img src="../../images/app/votewiselogo.png" style="width: 70%; margin: auto; display:block;">
+</div>
+
+<br>
+<br>
+
+<div style='text-align:center' ng-show="upcomingElection">
+	<p style="font-size: 20px; font-weight:bold;"> Go Directly to Politician Comparison without Registering <br>
+		<input class="btn btn-primary" ng-click="moveOnWithoutRegister(upcomingElection);" type="button" value="Go Directly To Politician Comparison"/>
+	</p>
+</div>
+
+<br>
+	<p style="text-align:center; font-size: 20px; font-weight:bold;"> Register as a User</p>
+<br>
+
+ <div class="container-fluid">
+
+  <div class="row">
+
+  <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10" >
+	   <form class="form-group"
+			 name="registerForm"
+			 ng-submit="register(registerCredentials)"
+			 novalidate>
+		   <label class="control-label requiredField"> User Name <span class="asteriskField"> * </span> </label>
+		   <span ng-show="registerForm.userName.$error.required && registerForm.userName.$dirty">required</span>
+		   <input class="form-control"
+				  name="userName"
+				  ng-model="registerCredentials.userName"
+				  placeholder="Username"
+				  ng-minlength="5"
+				  ng-maxlength="20"
+				  ng-pattern="/^[A-z][A-z0-9]*$/"
+				  required>
+		   <span ng-show="!registerForm.userName.$error.minLength && !registerForm.userName.$error.maxLength && registerForm.userName.$error.pattern && registerForm.userName.$dirty">Must start with a letter, and contain letters &amp; numbers only.</span>
+		   <span ng-show="!registerForm.userName.$error.required && (registerForm.userName.$error.minlength || registerForm.userName.$error.maxlength) && registerForm.userName.$dirty">Username must be between 5 and 20 characters.</span>
+		   <br>
+		   <label class="control-label requiredField"> Email <span class="asteriskField"> * </span> </label>
+		   <input class="form-control"
+				  name="email"
+				  ng-model="registerCredentials.email"
+				  ng-pattern='/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/'
+				  placeholder="Email"
+				  type="email"
+				  required>
+		   <span ng-show="!registerForm.email.$error.minLength && !registerForm.email.$error.maxLength && registerForm.email.$error.pattern && registerForm.email.$dirty">must be a valid email!</span>
+
+		   <br>
+		   <label class="control-label requiredField"> Email <span class="asteriskField"> * </span> </label>
+		   <input class="form-control"
+				  name="emailConfirm"
+				  ng-model="registerCredentials.emailConfirm"
+				  placeholder="Confirm Email"
+				  type="email"
+				  match="registerCredentials.email"
+				  required>
+		   <span ng-show="!registerForm.emailConfirm.$error.required && registerForm.emailConfirm.$error.mismatch && registerForm.emailConfirm.$dirty">Emails do not match.</span>
+		   <br>
+		   <label class="control-label requiredField"> Password <span class="asteriskField"> * </span> </label>
+		   <span ng-show="registerForm.password.$error.required && registerForm.password.$dirty">required</span>
+		   <input class="form-control"
+				  ng-model="registerCredentials.password"
+				  type="password"
+				  name="password"
+				  placeholder="Password"
+				  ng-minlength="8"
+				  ng-maxlength="20"
+				  ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/"
+				  required>
+		   <span ng-show="!registerForm.password.$error.required && (registerForm.password.$error.minlength || registerForm.password.$error.maxlength) && registerForm.password.$dirty">Passwords must be between 8 and 20 characters.</span>
+		   <span ng-show="!registerForm.password.$error.required && !registerForm.password.$error.minlength && !registerForm.password.$error.maxlength && registerForm.password.$error.pattern && registerForm.password.$dirty">Must contain one lower &amp; uppercase letter, and one non-alpha character (a number or a symbol.)</span>
+		   <br>
+		   <label class="control-label requiredField"> Password Confirm <span class="asteriskField"> * </span> </label>
+		   <span ng-show="registerForm.passwordMatch.$error.required && registerForm.passwordMatch.$dirty">Please confirm your password.</span>
+		   <input class="form-control"
+				  ng-model="registerCredentials.passwordMatch"
+				  name="passwordMatch"
+				  type="password"
+				  placeholder="Password Confirm"
+				  match="registerCredentials.password"
+				  required>
+		   <span ng-show="!registerForm.passwordMatch.$error.required && registerForm.passwordMatch.$error.mismatch && registerForm.password.$dirty">Passwords do not match.</span>
+		   <br>
+		   <button ng-disabled="!registerForm.$valid"
+				   class="btn btn-primary"
+				   type="submit"
+				   style="width:150px; margin-top:10px; margin:auto;">
+			   Register
+		   </button>
+	   </form>
+
+   </div>
+  </div>
+ </div>

@@ -1,0 +1,27 @@
+
+<div class="splashHeader">
+    <img src="../../images/app/VotewiseLogo.png"/>
+</div>
+
+<div class="splash" id="container">
+    <div style="text-align:center; float:center; margin:auto;">
+        <div class="splashLoginRegister">
+            <p>
+                <input class="btn btn-primary goToLogin" ng-click="moveToLogin();" type="button" value="Login"/>
+                <br> <br>
+                Or Choose User Type to Get Started
+            </p>
+            <span style="float:right; margin-right: 30px;">
+                <a ng-click="moveToRegister('voter');"> <img src="../../images/app/VOTER.svg"/> </a>
+            </span>
+        </div>
+
+        <div class="splashLoginRegister">
+            <span id="secondRegisterRow" style="float:center;">
+                <a ng-click="moveToRegister('politician');"> <img style=""src="../../images/app/POLITICIAN.svg"/> </a>
+                <a ng-click="$scope.type='interestGroup'"> <img src="../../images/app/INTEREST_GROUP.svg"/> </a>
+                <a ng-click="$scope.type='press'"> <img src="../../images/app/PRESS.svg"/> </a>
+            </span>
+        </div>
+    </div>
+</div>
