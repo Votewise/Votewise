@@ -53,7 +53,7 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
-app.use(expressJWT({ secret: config.jwtSecret }).unless({ path: [ '/login', '/register' ]}));
+app.use(expressJWT({ secret: config.jwtSecret }).unless({ path: [ '/login', '/register', '/test' ]}));
 
 // Routes.
 app.get('/test/', Test.Test);

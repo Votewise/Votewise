@@ -27,7 +27,7 @@ function Test(req,res){
     //    group: 'Topics.background',
     //    include: [
     //        {
-    //            model: Topics, as: 'Subtopics',
+    //            model: Topics, git as: 'Subtopics',
     //            attributes: [[ sequelize.fn('COUNT', 'id'), 'count' ]]
     //        },
     //        {
