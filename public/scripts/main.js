@@ -12,8 +12,6 @@ var app = angular.module(namespace, [
     // inject:modules end
 ]);
 
-require('../../bower_components/angular-xeditable/dist/js/xeditable');
-
 window.d3 = require('d3');
 window._ = require('lodash');
 

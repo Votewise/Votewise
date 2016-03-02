@@ -89,7 +89,7 @@ app.post('/politicianList', PoliticianList.postPoliticianList);
 app.put('/politicianList', PoliticianList.putPoliticianList);
 app.get('/politicianList/:userId', PoliticianList.getPoliticianList);
 
-var server = app.listen(3000, function() {
+var server = app.listen(config.port, function() {
     var address = server.address();
 
     console.log('Example app listening at http://%s:%s',

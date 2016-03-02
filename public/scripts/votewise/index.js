@@ -22,7 +22,6 @@ module.exports = function(namespace) {
         'ngDraggable',
         'rzModule',
         'main.d3',
-        'xeditable',
             ]);
 
     // inject:folders start
@@ -161,12 +160,9 @@ require('./services')(app);
 
     };
 
-    var runDeps = ['$rootScope', 'editableOptions'];
-    var run = function($rootScope, editableOptions){
-
-        editableOptions.theme = 'bs3';
+    var runDeps = ['$rootScope',];
+    var run = function($rootScope){
         $rootScope.upcomingElection = true;
-
     };
     run.$inject = runDeps;
     configRoutes.$inject = configRoutesDeps;
