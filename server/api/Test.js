@@ -1,6 +1,6 @@
 function Test(req,res){
 
-    res.send(req.query);
+    res.send("hello");
 
     //Backgrounds.findAll({
     //    include: [
