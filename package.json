@@ -150,7 +150,8 @@
     "yargs": "3.14.0"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": "0.12.8",
+    "npm": "2.14.9"
   },
   "browser": {
     "unitHelper": "./test/unit/unitHelper.js",
