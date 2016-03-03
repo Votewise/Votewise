@@ -48,7 +48,7 @@ app.use(express.static('../dist/app/prod'));
 
 app.use(bodyParser.json());
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5000');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5001');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization');
     res.setHeader('Access-Control-Allow-Credentials', true);
