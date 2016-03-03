@@ -7,9 +7,9 @@ var unless = require('express-unless');
 var expressJWT = require('express-jwt');
 var jwt = require('jsonwebtoken');
 
-var config = require('./config');
+var config = require('./server/config');
 
-var models = require('./models/index');
+var models = require('./server/models/index');
 var Answers = models.Answers;
 var Backgrounds = models.Backgrounds;
 var Districts = models.Districts;
@@ -24,22 +24,22 @@ var Users = models.Users;
 var Voters = models.Voters;
 var sequelize = models.sequelize;
 
-var TopicTree = require('./api/topicTree');
-var QuestionSet = require('./api/questionSet');
-var ConcurrenceAnswer = require('./api/concurrenceAnswer');
-var Register = require('./api/register');
-var Login = require('./api/login');
-var RankingAnswer = require('./api/rankingAnswer');
-var PoliticianLibrary = require('./api/politicianLibrary');
-var PoliticianList = require('./api/politicianList');
-var AllAnswers = require('./api/allAnswers');
-var Groups = require('./api/groups');
-var Parties = require('./api/parties');
-var User = require('./api/user');
-var Test = require('./api/Test');
-var ShortInputAnswer = require('./api/shortInputAnswer');
-var JudgeAnswer = require('./api/judgeAnswer');
-var Parties = require('./api/parties');
+var TopicTree = require('./server/api/topicTree');
+var QuestionSet = require('./server/api/questionSet');
+var ConcurrenceAnswer = require('./server/api/concurrenceAnswer');
+var Register = require('./server/api/register');
+var Login = require('./server/api/login');
+var RankingAnswer = require('./server/api/rankingAnswer');
+var PoliticianLibrary = require('./server/api/politicianLibrary');
+var PoliticianList = require('./server/api/politicianList');
+var AllAnswers = require('./server/api/allAnswers');
+var Groups = require('./server/api/groups');
+var Parties = require('./server/api/parties');
+var User = require('./server/api/user');
+var Test = require('./server/api/Test');
+var ShortInputAnswer = require('./server/api/shortInputAnswer');
+var JudgeAnswer = require('./server/api/judgeAnswer');
+var Parties = require('./server/api/parties');
 
 var app = express();
 
@@ -57,6 +57,10 @@ app.use(expressJWT({ secret: config.jwtSecret }).unless({ path: [ '/login', '/re
 
 // Routes.
 app.get('/test/', Test.Test);
+
+app.get('/', function(req, res){
+    res.sendfile(__dirname+'/dist/app/dev/index.html');
+});
 
 app.post('/register', Register.register);
 app.post('/login', Login.login);
