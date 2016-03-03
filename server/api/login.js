@@ -31,7 +31,6 @@ function login(req, res){
 			var token = jwt.sign({
 				userName: req.body.userName,
 				exp: 10800000,
-				issuer:
 			}, 'noTelling');
 			var userInfo = result.dataValues;
 			userInfo.Groups = _(userInfo.Groups).groupBy('category').values().value();

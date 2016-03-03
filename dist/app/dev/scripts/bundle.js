@@ -71324,10 +71324,32 @@ module.exports = function (namespace) {
     // inject:folders end
 
     // Specifically including auth interceptor service here so it can be pushed onto the $httpProvider below.
-    var AuthInterceptor = require('./services/http/authInterceptor.service.js');
+    //var AuthInterceptor = require('./services/http/authInterceptor.service.js');
 
     app.constant('URLS', { BASE_API: 'http://localhost:3000/' });
-    app.service('AuthInterceptor', AuthInterceptor);
+
+    app.service('AuthInterceptor', ['$rootScope', '$localStorage', function ($rootScope, $localStorage) {
+        var service = this;
+        service.request = function (config) {
+
+            if ($localStorage.token) {
+                config.headers.authorization = 'Bearer ' + $localStorage.token;
+            }
+            return config;
+        };
+        service.response = function (response) {
+            if (response.data.token) {
+                $localStorage.token = response.data.token;
+            }
+            if (response.data.userId) {
+                $rootScope.user = response.data.userId;
+            }
+            return response;
+        };
+        service.responseError = function (response) {
+            return response;
+        };
+    }]);
 
     app.directive('match', function ($parse) {
         return {
@@ -71348,6 +71370,7 @@ module.exports = function (namespace) {
         $httpProvider.interceptors.push('AuthInterceptor');
 
         $urlRouterProvider.otherwise('main/splash');
+
         $stateProvider.state('splash', {
             url: '/splash',
             parent: 'main',
@@ -71433,7 +71456,7 @@ module.exports = function (namespace) {
     return app;
 };
 
-},{"./controllers":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/controllers/index.js","./directives":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/directives/index.js","./services":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/services/index.js","./services/http/authInterceptor.service.js":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/services/http/authInterceptor.service.js","./views/main.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/main.html","./views/partials/loginRegisterSplash/login.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/loginRegisterSplash/login.html","./views/partials/loginRegisterSplash/register.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/loginRegisterSplash/register.html","./views/partials/loginRegisterSplash/splash.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/loginRegisterSplash/splash.html","./views/partials/politicianSection/politicianComparison.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/politicianSection/politicianComparison.html","./views/partials/politicianSection/politicianLibrary.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/politicianSection/politicianLibrary.html","./views/partials/politicianSection/politicianList.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/politicianSection/politicianList.html","./views/partials/politicianSection/politicianProfile.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/politicianSection/politicianProfile.html","./views/partials/politicianSection/pollingLibrary.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/politicianSection/pollingLibrary.html","./views/partials/questionSection/questionSection.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/questionSection/questionSection.html","./views/partials/questionSection/questionSet.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/questionSection/questionSet.html","./views/partials/settings/settings.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/settings/settings.html","./views/partials/topicNavigation/topic.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/topicNavigation/topic.html","./views/partials/topicNavigation/topics.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/topicNavigation/topics.html","angular":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/angular/index.js","angular-resource":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/angular-resource/index.js","angular-ui-bootstrap":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/angular-ui-bootstrap/index.js","angular-ui-router":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/angular-ui-router/release/angular-ui-router.js","angularjs-slider":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/angularjs-slider/dist/rzslider.js","d3":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/d3/d3.js","ng-draggable":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/ng-draggable/ngDraggable.js","ngStorage":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/ngStorage/ngStorage.js"}],"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/services/answers/allAnswers.service.js":[function(require,module,exports){
+},{"./controllers":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/controllers/index.js","./directives":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/directives/index.js","./services":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/services/index.js","./views/main.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/main.html","./views/partials/loginRegisterSplash/login.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/loginRegisterSplash/login.html","./views/partials/loginRegisterSplash/register.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/loginRegisterSplash/register.html","./views/partials/loginRegisterSplash/splash.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/loginRegisterSplash/splash.html","./views/partials/politicianSection/politicianComparison.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/politicianSection/politicianComparison.html","./views/partials/politicianSection/politicianLibrary.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/politicianSection/politicianLibrary.html","./views/partials/politicianSection/politicianList.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/politicianSection/politicianList.html","./views/partials/politicianSection/politicianProfile.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/politicianSection/politicianProfile.html","./views/partials/politicianSection/pollingLibrary.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/politicianSection/pollingLibrary.html","./views/partials/questionSection/questionSection.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/questionSection/questionSection.html","./views/partials/questionSection/questionSet.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/questionSection/questionSet.html","./views/partials/settings/settings.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/settings/settings.html","./views/partials/topicNavigation/topic.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/topicNavigation/topic.html","./views/partials/topicNavigation/topics.html":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/topicNavigation/topics.html","angular":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/angular/index.js","angular-resource":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/angular-resource/index.js","angular-ui-bootstrap":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/angular-ui-bootstrap/index.js","angular-ui-router":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/angular-ui-router/release/angular-ui-router.js","angularjs-slider":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/angularjs-slider/dist/rzslider.js","d3":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/d3/d3.js","ng-draggable":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/ng-draggable/ngDraggable.js","ngStorage":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/ngStorage/ngStorage.js"}],"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/services/answers/allAnswers.service.js":[function(require,module,exports){
 'use strict';
 var servicename = 'AllAnswers';
 
@@ -71560,43 +71583,6 @@ module.exports = function (app) {
 
     service.$inject = dependencies;
     app.factory(app.name + '.' + servicename, service);
-};
-
-},{}],"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/services/http/authInterceptor.service.js":[function(require,module,exports){
-'use strict';
-var servicename = 'authInterceptor';
-
-module.exports = function ($rootScope, $localStorage) {
-    var service = this;
-
-    service.request = function (config) {
-
-        if ($localStorage.token) {
-            config.headers.authorization = 'Bearer ' + $localStorage.token;
-        }
-
-        return config;
-    };
-
-    service.response = function (response) {
-
-        console.log(response);
-
-        if (response.data.token) {
-            $localStorage.token = response.data.token;
-        }
-        if (response.data.userId) {
-            $rootScope.user = response.data.userId;
-        }
-        console.log($localStorage.token);
-
-        return response;
-    };
-
-    service.responseError = function (response) {
-        console.log(response);
-        return response;
-    };
 };
 
 },{}],"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/services/index.js":[function(require,module,exports){
@@ -72526,4 +72512,4 @@ module.exports = '<div>\n' +
     '\n' +
     '</div>';
 },{}]},{},["/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/main.js"])
-//# sourceMappingURL=app-v0.0.1.map.js
+//# sourceMappingURL=app-v0.0.2.map.js

@@ -44,7 +44,8 @@ var Parties = require('./server/api/parties');
 var app = express();
 
 // Middlewares.
-app.use(express.static('../dist/app/dev'));
+app.use(express.static('../dist/app/prod'));
+
 app.use(bodyParser.json());
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5000');
@@ -53,7 +54,7 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
-app.use(expressJWT({ secret: config.jwtSecret }).unless({ path: [ '/login', '/register', '/test' ]}));
+//app.use(expressJWT({ secret: config.jwtSecret }).unless({ path: [ '/login', '/register', '/test' ]}));
 
 // Routes.
 app.get('/test/', Test.Test);
@@ -64,7 +65,6 @@ app.get('/', function(req, res){
 
 app.post('/register', Register.register);
 app.post('/login', Login.login);
-
 
 app.put('/settings/:userId', User.updateUser);
 

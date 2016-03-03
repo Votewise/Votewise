@@ -3,7 +3,7 @@
 var path = require('path');
 
 var getRepository = function() {
-    var repository = 'https://github.com/spencersnygg/VoteWise';
+    var repository = 'https://github.com/Votewise/voteWise';
     try {
         var helper = require('./helper');
         var packageJson = helper.readJsonFile('./package.json');

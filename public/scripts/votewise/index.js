@@ -15,7 +15,8 @@ module.exports = function(namespace) {
     var fullname = namespace + '.' + modulename;
 
     var angular = require('angular');
-    var app = angular.module(fullname, ['ui.router',
+    var app = angular.module(fullname, [
+        'ui.router',
         'ngResource',
         'ngStorage',
         'ui.bootstrap',
@@ -31,10 +32,33 @@ require('./services')(app);
     // inject:folders end
 
     // Specifically including auth interceptor service here so it can be pushed onto the $httpProvider below.
-    var AuthInterceptor = require('./services/http/authInterceptor.service.js');
+    //var AuthInterceptor = require('./services/http/authInterceptor.service.js');
 
     app.constant('URLS', { BASE_API: 'http://localhost:3000/' });
-    app.service('AuthInterceptor', AuthInterceptor);
+
+    app.service('AuthInterceptor', [ '$rootScope', '$localStorage', function($rootScope, $localStorage) {
+            var service = this;
+            service.request = function(config) {
+
+                if ($localStorage.token){
+                    config.headers.authorization = "Bearer " + $localStorage.token;
+                }
+                return config;
+            };
+            service.response = function(response){
+                if (response.data.token){
+                    $localStorage.token = response.data.token;
+                }
+                if (response.data.userId){
+                    $rootScope.user = response.data.userId;
+                }
+                return response;
+            };
+            service.responseError = function(response) {
+                return response;
+            };
+        } ]
+    );
 
     app.directive('match', function($parse) {
         return {
@@ -53,10 +77,10 @@ require('./services')(app);
     var configRoutesDeps = ['$stateProvider', '$urlRouterProvider', '$httpProvider'];
     var configRoutes = function($stateProvider, $urlRouterProvider, $httpProvider) {
 
-
         $httpProvider.interceptors.push('AuthInterceptor');
 
         $urlRouterProvider.otherwise('main/splash');
+
         $stateProvider
 
         .state('splash', {
@@ -160,7 +184,7 @@ require('./services')(app);
 
     };
 
-    var runDeps = ['$rootScope',];
+    var runDeps = ['$rootScope'];
     var run = function($rootScope){
         $rootScope.upcomingElection = true;
     };

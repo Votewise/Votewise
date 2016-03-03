@@ -118,6 +118,7 @@ gulp.task('browserify', 'Generates a bundle javascript file with browserify.', f
     if (global.options === null) {
         global.options = gmux.targets.askForMultipleTargets(taskname);
     }
+    console.log("GLOBAL", global);
     return gmux.createAndRunTasks(gulp, taskBrowserify, taskname, global.options.target, global.options.mode, constants, done);
 
 });
