@@ -59,9 +59,9 @@ app.use(function (req, res, next) {
 // Routes.
 app.get('/test/', Test.Test);
 
-//app.get('/', function(req, res){
-//    res.sendfile(__dirname+'/dist/app/dev/index.html');
-//});
+app.get('/', function(req, res){
+    res.sendfile(__dirname+'/dist/app/dev/index.html');
+});
 
 app.post('/register', Register.register);
 app.post('/login', Login.login);
