@@ -71351,7 +71351,7 @@ module.exports = function (namespace) {
         };
     }]);
 
-    app.directive('match', function ($parse) {
+    app.directive('match', ['$parse', function ($parse) {
         return {
             require: 'ngModel',
             link: function link(scope, elem, attrs, ctrl) {
@@ -71362,7 +71362,7 @@ module.exports = function (namespace) {
                 });
             }
         };
-    });
+    }]);
 
     var configRoutesDeps = ['$stateProvider', '$urlRouterProvider', '$httpProvider'];
     var configRoutes = function configRoutes($stateProvider, $urlRouterProvider, $httpProvider) {

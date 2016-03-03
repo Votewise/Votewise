@@ -60,7 +60,7 @@ require('./services')(app);
         } ]
     );
 
-    app.directive('match', function($parse) {
+    app.directive('match', ['$parse', function($parse) {
         return {
             require: 'ngModel',
             link: function(scope, elem, attrs, ctrl) {
@@ -71,7 +71,7 @@ require('./services')(app);
                 });
             }
         };
-    });
+    }]);
 
 
     var configRoutesDeps = ['$stateProvider', '$urlRouterProvider', '$httpProvider'];
