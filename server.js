@@ -44,7 +44,7 @@ var Parties = require('./server/api/parties');
 var app = express();
 
 // Middlewares.
-app.use(express.static('../dist/app/prod'));
+app.use(express.static('../dist/app/dev'));
 
 app.use(bodyParser.json());
 app.use(function (req, res, next) {
