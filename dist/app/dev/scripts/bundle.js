@@ -71327,7 +71327,7 @@ module.exports = function (namespace) {
     //var AuthInterceptor = require('./services/http/authInterceptor.service.js');
 
     //app.constant('URLS', { BASE_API: 'http://localhost:3000/' });
-    app.constant('URLS', { BASE_API: 'http://votewisespa.azurewebsites.net/' });
+    app.constant('URLS', { BASE_API: 'votewisespa.azurewebsites.net/' });
 
     app.service('AuthInterceptor', ['$rootScope', '$localStorage', function ($rootScope, $localStorage) {
         var service = this;
