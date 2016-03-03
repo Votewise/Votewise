@@ -60,7 +60,7 @@ app.use(function (req, res, next) {
 app.get('/test/', Test.Test);
 
 app.get('/', function(req, res){
-    res.sendfile(__dirname+'/dist/app/dev/index.html');
+    res.sendfile(__dirname+'/dist/app/prod/index.html');
 });
 
 app.post('/register', Register.register);
