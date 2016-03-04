@@ -13,8 +13,8 @@ function getTopicTree(req, res){
         include: [
             {
                 model: Topics,
-                as: 'Subtopics',
-                include: { model: Topics, as: 'Subtopics' }
+                as: 'subtopics',
+                include: { model: Topics, as: 'subtopics' }
             }
         ]
     }).then(function(result){
