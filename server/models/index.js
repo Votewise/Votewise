@@ -47,7 +47,7 @@ models.forEach(function(model) {
     m.answers.belongsTo(m.backgrounds, { foreignKey: 'backgroundId' } );
     m.backgrounds.hasMany(m.answers, { foreignKey: 'backgroundId' } );
 
-    m.users.hasMany(m.answers, { foreignKey: 'user' });
+    m.users.hasMany(m.answers, { foreignKey: 'userId' });
     m.users.hasOne(m.politicians, { foreignKey: 'userId' });
     //m.Users.hasMany(m.Answers, { foreignKey: 'settings', as: 'answerCount' });
 

@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         type: DataTypes.STRING,
         questionId: DataTypes.INTEGER,
-        user: DataTypes.INTEGER,
+        userId: DataTypes.INTEGER,
         backgroundId: {
             type:DataTypes.INTEGER,
             references: {

@@ -10,6 +10,7 @@ var _ = require('lodash');
 function getQuestionSet(req, res) {
 
     var response = {};
+    console.log("CALLING QUESTION SET");
 
     Backgrounds.findOne({
 
@@ -19,7 +20,7 @@ function getQuestionSet(req, res) {
 
             { model: Questions, include: RankingQuestionItems },
             { model: Answers,
-                where: { user: req.params.user },
+                where: { userId: req.params.user },
                 include: { model: RankingAnswerItems, order: ['rank', 'ASC'] },
                 required: false }
 

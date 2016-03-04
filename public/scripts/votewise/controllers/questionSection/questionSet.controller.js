@@ -80,8 +80,8 @@ module.exports = function(app) {
 
                 var concurrenceAnswer = new ConcurrenceAnswer();
 
-                concurrenceAnswer.user = $scope.store.user;
-                concurrenceAnswer.question = $scope.store.question.id;
+                concurrenceAnswer.userId = $scope.store.user;
+                concurrenceAnswer.questionId = $scope.store.question.id;
                 concurrenceAnswer.backgroundId = $scope.store.question.backgroundId;
                 concurrenceAnswer.importance = $scope.store.answer.importance;
                 concurrenceAnswer.concurrence = $scope.store.answer.concurrence;
@@ -101,8 +101,8 @@ module.exports = function(app) {
                 console.log('post new answer');
 
                 var concurrenceAnswer = new ConcurrenceAnswer();
-                concurrenceAnswer.user = $scope.store.user;
-                concurrenceAnswer.question = $scope.store.question.id;
+                concurrenceAnswer.userId = $scope.store.user;
+                concurrenceAnswer.questionId = $scope.store.question.id;
                 concurrenceAnswer.backgroundId = $scope.store.question.backgroundId;
                 concurrenceAnswer.importance = $scope.store.answer.importance;
                 concurrenceAnswer.concurrence = $scope.store.answer.concurrence;
@@ -120,16 +120,16 @@ module.exports = function(app) {
                 rankingAnswer.id = $scope.store.answer.id;
                 rankingAnswer.type = 'ranking';
                 rankingAnswer.comment = $scope.store.answer.comment;
-                rankingAnswer.user = $scope.store.user;
-                rankingAnswer.question = $scope.store.question.id;
+                rankingAnswer.userId = $scope.store.user;
+                rankingAnswer.questionId = $scope.store.question.id;
                 rankingAnswer.backgroundId = $scope.store.question.backgroundId;
                 rankingAnswer.importance = $scope.store.answer.importance;
                 var rankedItems = _.map($scope.store.items, function (key, index) {
-                    key.answer = $scope.store.answer.id;
+                    key.answerId = $scope.store.answer.id;
                     key.rank = index + 1;
-                    key.background = $scope.store.question.background;
-                    key.question = $scope.store.question.id;
-                    key.user = $scope.store.user;
+                    key.backgroundId = $scope.store.question.background;
+                    key.questionId = $scope.store.question.id;
+                    key.userId = $scope.store.user;
                     return key
                 });
 
@@ -144,17 +144,17 @@ module.exports = function(app) {
                 var rankingAnswer = new RankingAnswer();
                 rankingAnswer.type = 'ranking';
                 rankingAnswer.comment = $scope.store.answer.comment;
-                rankingAnswer.user = $scope.store.user;
-                rankingAnswer.question = $scope.store.question.id;
+                rankingAnswer.userId = $scope.store.user;
+                rankingAnswer.questionId = $scope.store.question.id;
                 rankingAnswer.backgroundId = $scope.store.question.backgroundId;
                 rankingAnswer.importance = $scope.store.answer.importance;
                 var rankedItems = _.map($scope.store.items, function (key, index) {
-                    key.answer = $scope.store.answer.id;
+                    key.answerId = $scope.store.answer.id;
                     key.rank = index + 1;
                     key.itemId = key.id;
-                    key.background = $scope.store.question.background;
-                    key.question = $scope.store.question.id;
-                    key.user = $scope.store.user;
+                    key.backgroundId = $scope.store.question.background;
+                    key.questionId = $scope.store.question.id;
+                    key.userId = $scope.store.user;
                     return key
                 });
 

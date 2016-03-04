@@ -70517,8 +70517,8 @@ module.exports = function (app) {
 
                 var concurrenceAnswer = new ConcurrenceAnswer();
 
-                concurrenceAnswer.user = $scope.store.user;
-                concurrenceAnswer.question = $scope.store.question.id;
+                concurrenceAnswer.userId = $scope.store.user;
+                concurrenceAnswer.questionId = $scope.store.question.id;
                 concurrenceAnswer.backgroundId = $scope.store.question.backgroundId;
                 concurrenceAnswer.importance = $scope.store.answer.importance;
                 concurrenceAnswer.concurrence = $scope.store.answer.concurrence;
@@ -70537,8 +70537,8 @@ module.exports = function (app) {
                 console.log('post new answer');
 
                 var concurrenceAnswer = new ConcurrenceAnswer();
-                concurrenceAnswer.user = $scope.store.user;
-                concurrenceAnswer.question = $scope.store.question.id;
+                concurrenceAnswer.userId = $scope.store.user;
+                concurrenceAnswer.questionId = $scope.store.question.id;
                 concurrenceAnswer.backgroundId = $scope.store.question.backgroundId;
                 concurrenceAnswer.importance = $scope.store.answer.importance;
                 concurrenceAnswer.concurrence = $scope.store.answer.concurrence;
@@ -70555,16 +70555,16 @@ module.exports = function (app) {
                 rankingAnswer.id = $scope.store.answer.id;
                 rankingAnswer.type = 'ranking';
                 rankingAnswer.comment = $scope.store.answer.comment;
-                rankingAnswer.user = $scope.store.user;
-                rankingAnswer.question = $scope.store.question.id;
+                rankingAnswer.userId = $scope.store.user;
+                rankingAnswer.questionId = $scope.store.question.id;
                 rankingAnswer.backgroundId = $scope.store.question.backgroundId;
                 rankingAnswer.importance = $scope.store.answer.importance;
                 var rankedItems = _.map($scope.store.items, function (key, index) {
-                    key.answer = $scope.store.answer.id;
+                    key.answerId = $scope.store.answer.id;
                     key.rank = index + 1;
-                    key.background = $scope.store.question.background;
-                    key.question = $scope.store.question.id;
-                    key.user = $scope.store.user;
+                    key.backgroundId = $scope.store.question.background;
+                    key.questionId = $scope.store.question.id;
+                    key.userId = $scope.store.user;
                     return key;
                 });
 
@@ -70578,17 +70578,17 @@ module.exports = function (app) {
                 var rankingAnswer = new RankingAnswer();
                 rankingAnswer.type = 'ranking';
                 rankingAnswer.comment = $scope.store.answer.comment;
-                rankingAnswer.user = $scope.store.user;
-                rankingAnswer.question = $scope.store.question.id;
+                rankingAnswer.userId = $scope.store.user;
+                rankingAnswer.questionId = $scope.store.question.id;
                 rankingAnswer.backgroundId = $scope.store.question.backgroundId;
                 rankingAnswer.importance = $scope.store.answer.importance;
                 var rankedItems = _.map($scope.store.items, function (key, index) {
-                    key.answer = $scope.store.answer.id;
+                    key.answerId = $scope.store.answer.id;
                     key.rank = index + 1;
                     key.itemId = key.id;
-                    key.background = $scope.store.question.background;
-                    key.question = $scope.store.question.id;
-                    key.user = $scope.store.user;
+                    key.backgroundId = $scope.store.question.background;
+                    key.questionId = $scope.store.question.id;
+                    key.userId = $scope.store.user;
                     return key;
                 });
 
@@ -70917,9 +70917,14 @@ module.exports = function (app) {
 
             QuestionSet.get({ backgroundId: backgroundId, userId: userId }, function (result) {
 
-                var sortThese = _.map(result.Questions, function (question) {
-                    _.forEach(result.Answers, function (answer) {
-                        if (question.id === answer.question) {
+                console.log('RESULT', result);
+                var sortThese = _.map(result.questions, function (question) {
+
+                    console.log('QUESTION', question);
+
+                    _.forEach(result.answers, function (answer) {
+                        console.log('ANSWERS', answer);
+                        if (question.id === answer.questionId) {
                             question.answer = answer;
                             return false;
                         } else {
@@ -70928,6 +70933,7 @@ module.exports = function (app) {
                     });
                     return question;
                 });
+                console.log('SORT THESE', sortThese);
 
                 $scope.store.questionSet = _.orderBy(sortThese, 'viewOrder', 'asc');
 
@@ -72451,21 +72457,21 @@ module.exports = '<p> Topic page </p>\n' +
     '	<div class="subtopicChoose centerEl">\n' +
     '		<!-- REPEAT: subtopics-->\n' +
     '\n' +
-    '		<div ng-repeat="topic in store.topicCascade.Subtopics" class="subtopicSingle" id="subtopicID">\n' +
+    '		<div ng-repeat="topic in store.topicCascade.subtopics" class="subtopicSingle" id="subtopicID">\n' +
     '			<!-- Dot in the beginning of the title: <span class=""></span> -->\n' +
     '			<div ng-click="(topic.background === 0) ? null : moveToQuestionSet(topic.backgroundId, testUser)">\n' +
     '				<h1>{{topic.description}}</h1>\n' +
     '			</div>\n' +
     '\n' +
-    '			<div ng-if="topic.Subtopics.length === 0"\n' +
+    '			<div ng-if="topic.subtopics.length === 0"\n' +
     '				 class="totalQuestions centerTx"\n' +
     '				 title="Total Amount of Questions Answered by You or Politicians.">\n' +
     '				<div class="tnumBox"><p>0</p><hr /><p>20</p></div>\n' +
     '			</div>\n' +
     '\n' +
-    '			<div ng-show="store.userInfo.answerCount >= 5"ng-repeat="subtopic in topic.Subtopics"\n' +
+    '			<div ng-show="store.userInfo.answerCount >= 5"ng-repeat="subtopic in topic.subtopics"\n' +
     '				 ng-click="(subtopic.background === 0) ? null : moveToQuestionSet(subtopic.backgroundId, testUser)"\n' +
-    '				 ng-if="topic.Subtopics.length != 0"\n' +
+    '				 ng-if="topic.subtopics.length != 0"\n' +
     '				 class="subtopicSingle">\n' +
     '\n' +
     '				<h1>{{subtopic.description}}</h1>\n' +

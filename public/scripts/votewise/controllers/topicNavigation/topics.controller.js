@@ -40,9 +40,14 @@ module.exports = function(app) {
 
             QuestionSet.get({ backgroundId: backgroundId, userId: userId }, function(result){
 
-                var sortThese = _.map(result.Questions, function(question){
-                    _.forEach(result.Answers, function(answer){
-                        if (question.id === answer.question){
+                console.log("RESULT", result);
+                var sortThese = _.map(result.questions, function(question){
+
+                    console.log("QUESTION", question);
+
+                    _.forEach(result.answers, function(answer){
+                        console.log("ANSWERS", answer);
+                        if (question.id === answer.questionId){
                             question.answer = answer;
                             return false;
                         } else {
@@ -51,6 +56,7 @@ module.exports = function(app) {
                     });
                     return question;
                 });
+                console.log("SORT THESE", sortThese);
 
                 $scope.store.questionSet = _.orderBy(sortThese, 'viewOrder', 'asc');
 
