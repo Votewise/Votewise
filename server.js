@@ -9,21 +9,6 @@ var jwt = require('jsonwebtoken');
 
 var config = require('./server/config');
 
-var models = require('./server/models/index');
-var Answers = models.Answers;
-var Backgrounds = models.Backgrounds;
-var Districts = models.Districts;
-var PoliticianDistricts = models.PoliticianDistricts;
-var PoliticianLists = models.PoliticianLists;
-var Politicians = models.Politicians;
-var Questions = models.Questions;
-var RankingAnswerItems = models.RankingAnswerItems;
-var RankingQuestionItems = models.RankingQuestionItems;
-var Topics = models.Topics;
-var Users = models.Users;
-var Voters = models.Voters;
-var sequelize = models.sequelize;
-
 var TopicTree = require('./server/api/topicTree');
 var QuestionSet = require('./server/api/questionSet');
 var ConcurrenceAnswer = require('./server/api/concurrenceAnswer');
@@ -48,7 +33,7 @@ app.use(express.static('../dist/app/dev'));
 
 app.use(bodyParser.json());
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5001');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5000');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization');
     res.setHeader('Access-Control-Allow-Credentials', true);

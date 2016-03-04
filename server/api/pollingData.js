@@ -1,7 +1,7 @@
 var models = require('../models');
-var Answers = models.Answers;
-var Users = models.Users;
-var Politicians = models.Politicians;
+var Answers = models.answers;
+var Users = models.users;
+var Politicians = models.politicians;
 var _ = require('lodash');
 
 function getPollingData(req,res){

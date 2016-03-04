@@ -1,11 +1,10 @@
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('Backgrounds', {
+    return sequelize.define('backgrounds', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        background: DataTypes.INTEGER,
         shortDescription: DataTypes.STRING,
         description: DataTypes.INTEGER,
         createdAt: DataTypes.DATE,

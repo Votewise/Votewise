@@ -1,5 +1,5 @@
 var models = require('../models');
-var Parties = models.Parties;
+var Parties = models.parties;
 var _ = require('lodash');
 
 

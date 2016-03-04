@@ -1,7 +1,7 @@
 var models = require('../models');
-var Users = models.Users;
-var UserGroups = models.UserGroups;
-var UserParties = models.UserParties;
+var Users = models.users;
+var UserGroups = models.userGroups;
+var UserParties = models.userParties;
 var _ = require('lodash');
 
 function updateUser(req, res){

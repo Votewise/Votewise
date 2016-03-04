@@ -15,7 +15,7 @@
 
 		<div ng-repeat="topic in store.topicCascade.Subtopics" class="subtopicSingle" id="subtopicID">
 			<!-- Dot in the beginning of the title: <span class=""></span> -->
-			<div ng-click="(topic.background === 0) ? null : moveToQuestionSet(topic.background, testUser)">
+			<div ng-click="(topic.background === 0) ? null : moveToQuestionSet(topic.backgroundId, testUser)">
 				<h1>{{topic.description}}</h1>
 			</div>
 
@@ -26,7 +26,7 @@
 			</div>
 
 			<div ng-show="store.userInfo.answerCount >= 5"ng-repeat="subtopic in topic.Subtopics"
-				 ng-click="(subtopic.background === 0) ? null : moveToQuestionSet(subtopic.background, testUser)"
+				 ng-click="(subtopic.background === 0) ? null : moveToQuestionSet(subtopic.backgroundId, testUser)"
 				 ng-if="topic.Subtopics.length != 0"
 				 class="subtopicSingle">
 

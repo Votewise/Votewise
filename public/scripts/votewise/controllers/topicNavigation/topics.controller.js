@@ -36,9 +36,9 @@ module.exports = function(app) {
 
         };
 
-        $scope.moveToQuestionSet = function(background, userId){
+        $scope.moveToQuestionSet = function(backgroundId, userId){
 
-            QuestionSet.get({ background: background, userId: userId }, function(result){
+            QuestionSet.get({ backgroundId: backgroundId, userId: userId }, function(result){
 
                 var sortThese = _.map(result.Questions, function(question){
                     _.forEach(result.Answers, function(answer){

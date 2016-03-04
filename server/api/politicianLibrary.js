@@ -1,7 +1,7 @@
 var models = require('../models');
-var Districts = models.Districts;
-var PoliticianDistricts = models.PoliticianDistricts;
-var Politicians = models.Politicians;
+var Districts = models.districts;
+var PoliticianDistricts = models.politicianDistricts;
+var Politicians = models.politicians;
 var _ = require('lodash');
 
 function getPoliticianLibrary(req,res){

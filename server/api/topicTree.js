@@ -1,6 +1,6 @@
 var express = require('express');
 var models = require('../models');
-var Topics = models.Topics;
+var Topics = models.topics;
 var _ = require('lodash');
 
 

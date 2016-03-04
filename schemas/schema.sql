@@ -18,7 +18,7 @@ create table `Questions`(
 
     `id` integer primary key auto_increment,
     `type` varchar(20) not null,
-    `background` integer not null references Backgrounds(background),
+    `backgroundId` integer not null references Backgrounds(id),
     `description` text not null,
     `viewOrder` integer not null,
 
@@ -39,9 +39,9 @@ create table `Questions`(
 create table `Answers` (
   `id` integer primary key auto_increment,
   `type` varchar(20) not null,
-  `question` integer not null references Questions(id),
-  `user` integer not null references Users(id),
-  `background` integer not null references Background(background),
+  `questionId` integer not null references Questions(id),
+  `userId` integer not null references Users(id),
+  `backgroundId` integer not null references Background(id),
   `importance` integer,
   `comment` text,
 
@@ -79,9 +79,9 @@ create table `Answers` (
 
 create table `ConcurrenceAnswers` (
     `id`          integer primary key auto_increment,
-    `question`    integer not null references Questions(id),
-    `user`        integer not null references Users(id),
-    `background`  integer not null references Background(background),
+    `questionId`    integer not null references Questions(id),
+    `userId`        integer not null references Users(id),
+    `backgroundId`  integer not null references Background(id),
     `concurrence` integer not null,
     `importance`  integer not null,
     `comment`     text,
@@ -107,7 +107,7 @@ create table `ConcurrenceAnswers` (
 
 create table `RankingQuestionItems` (
     `id`            integer primary key auto_increment,
-    `question`      integer not null references Questions(id),
+    `questionId`      integer not null references Questions(id),
     `item`          text not null,
     `createdAt`     datetime default current_timestamp,
     `updatedAt`     datetime on update current_timestamp
@@ -116,10 +116,10 @@ create table `RankingQuestionItems` (
 
 create table `RankingAnswerItems` (
     `id`            integer primary key auto_increment,
-    `answer`        integer not null references Answer(id),
-    `user`          integer not null references Users(id),
-    `question`      integer not null references Questions(id),
-    `background`    integer not null references Backgrounds(background),
+    `answerId`        integer not null references Answer(id),
+    `userId`          integer not null references Users(id),
+    `questionId`      integer not null references Questions(id),
+    `backgroundId`    integer not null references Backgrounds(id),
     `itemId`        integer not null references RankingQuestionItems(id),
     `item`          varchar(300) not null,
     `rank`          integer,
@@ -139,8 +139,8 @@ create table `RankingAnswerItems` (
 create table `JudgeAnswers` (
 
     `id`                    integer primary key auto_increment,
-    `user`                  integer not null references users(id),
-    `question`              integer not null references questions(id),
+    `userId`                  integer not null references users(id),
+    `questionId`              integer not null references questions(id),
     `concurrence`           integer not null,
     `importance`            integer not null,
     `lawSpirit`             boolean,
@@ -168,8 +168,8 @@ create table `JudgeAnswers` (
 create table `ShortInputAnswers` (
 
     `id`                integer primary key auto_increment,
-    `question`          integer not null references questions(id),
-    `answer`            text not null,
+    `questionId`          integer not null references questions(id),
+    `answerId`            text not null,
     `comment`           text,
     `importance`        integer,
     `previousAnswer`    text not null,
@@ -190,7 +190,6 @@ create table `ShortInputAnswers` (
 
 create table `Backgrounds` (
     `id`                integer primary key auto_increment,
-    `background`        integer not null,
     `shortDescription`  text not null,
     `description`       text not null,
 
@@ -208,7 +207,7 @@ create table `Backgrounds` (
 
 create table `Topics`(
     `id`            integer primary key auto_increment,
-    `background`    integer not null references Backgrounds(background),
+    `backgroundId`    integer not null references Backgrounds(id),
     `parent`        integer null references Topics(id),
     `viewOrder`     integer not null,
     `description`   text not null,
@@ -274,7 +273,7 @@ create table `Voters` (
 
 create table `PoliticianLists` (
     `id` integer primary key not null auto_increment,
-    `user` integer not null,
+    `userId` integer not null,
     `politician` integer not null references Politicians(id),
 
     `createdAt` datetime default current_timestamp,

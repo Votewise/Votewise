@@ -14,22 +14,22 @@ var sequelize = new Sequelize(config.db.database, config.db.user, config.db.pass
 
 // load models
 var models = [
-    'Answers',
-    'Backgrounds',
-    'Districts',
-    'PoliticianDistricts',
-    'PoliticianLists',
-    'Politicians',
-    'Questions',
-    'RankingAnswerItems',
-    'RankingQuestionItems',
-    'Topics',
-    'Users',
-    'Voters',
-    'Groups',
-    'UserGroups',
-    'Parties',
-    'UserParties'
+    'answers',
+    'backgrounds',
+    'districts',
+    'politicianDistricts',
+    'politicianLists',
+    'politicians',
+    'questions',
+    'rankingAnswerItems',
+    'rankingQuestionItems',
+    'topics',
+    'users',
+    'voters',
+    'groups',
+    'userGroups',
+    'parties',
+    'userParties'
 ];
 
 models.forEach(function(model) {
@@ -38,40 +38,40 @@ models.forEach(function(model) {
 
  //describe relationships
 (function(m) {
-    m.Questions.belongsTo(m.Backgrounds, { foreignKey: 'background' } );
-    m.Backgrounds.hasMany(m.Questions, { foreignKey: 'background' } );
+    m.questions.belongsTo(m.backgrounds, { foreignKey: 'backgroundId' } );
+    m.backgrounds.hasMany(m.questions, { foreignKey: 'backgroundId' } );
 
-    m.Topics.belongsTo(m.Backgrounds, { foreignKey: 'background' } );
-    m.Backgrounds.hasMany(m.Topics, { foreignKey: 'background' } );
+    m.topics.belongsTo(m.backgrounds, { foreignKey: 'backgroundId' } );
+    m.backgrounds.hasMany(m.topics, { foreignKey: 'backgroundId' } );
     //
-    m.Answers.belongsTo(m.Backgrounds, { foreignKey: 'background' } );
-    m.Backgrounds.hasMany(m.Answers, { foreignKey: 'background' } );
+    m.answers.belongsTo(m.backgrounds, { foreignKey: 'backgroundId' } );
+    m.backgrounds.hasMany(m.answers, { foreignKey: 'backgroundId' } );
 
-    m.Users.hasMany(m.Answers, { foreignKey: 'user' });
-    m.Users.hasOne(m.Politicians, { foreignKey: 'user' });
+    m.users.hasMany(m.answers, { foreignKey: 'user' });
+    m.users.hasOne(m.politicians, { foreignKey: 'userId' });
     //m.Users.hasMany(m.Answers, { foreignKey: 'settings', as: 'answerCount' });
 
-    m.Questions.hasMany(m.Answers, { foreignKey: 'question' });
-    m.Answers.belongsTo(m.Questions, { foreignKey: 'question' });
+    m.questions.hasMany(m.answers, { foreignKey: 'questionId' });
+    m.answers.belongsTo(m.questions, { foreignKey: 'questionId' });
 
-    m.Answers.hasMany(m.RankingAnswerItems, { foreignKey: 'answer' });
-    m.RankingAnswerItems.belongsTo(m.Answers,  { foreignKey: 'id' } );
+    m.answers.hasMany(m.rankingAnswerItems, { foreignKey: 'answerId' });
+    m.rankingAnswerItems.belongsTo(m.answers,  { foreignKey: 'id' } );
 
-    m.Questions.hasMany(m.RankingQuestionItems, { foreignKey: 'question' });
-    m.RankingQuestionItems.belongsTo(m.Questions, { foreignKey: 'question' });
+    m.questions.hasMany(m.rankingQuestionItems, { foreignKey: 'questionId' });
+    m.rankingQuestionItems.belongsTo(m.questions, { foreignKey: 'questionId' });
 
-    m.Politicians.belongsToMany(m.Districts, { as: 'Districts', through: 'PoliticianDistricts', foreignKey: 'politician' });
-    m.Districts.belongsToMany(m.Politicians, { as: 'Politicians', through: 'PoliticianDistricts', foreignKey: 'district' });
+    m.politicians.belongsToMany(m.districts, { as: 'Districts', through: 'politicianDistricts', foreignKey: 'politician' });
+    m.districts.belongsToMany(m.politicians, { as: 'Politicians', through: 'politicianDistricts', foreignKey: 'district' });
 
-    m.Groups.belongsToMany(m.Users, { as: 'Users', through: 'UserGroups', foreignKey: 'group'});
-    m.Users.belongsToMany(m.Groups, { as: 'Groups', through: 'UserGroups', foreignKey: 'user'});
+    m.groups.belongsToMany(m.users, { as: 'Users', through: 'userGroups', foreignKey: 'group'});
+    m.users.belongsToMany(m.groups, { as: 'Groups', through: 'userGroups', foreignKey: 'user'});
 
-    m.Parties.belongsToMany(m.Users, { as: 'Users', through: 'UserParties', foreignKey: 'party'});
-    m.Users.belongsToMany(m.Parties, { as: 'Parties', through: 'UserParties', foreignKey: 'user'});
+    m.parties.belongsToMany(m.users, { as: 'Users', through: 'userParties', foreignKey: 'party'});
+    m.users.belongsToMany(m.parties, { as: 'Parties', through: 'userParties', foreignKey: 'user'});
 
-    m.Politicians.belongsTo(m.Users, { foreignKey: 'user'} );
+    m.politicians.belongsTo(m.users, { foreignKey: 'userId'} );
 
-    m.Topics.hasMany(m.Topics, { as: 'Subtopics', foreignKey: 'parent' });
+    m.topics.hasMany(m.topics, { as: 'subtopics', foreignKey: 'parent' });
 
 
     //  *------- These do not work as desired.

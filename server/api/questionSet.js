@@ -1,9 +1,9 @@
 var models = require('../models');
-var Backgrounds = models.Backgrounds;
-var Questions = models.Questions;
-var Answers = models.Answers;
-var RankingAnswerItems = models.RankingAnswerItems;
-var RankingQuestionItems = models.RankingQuestionItems;
+var Backgrounds = models.backgrounds;
+var Questions = models.questions;
+var Answers = models.answers;
+var RankingAnswerItems = models.rankingAnswerItems;
+var RankingQuestionItems = models.rankingQuestionItems;
 
 var _ = require('lodash');
 

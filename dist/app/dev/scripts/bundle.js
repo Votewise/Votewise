@@ -70519,7 +70519,7 @@ module.exports = function (app) {
 
                 concurrenceAnswer.user = $scope.store.user;
                 concurrenceAnswer.question = $scope.store.question.id;
-                concurrenceAnswer.background = $scope.store.question.background;
+                concurrenceAnswer.backgroundId = $scope.store.question.backgroundId;
                 concurrenceAnswer.importance = $scope.store.answer.importance;
                 concurrenceAnswer.concurrence = $scope.store.answer.concurrence;
                 concurrenceAnswer.comment = $scope.store.answer.comment;
@@ -70539,7 +70539,7 @@ module.exports = function (app) {
                 var concurrenceAnswer = new ConcurrenceAnswer();
                 concurrenceAnswer.user = $scope.store.user;
                 concurrenceAnswer.question = $scope.store.question.id;
-                concurrenceAnswer.background = $scope.store.question.background;
+                concurrenceAnswer.backgroundId = $scope.store.question.backgroundId;
                 concurrenceAnswer.importance = $scope.store.answer.importance;
                 concurrenceAnswer.concurrence = $scope.store.answer.concurrence;
                 concurrenceAnswer.comment = $scope.store.answer.comment;
@@ -70557,7 +70557,7 @@ module.exports = function (app) {
                 rankingAnswer.comment = $scope.store.answer.comment;
                 rankingAnswer.user = $scope.store.user;
                 rankingAnswer.question = $scope.store.question.id;
-                rankingAnswer.background = $scope.store.question.background;
+                rankingAnswer.backgroundId = $scope.store.question.backgroundId;
                 rankingAnswer.importance = $scope.store.answer.importance;
                 var rankedItems = _.map($scope.store.items, function (key, index) {
                     key.answer = $scope.store.answer.id;
@@ -70580,7 +70580,7 @@ module.exports = function (app) {
                 rankingAnswer.comment = $scope.store.answer.comment;
                 rankingAnswer.user = $scope.store.user;
                 rankingAnswer.question = $scope.store.question.id;
-                rankingAnswer.background = $scope.store.question.background;
+                rankingAnswer.backgroundId = $scope.store.question.backgroundId;
                 rankingAnswer.importance = $scope.store.answer.importance;
                 var rankedItems = _.map($scope.store.items, function (key, index) {
                     key.answer = $scope.store.answer.id;
@@ -70615,7 +70615,7 @@ module.exports = function (app) {
 
                     delete $scope.store.question;
                     delete $scope.store.questionSet;
-                    delete $scope.store.background;
+                    delete $scope.store.backgroundId;
                     delete $scope.store.backgroundDescription;
                     delete $scope.store.answer;
                     delete $scope.store.items;
@@ -70913,9 +70913,9 @@ module.exports = function (app) {
             });
         };
 
-        $scope.moveToQuestionSet = function (background, userId) {
+        $scope.moveToQuestionSet = function (backgroundId, userId) {
 
-            QuestionSet.get({ background: background, userId: userId }, function (result) {
+            QuestionSet.get({ backgroundId: backgroundId, userId: userId }, function (result) {
 
                 var sortThese = _.map(result.Questions, function (question) {
                     _.forEach(result.Answers, function (answer) {
@@ -71327,7 +71327,7 @@ module.exports = function (namespace) {
     //var AuthInterceptor = require('./services/http/authInterceptor.service.js');
 
     //app.constant('URLS', { BASE_API: 'http://localhost:3000/' });
-    app.constant('URLS', { BASE_API: 'votewisespa.azurewebsites.net/' });
+    app.constant('URLS', { BASE_API: '/' });
 
     app.service('AuthInterceptor', ['$rootScope', '$localStorage', function ($rootScope, $localStorage) {
         var service = this;
@@ -71706,7 +71706,7 @@ module.exports = function (app) {
     var dependencies = ['$resource', 'URLS'];
 
     function service($resource, URLS) {
-        return $resource(URLS.BASE_API + 'questionSet/:background/:userId', { background: '@background', userId: '@userId' });
+        return $resource(URLS.BASE_API + 'questionSet/:backgroundId/:userId', { backgroundId: '@backgroundId', userId: '@userId' });
     }
     service.$inject = dependencies;
     app.factory(app.name + '.' + servicename, service);
@@ -72453,7 +72453,7 @@ module.exports = '<p> Topic page </p>\n' +
     '\n' +
     '		<div ng-repeat="topic in store.topicCascade.Subtopics" class="subtopicSingle" id="subtopicID">\n' +
     '			<!-- Dot in the beginning of the title: <span class=""></span> -->\n' +
-    '			<div ng-click="(topic.background === 0) ? null : moveToQuestionSet(topic.background, testUser)">\n' +
+    '			<div ng-click="(topic.background === 0) ? null : moveToQuestionSet(topic.backgroundId, testUser)">\n' +
     '				<h1>{{topic.description}}</h1>\n' +
     '			</div>\n' +
     '\n' +
@@ -72464,7 +72464,7 @@ module.exports = '<p> Topic page </p>\n' +
     '			</div>\n' +
     '\n' +
     '			<div ng-show="store.userInfo.answerCount >= 5"ng-repeat="subtopic in topic.Subtopics"\n' +
-    '				 ng-click="(subtopic.background === 0) ? null : moveToQuestionSet(subtopic.background, testUser)"\n' +
+    '				 ng-click="(subtopic.background === 0) ? null : moveToQuestionSet(subtopic.backgroundId, testUser)"\n' +
     '				 ng-if="topic.Subtopics.length != 0"\n' +
     '				 class="subtopicSingle">\n' +
     '\n' +

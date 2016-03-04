@@ -1,17 +1,17 @@
 var Backgrounds = require('./backgrounds');
 
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('Topics', {
+    return sequelize.define('topics', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        background: {
+        backgroundId: {
             type: DataTypes.INTEGER,
             references: {
                 model: Backgrounds,
-                key: 'background'
+                key: 'id'
             }
         },
         parent: {

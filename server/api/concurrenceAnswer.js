@@ -1,10 +1,12 @@
 var models = require('../models');
-var Answers = models.Answers;
-var Users = models.Users;
-var Politicians = models.Politicians;
+var Answers = models.answers;
+var Users = models.users;
+var Politicians = models.politicians;
 var _ = require('lodash');
 
 function postConcurrenceAnswer(req, res){
+
+    console.log("POST CONCURRENCE ANSWER");
 
     Users.findOne({
         where: {
@@ -27,6 +29,8 @@ function postConcurrenceAnswer(req, res){
 };
 
 function putConcurrenceAnswer(req, res){
+
+    console.log("PUT CONCURRENCE ANSWER", req.body);
 
     Answers.upsert(req.body).then(function(results){
         res.send(results);

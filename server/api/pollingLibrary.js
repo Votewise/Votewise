@@ -1,6 +1,6 @@
 var models = require("../models");
-var Questions = models.Questions;
-var Answers = models.Answers;
+var Questions = models.questions;
+var Answers = models.answers;
 
 function pollByBackground(req, res){
 

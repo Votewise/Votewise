@@ -1,8 +1,8 @@
 var models = require('../models');
-var RankingAnswerItems = models.RankingAnswerItems;
-var Answers = models.Answers;
-var Users = models.Users;
-var Politicians = models.Politicians;
+var RankingAnswerItems = models.rankingAnswerItems;
+var Answers = models.answers;
+var Users = models.users;
+var Politicians = models.politicians;
 var Promise = require('bluebird');
 var _ = require('lodash');
 

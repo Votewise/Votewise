@@ -82,7 +82,7 @@ module.exports = function(app) {
 
                 concurrenceAnswer.user = $scope.store.user;
                 concurrenceAnswer.question = $scope.store.question.id;
-                concurrenceAnswer.background = $scope.store.question.background;
+                concurrenceAnswer.backgroundId = $scope.store.question.backgroundId;
                 concurrenceAnswer.importance = $scope.store.answer.importance;
                 concurrenceAnswer.concurrence = $scope.store.answer.concurrence;
                 concurrenceAnswer.comment = $scope.store.answer.comment;
@@ -103,7 +103,7 @@ module.exports = function(app) {
                 var concurrenceAnswer = new ConcurrenceAnswer();
                 concurrenceAnswer.user = $scope.store.user;
                 concurrenceAnswer.question = $scope.store.question.id;
-                concurrenceAnswer.background = $scope.store.question.background;
+                concurrenceAnswer.backgroundId = $scope.store.question.backgroundId;
                 concurrenceAnswer.importance = $scope.store.answer.importance;
                 concurrenceAnswer.concurrence = $scope.store.answer.concurrence;
                 concurrenceAnswer.comment = $scope.store.answer.comment;
@@ -122,7 +122,7 @@ module.exports = function(app) {
                 rankingAnswer.comment = $scope.store.answer.comment;
                 rankingAnswer.user = $scope.store.user;
                 rankingAnswer.question = $scope.store.question.id;
-                rankingAnswer.background = $scope.store.question.background;
+                rankingAnswer.backgroundId = $scope.store.question.backgroundId;
                 rankingAnswer.importance = $scope.store.answer.importance;
                 var rankedItems = _.map($scope.store.items, function (key, index) {
                     key.answer = $scope.store.answer.id;
@@ -146,7 +146,7 @@ module.exports = function(app) {
                 rankingAnswer.comment = $scope.store.answer.comment;
                 rankingAnswer.user = $scope.store.user;
                 rankingAnswer.question = $scope.store.question.id;
-                rankingAnswer.background = $scope.store.question.background;
+                rankingAnswer.backgroundId = $scope.store.question.backgroundId;
                 rankingAnswer.importance = $scope.store.answer.importance;
                 var rankedItems = _.map($scope.store.items, function (key, index) {
                     key.answer = $scope.store.answer.id;
@@ -182,7 +182,7 @@ module.exports = function(app) {
 
                     delete $scope.store.question;
                     delete $scope.store.questionSet;
-                    delete $scope.store.background;
+                    delete $scope.store.backgroundId;
                     delete $scope.store.backgroundDescription;
                     delete $scope.store.answer;
                     delete $scope.store.items;

@@ -1,5 +1,5 @@
 var models = require('../models');
-var Groups = models.Groups;
+var Groups = models.groups;
 var _ = require('lodash');
 
 

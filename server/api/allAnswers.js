@@ -1,8 +1,8 @@
 var models = require('../models');
-var Backgrounds = models.Backgrounds;
-var Answers = models.Answers;
-var RankingAnswerItems = models.RankingAnswerItems;
-var Questions = models.Questions;
+var Backgrounds = models.backgrounds;
+var Answers = models.answers;
+var RankingAnswerItems = models.rankingAnswerItems;
+var Questions = models.questions;
 var _ = require('lodash');
 
 function getAllAnswers(req,res){

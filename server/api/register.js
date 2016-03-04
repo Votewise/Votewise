@@ -1,5 +1,5 @@
 var models = require('../models');
-var Users = models.Users;
+var Users = models.users;
 var _ = require('lodash');
 var jwt = require('jsonwebtoken');
 

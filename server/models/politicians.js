@@ -1,12 +1,12 @@
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('Politicians', {
+    return sequelize.define('politicians', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
         name: DataTypes.STRING,
-        user: DataTypes.INTEGER,
+        userId: DataTypes.INTEGER,
         type: DataTypes.STRING,
         party: DataTypes.STRING,
         office: DataTypes.STRING,

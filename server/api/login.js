@@ -1,18 +1,16 @@
 var models = require('../models');
-var Users = models.Users;
-var Answers = models.Answers;
-var UserGroups = models.UserGroups;
-var Groups = models.Groups;
-var Parties = models.Parties;
-var UserParties = models.UserParties;
+var Users = models.users;
+var Answers = models.answers;
+var UserGroups = models.userGroups;
+var Groups = models.groups;
+var Parties = models.parties;
+var UserParties = models.userParties;
 var sequelize = models.sequelize;
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 var _ = require('lodash');
 
 function login(req, res){
-
-	console.log(req.headers.authorization);
 
 	Users.find({
 		where: {

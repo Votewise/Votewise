@@ -1,8 +1,8 @@
 var models = require('../models');
-var PoliticianLists = models.PoliticianLists;
-var Politicians = models.Politicians;
-var PoliticianDistricts = models.PoliticianDistricts;
-var Districts = models.Districts;
+var PoliticianLists = models.politicianLists;
+var Politicians = models.politicians;
+var PoliticianDistricts = models.politicianDistricts;
+var Districts = models.districts;
 
 var _ = require('lodash');
 
