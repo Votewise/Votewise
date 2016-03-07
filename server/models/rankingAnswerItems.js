@@ -1,7 +1,7 @@
 var Backgrounds = require('./backgrounds');
 
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('rankingAnswerItems', {
+    return sequelize.define('rankingansweritems', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,

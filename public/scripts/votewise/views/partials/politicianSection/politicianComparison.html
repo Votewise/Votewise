@@ -45,6 +45,7 @@
             <div style="display: flex; justify-content: space-around;">
                 <table>
 
+
                     <tr>
                         <th>Politician</th>
                         <th>Importance</th>
@@ -53,6 +54,19 @@
                             <p style="display:inline-block; margin-left: 20px; marign-right: 10px;"> Disagree </p>
                         </th>
                         <th>Comment</th>
+                    </tr>
+                    <tr ng-if="userAnswer">
+                        <td> Your Answer: </td>
+                        <td> {{userAnswer.importance}} </td>
+                        <td class="comparisonAgreeDisagree">
+                            <i class="comparisonCheckBoxes" ng-class="userAnswer.concurrence === 1 ? 'fa fa-check-square-o' : 'fa fa-square-o' "></i>
+                            <i class="comparisonCheckBoxes" ng-class="userAnswer.concurrence === 2 ? 'fa fa-check-square-o' : 'fa fa-square-o' "></i>
+                            <i class="comparisonCheckBoxes" ng-class="userAnswer.concurrence === 3 ? 'fa fa-check-square-o' : 'fa fa-square-o' "></i>
+                            <i class="comparisonCheckBoxes" ng-class="userAnswer.concurrence === 4 ? 'fa fa-check-square-o' : 'fa fa-square-o' "></i>
+                            <i class="comparisonCheckBoxes" ng-class="userAnswer.concurrence === 5 ? 'fa fa-check-square-o' : 'fa fa-square-o' "></i>
+                            <i class="comparisonCheckBoxes" ng-class="userAnswer.concurrence === 6 ? 'fa fa-check-square-o' : 'fa fa-square-o' "></i>
+                        </td>
+                        <td> {{userAnswer.comment}} </td>
                     </tr>
 
                     <tr id="repeatedPoliticianAnswers" ng-repeat="answer in presentedQuestion">
@@ -66,8 +80,7 @@
                             <i class="comparisonCheckBoxes" ng-class="answer.concurrence === 5 ? 'fa fa-check-square-o' : 'fa fa-square-o' "></i>
                             <i class="comparisonCheckBoxes" ng-class="answer.concurrence === 6 ? 'fa fa-check-square-o' : 'fa fa-square-o' "></i>
                         </td>
-                        <td ng-show="answer.pol.answerCount >= 10"> {{answer.comment}} </td>
-                        <td ng-show="answer.pol.answerCount <= 10"> Awaiting Comment </td>
+                        <td ng-show="answer.pol.answerCount >= 10"> {{answer.comment}} </td> <td ng-show="answer.pol.answerCount <= 10"> Awaiting Comment </td>
                     </tr>
 
                 </table>

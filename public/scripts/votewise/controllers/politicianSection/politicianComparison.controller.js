@@ -29,6 +29,7 @@ module.exports = function(app) {
             $scope.presentedSet = $scope.store.comparisonSet[$scope.elementForBackgrounds];
             $scope.presentedQuestion = $scope.presentedSet.answers[$scope.elementForQuestions];
             $scope.userAnswer = $scope.presentedSet.userAnswers[$scope.elementForQuestions];
+            console.log("user answer", $scope.presentedSet.userAnswers[$scope.elementForQuestions]);
         };
         activate();
 
@@ -71,6 +72,7 @@ module.exports = function(app) {
             $scope.elementForQuestions = 0;
             $scope.presentedSet = $scope.$parent.store.comparisonSet[element.index];
             $scope.presentedQuestion = $scope.presentedSet.answers[$scope.elementForQuestions];
+            $scope.userAnswer = $scope.presentedSet.userAnswers[$scope.elementForQuestions];
         };
 
         $scope.traverseSetByBackground = function(bool){

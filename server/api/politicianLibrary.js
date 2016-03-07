@@ -20,7 +20,7 @@ function getPoliticianLibrary(req,res){
         }
     }).then(function(result){
         response.city = result;
-        res.send(response)
+        res.send(response);
         //console.log(result);
     });
 }

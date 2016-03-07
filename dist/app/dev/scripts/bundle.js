@@ -70277,6 +70277,7 @@ module.exports = function (app) {
             $scope.presentedSet = $scope.store.comparisonSet[$scope.elementForBackgrounds];
             $scope.presentedQuestion = $scope.presentedSet.answers[$scope.elementForQuestions];
             $scope.userAnswer = $scope.presentedSet.userAnswers[$scope.elementForQuestions];
+            console.log('user answer', $scope.presentedSet.userAnswers[$scope.elementForQuestions]);
         };
         activate();
 
@@ -70315,6 +70316,7 @@ module.exports = function (app) {
             $scope.elementForQuestions = 0;
             $scope.presentedSet = $scope.$parent.store.comparisonSet[element.index];
             $scope.presentedQuestion = $scope.presentedSet.answers[$scope.elementForQuestions];
+            $scope.userAnswer = $scope.presentedSet.userAnswers[$scope.elementForQuestions];
         };
 
         $scope.traverseSetByBackground = function (bool) {
@@ -72168,6 +72170,7 @@ module.exports = '<div class="politicianComparison">\n' +
     '            <div style="display: flex; justify-content: space-around;">\n' +
     '                <table>\n' +
     '\n' +
+    '\n' +
     '                    <tr>\n' +
     '                        <th>Politician</th>\n' +
     '                        <th>Importance</th>\n' +
@@ -72176,6 +72179,19 @@ module.exports = '<div class="politicianComparison">\n' +
     '                            <p style="display:inline-block; margin-left: 20px; marign-right: 10px;"> Disagree </p>\n' +
     '                        </th>\n' +
     '                        <th>Comment</th>\n' +
+    '                    </tr>\n' +
+    '                    <tr ng-if="userAnswer">\n' +
+    '                        <td> Your Answer: </td>\n' +
+    '                        <td> {{userAnswer.importance}} </td>\n' +
+    '                        <td class="comparisonAgreeDisagree">\n' +
+    '                            <i class="comparisonCheckBoxes" ng-class="userAnswer.concurrence === 1 ? \'fa fa-check-square-o\' : \'fa fa-square-o\' "></i>\n' +
+    '                            <i class="comparisonCheckBoxes" ng-class="userAnswer.concurrence === 2 ? \'fa fa-check-square-o\' : \'fa fa-square-o\' "></i>\n' +
+    '                            <i class="comparisonCheckBoxes" ng-class="userAnswer.concurrence === 3 ? \'fa fa-check-square-o\' : \'fa fa-square-o\' "></i>\n' +
+    '                            <i class="comparisonCheckBoxes" ng-class="userAnswer.concurrence === 4 ? \'fa fa-check-square-o\' : \'fa fa-square-o\' "></i>\n' +
+    '                            <i class="comparisonCheckBoxes" ng-class="userAnswer.concurrence === 5 ? \'fa fa-check-square-o\' : \'fa fa-square-o\' "></i>\n' +
+    '                            <i class="comparisonCheckBoxes" ng-class="userAnswer.concurrence === 6 ? \'fa fa-check-square-o\' : \'fa fa-square-o\' "></i>\n' +
+    '                        </td>\n' +
+    '                        <td> {{userAnswer.comment}} </td>\n' +
     '                    </tr>\n' +
     '\n' +
     '                    <tr id="repeatedPoliticianAnswers" ng-repeat="answer in presentedQuestion">\n' +
@@ -72189,8 +72205,7 @@ module.exports = '<div class="politicianComparison">\n' +
     '                            <i class="comparisonCheckBoxes" ng-class="answer.concurrence === 5 ? \'fa fa-check-square-o\' : \'fa fa-square-o\' "></i>\n' +
     '                            <i class="comparisonCheckBoxes" ng-class="answer.concurrence === 6 ? \'fa fa-check-square-o\' : \'fa fa-square-o\' "></i>\n' +
     '                        </td>\n' +
-    '                        <td ng-show="answer.pol.answerCount >= 10"> {{answer.comment}} </td>\n' +
-    '                        <td ng-show="answer.pol.answerCount <= 10"> Awaiting Comment </td>\n' +
+    '                        <td ng-show="answer.pol.answerCount >= 10"> {{answer.comment}} </td> <td ng-show="answer.pol.answerCount <= 10"> Awaiting Comment </td>\n' +
     '                    </tr>\n' +
     '\n' +
     '                </table>\n' +
