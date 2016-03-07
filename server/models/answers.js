@@ -36,7 +36,3 @@ module.exports = function(sequelize, DataTypes) {
         updatedBy: DataTypes.INTEGER
     });
 };
-
-
-
-

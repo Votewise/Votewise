@@ -45003,7 +45003,222 @@ module.exports = angular;
   return module
 }));
 
-},{"angular":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/angular/index.js"}],"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/d3/d3.js":[function(require,module,exports){
+},{"angular":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/angular/index.js"}],"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/babel-runtime/core-js/object/keys.js":[function(require,module,exports){
+module.exports = { "default": require("core-js/library/fn/object/keys"), __esModule: true };
+},{"core-js/library/fn/object/keys":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/babel-runtime/node_modules/core-js/library/fn/object/keys.js"}],"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/babel-runtime/node_modules/core-js/library/fn/object/keys.js":[function(require,module,exports){
+require('../../modules/es6.object.statics-accept-primitives');
+module.exports = require('../../modules/$').core.Object.keys;
+},{"../../modules/$":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/babel-runtime/node_modules/core-js/library/modules/$.js","../../modules/es6.object.statics-accept-primitives":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/babel-runtime/node_modules/core-js/library/modules/es6.object.statics-accept-primitives.js"}],"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/babel-runtime/node_modules/core-js/library/modules/$.def.js":[function(require,module,exports){
+var $          = require('./$')
+  , global     = $.g
+  , core       = $.core
+  , isFunction = $.isFunction;
+function ctx(fn, that){
+  return function(){
+    return fn.apply(that, arguments);
+  };
+}
+// type bitmap
+$def.F = 1;  // forced
+$def.G = 2;  // global
+$def.S = 4;  // static
+$def.P = 8;  // proto
+$def.B = 16; // bind
+$def.W = 32; // wrap
+function $def(type, name, source){
+  var key, own, out, exp
+    , isGlobal = type & $def.G
+    , isProto  = type & $def.P
+    , target   = isGlobal ? global : type & $def.S
+        ? global[name] : (global[name] || {}).prototype
+    , exports  = isGlobal ? core : core[name] || (core[name] = {});
+  if(isGlobal)source = name;
+  for(key in source){
+    // contains in native
+    own = !(type & $def.F) && target && key in target;
+    if(own && key in exports)continue;
+    // export native or passed
+    out = own ? target[key] : source[key];
+    // prevent global pollution for namespaces
+    if(isGlobal && !isFunction(target[key]))exp = source[key];
+    // bind timers to global for call from export context
+    else if(type & $def.B && own)exp = ctx(out, global);
+    // wrap global constructors for prevent change them in library
+    else if(type & $def.W && target[key] == out)!function(C){
+      exp = function(param){
+        return this instanceof C ? new C(param) : C(param);
+      };
+      exp.prototype = C.prototype;
+    }(out);
+    else exp = isProto && isFunction(out) ? ctx(Function.call, out) : out;
+    // export
+    exports[key] = exp;
+    if(isProto)(exports.prototype || (exports.prototype = {}))[key] = out;
+  }
+}
+module.exports = $def;
+},{"./$":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/babel-runtime/node_modules/core-js/library/modules/$.js"}],"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/babel-runtime/node_modules/core-js/library/modules/$.fw.js":[function(require,module,exports){
+module.exports = function($){
+  $.FW   = false;
+  $.path = $.core;
+  return $;
+};
+},{}],"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/babel-runtime/node_modules/core-js/library/modules/$.get-names.js":[function(require,module,exports){
+// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
+var $ = require('./$')
+  , toString = {}.toString
+  , getNames = $.getNames;
+
+var windowNames = typeof window == 'object' && Object.getOwnPropertyNames
+  ? Object.getOwnPropertyNames(window) : [];
+
+function getWindowNames(it){
+  try {
+    return getNames(it);
+  } catch(e){
+    return windowNames.slice();
+  }
+}
+
+module.exports.get = function getOwnPropertyNames(it){
+  if(windowNames && toString.call(it) == '[object Window]')return getWindowNames(it);
+  return getNames($.toObject(it));
+};
+},{"./$":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/babel-runtime/node_modules/core-js/library/modules/$.js"}],"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/babel-runtime/node_modules/core-js/library/modules/$.js":[function(require,module,exports){
+'use strict';
+var global = typeof self != 'undefined' ? self : Function('return this')()
+  , core   = {}
+  , defineProperty = Object.defineProperty
+  , hasOwnProperty = {}.hasOwnProperty
+  , ceil  = Math.ceil
+  , floor = Math.floor
+  , max   = Math.max
+  , min   = Math.min;
+// The engine works fine with descriptors? Thank's IE8 for his funny defineProperty.
+var DESC = !!function(){
+  try {
+    return defineProperty({}, 'a', {get: function(){ return 2; }}).a == 2;
+  } catch(e){ /* empty */ }
+}();
+var hide = createDefiner(1);
+// 7.1.4 ToInteger
+function toInteger(it){
+  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
+}
+function desc(bitmap, value){
+  return {
+    enumerable  : !(bitmap & 1),
+    configurable: !(bitmap & 2),
+    writable    : !(bitmap & 4),
+    value       : value
+  };
+}
+function simpleSet(object, key, value){
+  object[key] = value;
+  return object;
+}
+function createDefiner(bitmap){
+  return DESC ? function(object, key, value){
+    return $.setDesc(object, key, desc(bitmap, value));
+  } : simpleSet;
+}
+
+function isObject(it){
+  return it !== null && (typeof it == 'object' || typeof it == 'function');
+}
+function isFunction(it){
+  return typeof it == 'function';
+}
+function assertDefined(it){
+  if(it == undefined)throw TypeError("Can't call method on  " + it);
+  return it;
+}
+
+var $ = module.exports = require('./$.fw')({
+  g: global,
+  core: core,
+  html: global.document && document.documentElement,
+  // http://jsperf.com/core-js-isobject
+  isObject:   isObject,
+  isFunction: isFunction,
+  that: function(){
+    return this;
+  },
+  // 7.1.4 ToInteger
+  toInteger: toInteger,
+  // 7.1.15 ToLength
+  toLength: function(it){
+    return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+  },
+  toIndex: function(index, length){
+    index = toInteger(index);
+    return index < 0 ? max(index + length, 0) : min(index, length);
+  },
+  has: function(it, key){
+    return hasOwnProperty.call(it, key);
+  },
+  create:     Object.create,
+  getProto:   Object.getPrototypeOf,
+  DESC:       DESC,
+  desc:       desc,
+  getDesc:    Object.getOwnPropertyDescriptor,
+  setDesc:    defineProperty,
+  setDescs:   Object.defineProperties,
+  getKeys:    Object.keys,
+  getNames:   Object.getOwnPropertyNames,
+  getSymbols: Object.getOwnPropertySymbols,
+  assertDefined: assertDefined,
+  // Dummy, fix for not array-like ES3 string in es5 module
+  ES5Object: Object,
+  toObject: function(it){
+    return $.ES5Object(assertDefined(it));
+  },
+  hide: hide,
+  def: createDefiner(0),
+  set: global.Symbol ? simpleSet : hide,
+  each: [].forEach
+});
+/* eslint-disable no-undef */
+if(typeof __e != 'undefined')__e = core;
+if(typeof __g != 'undefined')__g = global;
+},{"./$.fw":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/babel-runtime/node_modules/core-js/library/modules/$.fw.js"}],"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/babel-runtime/node_modules/core-js/library/modules/es6.object.statics-accept-primitives.js":[function(require,module,exports){
+var $        = require('./$')
+  , $def     = require('./$.def')
+  , isObject = $.isObject
+  , toObject = $.toObject;
+$.each.call(('freeze,seal,preventExtensions,isFrozen,isSealed,isExtensible,' +
+  'getOwnPropertyDescriptor,getPrototypeOf,keys,getOwnPropertyNames').split(',')
+, function(KEY, ID){
+  var fn     = ($.core.Object || {})[KEY] || Object[KEY]
+    , forced = 0
+    , method = {};
+  method[KEY] = ID == 0 ? function freeze(it){
+    return isObject(it) ? fn(it) : it;
+  } : ID == 1 ? function seal(it){
+    return isObject(it) ? fn(it) : it;
+  } : ID == 2 ? function preventExtensions(it){
+    return isObject(it) ? fn(it) : it;
+  } : ID == 3 ? function isFrozen(it){
+    return isObject(it) ? fn(it) : true;
+  } : ID == 4 ? function isSealed(it){
+    return isObject(it) ? fn(it) : true;
+  } : ID == 5 ? function isExtensible(it){
+    return isObject(it) ? fn(it) : false;
+  } : ID == 6 ? function getOwnPropertyDescriptor(it, key){
+    return fn(toObject(it), key);
+  } : ID == 7 ? function getPrototypeOf(it){
+    return fn(Object($.assertDefined(it)));
+  } : ID == 8 ? function keys(it){
+    return fn(toObject(it));
+  } : require('./$.get-names').get;
+  try {
+    fn('z');
+  } catch(e){
+    forced = 1;
+  }
+  $def($def.S + $def.F * forced, 'Object', method);
+});
+},{"./$":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/babel-runtime/node_modules/core-js/library/modules/$.js","./$.def":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/babel-runtime/node_modules/core-js/library/modules/$.def.js","./$.get-names":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/babel-runtime/node_modules/core-js/library/modules/$.get-names.js"}],"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/d3/d3.js":[function(require,module,exports){
 !function() {
   var d3 = {
     version: "3.5.16"
@@ -70024,7 +70239,6 @@ module.exports = function (app) {
             }
         };
     }
-
     controller.$inject = deps;
     app.controller(fullname, controller);
 };
@@ -70047,7 +70261,6 @@ module.exports = function (app) {
         $scope.elementForBackgrounds = 0;
         $scope.elementForQuestions = 0;
         $scope.backgroundDescs = _.map($scope.$parent.store.comparisonSet, function (key, index) {
-            console.log(key, index);
             var item = {};
             item.description = key.shortDescription;
             item.index = index;
@@ -70062,18 +70275,15 @@ module.exports = function (app) {
 
         var activate = function activate() {
             $scope.presentedSet = $scope.store.comparisonSet[$scope.elementForBackgrounds];
-            $scope.presentedQuestion = $scope.presentedSet.Answers[$scope.elementForQuestions];
+            $scope.presentedQuestion = $scope.presentedSet.answers[$scope.elementForQuestions];
             $scope.userAnswer = $scope.presentedSet.userAnswers[$scope.elementForQuestions];
         };
         activate();
 
         $scope.startSet = function () {
             $scope.presentedSet = $scope.store.comparisonSet[$scope.elementForBackgrounds];
-            $scope.presentedQuestion = $scope.presentedSet.Answers[$scope.elementForQuestions];
+            $scope.presentedQuestion = $scope.presentedSet.answers[$scope.elementForQuestions];
             $scope.userAnswer = $scope.presentedSet.userAnswers[$scope.elementForQuestions];
-
-            console.log('presentedSet: ', $scope.presentedSet);
-            console.log('presentedQuestion: ', $scope.presentedQuestion);
         };
 
         $scope.traverseSetByQuestion = function (bool) {
@@ -70081,9 +70291,10 @@ module.exports = function (app) {
             if (bool) {
 
                 $scope.elementForQuestions += 1;
+                console.log($scope.elementForQuestions);
                 //$scope.presentedQuestion = $scope.presentedSet.Answers[$scope.elementForQuestions];
-                if ($scope.presentedSet.Answers[$scope.elementForQuestions]) {
-                    $scope.presentedQuestion = $scope.presentedSet.Answers[$scope.elementForQuestions];
+                if ($scope.presentedSet.answers[$scope.elementForQuestions]) {
+                    $scope.presentedQuestion = $scope.presentedSet.answers[$scope.elementForQuestions];
                     $scope.userAnswer = $scope.presentedSet.userAnswers[$scope.elementForQuestions];
                 } else {
                     $scope.elementForQuestions -= 1;
@@ -70091,8 +70302,8 @@ module.exports = function (app) {
             } else {
 
                 $scope.elementForQuestions -= 1;
-                if ($scope.presentedSet.Answers[$scope.elementForQuestions]) {
-                    $scope.presentedQuestion = $scope.presentedSet.Answers[$scope.elementForQuestions];
+                if ($scope.presentedSet.answers[$scope.elementForQuestions]) {
+                    $scope.presentedQuestion = $scope.presentedSet.answers[$scope.elementForQuestions];
                     $scope.userAnswer = $scope.presentedSet.userAnswers[$scope.elementForQuestions];
                 } else {
                     $scope.elementForQuestions += 1;
@@ -70103,7 +70314,7 @@ module.exports = function (app) {
         $scope.goToBackground = function (element) {
             $scope.elementForQuestions = 0;
             $scope.presentedSet = $scope.$parent.store.comparisonSet[element.index];
-            $scope.presentedQuestion = $scope.presentedSet.Answers[$scope.elementForQuestions];
+            $scope.presentedQuestion = $scope.presentedSet.answers[$scope.elementForQuestions];
         };
 
         $scope.traverseSetByBackground = function (bool) {
@@ -70117,68 +70328,11 @@ module.exports = function (app) {
                 console.log($scope.elementForBackgrounds);
             }
             $scope.presentedSet = $scope.$parent.store.comparisonSet[$scope.elementForBackgrounds];
-            $scope.presentedQuestion = $scope.presentedSet.Answers[$scope.elementForQuestions];
+            $scope.presentedQuestion = $scope.presentedSet.answers[$scope.elementForQuestions];
         };
-
-        // finds the polarity of politician answers in relation to the settings's answers.
 
         $scope.goToPoliticianLibrary = function () {
             $state.go('main.politicianLibrary');
-        };
-
-        $scope.findAnswerColorDiff = function () {
-            var choice, differenceBetween, choice2;
-
-            for (var key in $scope.profileCompare) {
-                if ($scope.profileCompare.hasOwnProperty(key)) {
-                    for (var i = 0; i < $scope.currentUser.You.questionAnswer.length; i++) {
-                        if ($scope.currentUser.You.questionAnswer[i] == true) {
-                            choice = i;
-                            console.log(choice);
-                        }
-                    }
-                    for (var i = 0; i < $scope.profileCompare[key].questionAnswer.length; i++) {
-                        if ($scope.profileCompare[key].questionAnswer[i] == true) {
-                            choice2 = i;
-                            differenceBetween = 0;
-                        }
-                    }
-                    if (choice2 == choice) {
-                        $scope.profileCompare[key].difference = '_0pcnt';
-                        console.log('Difference for ' + key + ' is ' + $scope.profileCompare[key].difference);
-                    } else if (choice2 < choice) {
-                        for (var i = 0; i < 6; i++) {
-                            choice2++;
-                            differenceBetween++;
-                            if (choice2 == choice) {
-                                $scope.setColorDifference(differenceBetween, key);
-                                break;
-                            }
-                        }
-                    } else if (choice < choice2) {
-                        for (var i = 0; i < 6; i++) {
-                            choice++;
-                            differenceBetween++;
-                            if (choice2 == choice) {
-                                $scope.setColorDifference(differenceBetween, key);
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        };
-
-        $scope.setColorDifference = function (differenceBetween, key) {
-            var setter = (differenceBetween * 2).toString();
-            $scope.profileCompare[key].difference = '_' + setter + '0pcnt';
-        };
-
-        $scope.currentUser = {
-            You: {
-                questionAnswer: [true, false, false, false, false, false],
-                questionImportance: 'Unimportant'
-            }
         };
     }
 
@@ -70214,17 +70368,25 @@ module.exports = function (app) {
             console.log(pol);
         };
 
+        $scope.transparentClass = function (count) {
+            console.log('COUNT', count);
+            if (count === 0) {
+                return 'transparent';
+            };
+        };
+
         queryLineupParam.push($scope.store.user);
         $scope.pushPolToLineup = function (pol, polIndex, officeIndex) {
 
+            console.log('pol', pol, 'polLineup', $scope.polLineup);
             if (_.includes($scope.polLineup, pol)) {
                 $scope.store.partitionedPols[officeIndex][polIndex].checked = false;
                 _.remove($scope.polLineup, pol);
                 _.pull(queryLineupParam, pol.user);
-            } else {
+            } else if (pol.answerCount !== 0) {
                 $scope.store.partitionedPols[officeIndex][polIndex].checked = true;
                 $scope.polLineup.push(pol);
-                queryLineupParam.push(pol.user);
+                queryLineupParam.push(pol.userId);
             }
             console.log('queryLineupParam:', queryLineupParam);
             console.log('$scope.politicianLineup: ', $scope.polLineup);
@@ -70234,12 +70396,15 @@ module.exports = function (app) {
 
             AllAnswers.query({ lineup: queryLineupParam.toString() }, function (result) {
 
+                console.log('RESULT', result);
+                //
+                //
                 var comparisonSet = _.reduce(result, function (reduction, background) {
-
+                    //
                     background.pols = _.map($scope.polLineup, function (pol) {
 
-                        _.forEach(background.Answers, function (answer, index) {
-                            if (answer.user === pol.user) {
+                        _.forEach(background.answers, function (answer, index) {
+                            if (answer.userId === pol.userId) {
                                 answer.pol = {};
                                 answer.pol.name = pol.name;
                                 answer.pol.answerCount = pol.answerCount;
@@ -70247,32 +70412,33 @@ module.exports = function (app) {
                         });
                         return pol;
                     });
-
-                    background.userAnswers = _.remove(background.Answers, function (answer) {
-                        return answer.user === $scope.store.user;
+                    //
+                    background.userAnswers = _.remove(background.answers, function (answer) {
+                        return answer.userId === $scope.store.user;
                     });
-                    background.Answers = _(background.Answers).groupBy('question').values().value();
-                    background.Answers = _.orderBy(background.Answers, 'length', 'desc');
-
-                    // This orderedUserAnswers functionality can be used if ever there are random distributions
+                    background.answers = _(background.answers).groupBy('questionId').values().value();
+                    background.answers = _.orderBy(background.answers, 'length', 'desc');
+                    //
+                    // This orderedUserAnswers functionality can be used if ever there are random distribution
                     // within the answer set. As it is currently, questions are only ever answered in
                     // ascending order.
                     //var orderedUserAnswers = [];
+
                     var score = [];
-                    _.forEach(background.Answers, function (answer) {
+                    _.forEach(background.answers, function (answer) {
                         _.forEach(background.userAnswers, function (userAnswer) {
 
                             if (!score[answer.length]) {
                                 score[answer.length] = answer.length;
                                 if (answer[0].question === userAnswer.question) {
                                     score[answer.length] += answer.length;
-                                    //orderedUserAnswers.push(userAnswer)
+                                    //    orderedUserAnswers.push(userAnswer)
                                 }
                             } else if (answer.length !== 1) {
                                 score[answer.length] += 1;
                                 if (answer[0].question === userAnswer.question) {
                                     score[answer.length] += answer.length;
-                                    //    orderedUserAnswers.push(userAnswer);
+                                    //     orderedUserAnswers.push(userAnswer);
                                 }
                             }
                             //else if (answer.length === 1){
@@ -70283,10 +70449,10 @@ module.exports = function (app) {
                         });
                     });
                     //background.userAnswers = orderedUserAnswers;
-
+                    //
                     background.score = _.sum(score);
 
-                    if (!_.isEmpty(background.Answers)) {
+                    if (!_.isEmpty(background.answers)) {
                         reduction.push(background);
                     }
 
@@ -70648,6 +70814,9 @@ module.exports = function (app) {
 
 },{"lodash":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/lodash/index.js"}],"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/controllers/settings/settings.controller.js":[function(require,module,exports){
 'use strict';
+
+var _Object$keys = require('babel-runtime/core-js/object/keys')['default'];
+
 var controllername = 'settings';
 
 module.exports = function (app) {
@@ -70866,12 +71035,21 @@ module.exports = function (app) {
 
             var user = new User();
 
-            user.createGroups = groupsToCreate;
-            user.deleteGroups = groupsToDelete;
-            user.createParties = partiesToCreate;
-            user.deleteParties = partiesToDelete;
-            user.updateSettings = settingsToUpdate;
-
+            if (!_.isEmpty(groupsToCreate)) {
+                user.createGroups = groupsToCreate;
+            };
+            if (!_.isEmpty(groupsToDelete)) {
+                user.deleteGroups = groupsToDelete;
+            };
+            if (!_.isEmpty(partiesToCreate)) {
+                user.createParties = partiesToCreate;
+            };
+            if (!_.isEmpty(partiesToCreate)) {
+                user.deleteParties = partiesToDelete;
+            };
+            if (_Object$keys(settingsToUpdate).length === 0 && JSON.stringify(settingsToUpdate) === JSON.stringify({})) {
+                user.updateSettings = settingsToUpdate;
+            };
             User.update({ userId: $scope.store.userInfo.id }, user, function (result) {
                 console.log(result);
             });
@@ -70882,7 +71060,7 @@ module.exports = function (app) {
     app.controller(fullname, controller);
 };
 
-},{}],"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/controllers/topicNavigation/topics.controller.js":[function(require,module,exports){
+},{"babel-runtime/core-js/object/keys":"/Users/jamesfoley/Desktop/Folder/Depot/votewise/node_modules/babel-runtime/core-js/object/keys.js"}],"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/controllers/topicNavigation/topics.controller.js":[function(require,module,exports){
 'use strict';
 var controllername = 'topics';
 var _ = require('lodash');
@@ -71976,7 +72154,7 @@ module.exports = '<div class="politicianComparison">\n' +
     '\n' +
     '        <div id="concurrence" ng-show="presentedQuestion[0].type === \'concurrence\'">\n' +
     '\n' +
-    '            <p id="politicianCompareQuestion"> {{ presentedQuestion[0].Question.description}} </p>\n' +
+    '            <p id="politicianCompareQuestion"> {{ presentedQuestion[0].question.description}} </p>\n' +
     '\n' +
     '            <div style="display: flex; justify-content: space-around;">\n' +
     '                <button class="btn btn-primary" style="width:150px; margin-top:10px" ng-click="traverseSetByQuestion(true)" >\n' +
@@ -72012,6 +72190,7 @@ module.exports = '<div class="politicianComparison">\n' +
     '                            <i class="comparisonCheckBoxes" ng-class="answer.concurrence === 6 ? \'fa fa-check-square-o\' : \'fa fa-square-o\' "></i>\n' +
     '                        </td>\n' +
     '                        <td ng-show="answer.pol.answerCount >= 10"> {{answer.comment}} </td>\n' +
+    '                        <td ng-show="answer.pol.answerCount <= 10"> Awaiting Comment </td>\n' +
     '                    </tr>\n' +
     '\n' +
     '                </table>\n' +
@@ -72020,7 +72199,16 @@ module.exports = '<div class="politicianComparison">\n' +
     '\n' +
     '        <div id="ranking" ng-show="presentedQuestion[0].type === \'ranking\'">\n' +
     '\n' +
-    '            <p> {{presentedQuestion[0].Question.description}} </p>\n' +
+    '            <div style="display: flex; justify-content: space-around;">\n' +
+    '                <button class="btn btn-primary" style="width:150px; margin-top:10px" ng-click="traverseSetByQuestion(true)" >\n' +
+    '                    Next Question\n' +
+    '                </button>\n' +
+    '                <button class="btn btn-primary" style="width:150px; margin-top:10px" ng-click="traverseSetByQuestion(false)" >\n' +
+    '                    Previous Question\n' +
+    '                </button>\n' +
+    '            </div>\n' +
+    '\n' +
+    '            <p> {{presentedQuestion[0].question.description}} </p>\n' +
     '\n' +
     '            <div ng-repeat="answer in presentedQuestion" style="display:inline-block; border: 1px black; margin: 10px">\n' +
     '\n' +
@@ -72037,7 +72225,7 @@ module.exports = '<div class="politicianComparison">\n' +
     '                        Importance: {{answer.importance}}\n' +
     '                    </p>\n' +
     '\n' +
-    '                    <div ng-repeat="rankedItem in answer.RankingAnswerItems">\n' +
+    '                    <div ng-repeat="rankedItem in answer.rankingAnswerItems">\n' +
     '\n' +
     '                        {{$index+1}}\n' +
     '                        {{rankedItem.item}}\n' +
@@ -72087,11 +72275,13 @@ module.exports = '<div class="politicianLibrary">\n' +
     '                        <th> Performance Review </th>\n' +
     '                        <th> Party </th>\n' +
     '                    </tr>\n' +
-    '                    <tr class="repeatedPolitician" ng-repeat="politician in office" ng-click="pushPolToLineup(politician, $index, $parent.$index)">\n' +
+    '                    <tr class="repeatedPolitician"\n' +
+    '                        ng-repeat="politician in office"\n' +
+    '                        ng-click="pushPolToLineup(politician, $index, $parent.$index)" >\n' +
     '                        <!-- in the case of potential absence column has two ng-if td elements -->\n' +
     '                        <td id="selected" style="font-size:50px" ng-class="politician.checked ? \'fa fa-check-square-o\' : \'fa fa-square-o\'"></td>\n' +
     '                        <td> {{politician.name}} </td>\n' +
-    '                        <td> {{politician.answerCount}} </td>\n' +
+    '                        <td ng-if="politician.answerCount !== 0"> {{politician.answerCount}} </td> <td ng-if="politician.answerCount === 0"> No Answers.</td>\n' +
     '                        <td ng ng-show="politician.answerCount >= 20 && politician.resume"> {{politician.resume}} </td>  <td ng-show="politician.answerCount < 20 || !politician.resume"> Pending  </td>\n' +
     '                        <td ng-show="politician.answerCount >= 30 && politician.statement"> {{politician.statement}} </td>  <td ng-if="politician.answerCount < 30 || !politician.statement"> Pending </td>\n' +
     '                        <td ng-show="politician.answerCount >= 40 && politician.website">  {{politician.website }}</td>  <td ng-if="politician.answerCount < 40 ||!politician.website "> Pending  </td>\n' +

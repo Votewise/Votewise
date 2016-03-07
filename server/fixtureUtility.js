@@ -1,40 +1,40 @@
 var models = require('./models');
-var Answers = models.Answers;
-var Backgrounds = models.Backgrounds;
-var Districts = models.Districts;
-var PoliticianDistricts = models.PoliticianDistricts;
-var PoliticianLists = models.PoliticianLists;
-var Politicians = models.Politicians;
-var Questions = models.Questions;
-var RankingAnswerItems = models.RankingAnswerItems;
-var RankingQuestionItems = models.RankingQuestionItems;
-var Topics = models.Topics;
-var Users = models.Users;
-var Voters = models.Voters;
-var Groups = models.Groups;
-var UserGroups = models.UserGroups;
-var Parties = models.Parties;
-var UserParties = models.UserParties;
+var Answers = models.answers;
+var Backgrounds = models.backgrounds;
+var Districts = models.districts;
+var PoliticianDistricts = models.politicianDistricts;
+var PoliticianLists = models.politicianLists;
+var Politicians = models.politicians;
+var Questions = models.questions;
+var RankingAnswerItems = models.rankingAnswerItems;
+var RankingQuestionItems = models.rankingQuestionItems;
+var Topics = models.topics;
+var Users = models.users;
+var Voters = models.voters;
+var Groups = models.groups;
+var UserGroups = models.userGroups;
+var Parties = models.parties;
+var UserParties = models.userParties;
 var util = require('util');
 var generateName = require('sillyname');
 var _ = require('lodash');
 
 // POLITICIAN fixtures
 //
-//for (var i = 0; i < 2; i++){
+//for (var i = 11; i < 14; i++){
 //    var rando = generateName();
 //
 //    Politicians.create({
-//        name: rando,
-//        type: "politician",
-//        party: "Chess",
-//        office: "Superintendent",
+//        name: "Politician"+i,
+//        type: 'politician',
+//        party: 'Chess',
+//        office: 'District Attorney',
 //        incumbent: true,
-//        resume: 'Flying ghost pizza',
+//        resume: 'Resume',
 //        endorsements: "thing",
-//        statement: 'not enough mozzerella',
-//        performanceReview: 'Extreme',
-//        website: 'pepperoni.com',
+//        statement: 'Statement',
+//        performanceReview: 'Yes',
+//        website: 'website.fake',
 //        answerCount: 0
 //
 //    }).then(function(result){
@@ -43,24 +43,19 @@ var _ = require('lodash');
 //
 //};
 
-
 //// //Randos outside for loops
 //var rando1 = generateName();
 //var rando2 = generateName();
 //var rando3 = generateName();
 ////
 // DISTRICT fixtures
-//for (var i = 0; i < 3; i++){
-//
-//    var rando1 = generateName();
-//    var rando2 = generateName();
-//    var rando3 = generateName();
+//for (var i = 0; i < 1; i++){
 //
 //    Districts.create({
-//        name: rando1,
+//        name: "franklin",
 //        state: "PA",
 //        city: "Philadelphia",
-//        county: rando3
+//        county: "river"
 //    }).then(function(result){
 //        console.log(result);
 //    });
@@ -69,32 +64,21 @@ var _ = require('lodash');
 ////
 //// POLITICIAN DISTRICT RELATION fixtures
 //
-//PoliticianDistricts.bulkCreate([
-//
-//    { politician: 1, district: 1 },
-//    { politician: 2, district: 1 },
-//    { politician: 3, district: 1 },
-//    { politician: 4, district: 1 },
-//    { politician: 5, district: 1 },
-//    { politician: 6, district: 1 },
-//    { politician: 7, district: 1 },
-//    { politician: 8, district: 1 },
-//    { politician: 9, district: 1 },
-//    { politician: 10, district: 1 },
-//    { politician: 11, district: 1 },
-//    { politician: 12, district: 1 },
-//    { politician: 13, district: 1 },
-//    { politician: 14, district: 1 },
-//    { politician: 15, district: 1 },
-//    { politician: 16, district: 1 },
-//    { politician: 17, district: 1 },
-//    { politician: 18, district: 1 },
-//
-//
-//]).then(function(result){
-//    console.log(result);
-//})
-//////
+PoliticianDistricts.bulkCreate([
+
+    { politician: 9, district: 10 },
+    { politician: 10, district: 10 },
+    { politician: 11, district: 10 },
+    { politician: 12, district: 10 },
+    { politician: 13, district: 10 },
+    { politician: 14, district: 10 },
+    { politician: 15, district: 10 },
+    { politician: 17, district: 10 }
+
+]).then(function(result){
+    console.log(result);
+});
+////
 ////
 //
 //
@@ -200,7 +184,7 @@ var _ = require('lodash');
 //    RankingAnswerItems.bulkCreate(AnswerItems).then(function(result){
 //        console.log(result);
 //    })
-}
+//}
 
 ////
 //Backgrounds.find({

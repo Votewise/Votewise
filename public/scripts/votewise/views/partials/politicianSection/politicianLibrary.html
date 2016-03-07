@@ -30,11 +30,13 @@
                         <th> Performance Review </th>
                         <th> Party </th>
                     </tr>
-                    <tr class="repeatedPolitician" ng-repeat="politician in office" ng-click="pushPolToLineup(politician, $index, $parent.$index)">
+                    <tr class="repeatedPolitician"
+                        ng-repeat="politician in office"
+                        ng-click="pushPolToLineup(politician, $index, $parent.$index)" >
                         <!-- in the case of potential absence column has two ng-if td elements -->
                         <td id="selected" style="font-size:50px" ng-class="politician.checked ? 'fa fa-check-square-o' : 'fa fa-square-o'"></td>
                         <td> {{politician.name}} </td>
-                        <td> {{politician.answerCount}} </td>
+                        <td ng-if="politician.answerCount !== 0"> {{politician.answerCount}} </td> <td ng-if="politician.answerCount === 0"> No Answers.</td>
                         <td ng ng-show="politician.answerCount >= 20 && politician.resume"> {{politician.resume}} </td>  <td ng-show="politician.answerCount < 20 || !politician.resume"> Pending  </td>
                         <td ng-show="politician.answerCount >= 30 && politician.statement"> {{politician.statement}} </td>  <td ng-if="politician.answerCount < 30 || !politician.statement"> Pending </td>
                         <td ng-show="politician.answerCount >= 40 && politician.website">  {{politician.website }}</td>  <td ng-if="politician.answerCount < 40 ||!politician.website "> Pending  </td>

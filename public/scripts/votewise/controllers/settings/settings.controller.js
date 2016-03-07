@@ -14,7 +14,7 @@ module.exports = function(app) {
 
     function controller($scope, Groups, Parties, User) {
         $scope.store = $scope.store || {};
-        $scope.store.userInfo = $scope.store.userInfo
+        $scope.store.userInfo = $scope.store.userInfo;
           //|| {
           //      Parties: [ {name: "Linenbane Spider"}, {name: "Rampantlighter Iguana"}],
           //      Groups: [
@@ -103,7 +103,6 @@ module.exports = function(app) {
                     });
                 });
             }
-
 
         };
 
@@ -224,12 +223,13 @@ module.exports = function(app) {
 
             var user = new User();
 
-            user.createGroups = groupsToCreate;
-            user.deleteGroups = groupsToDelete;
-            user.createParties = partiesToCreate;
-            user.deleteParties = partiesToDelete;
-            user.updateSettings = settingsToUpdate;
-
+            if (!_.isEmpty(groupsToCreate)) { user.createGroups = groupsToCreate; };
+            if (!_.isEmpty(groupsToDelete)) { user.deleteGroups = groupsToDelete; };
+            if (!_.isEmpty(partiesToCreate)) { user.createParties = partiesToCreate; };
+            if (!_.isEmpty(partiesToCreate)) { user.deleteParties = partiesToDelete; };
+            if (Object.keys(settingsToUpdate).length === 0 && JSON.stringify(settingsToUpdate) === JSON.stringify({})){
+                user.updateSettings = settingsToUpdate;
+            };
             User.update({userId: $scope.store.userInfo.id }, user, function(result){
                 console.log(result);
             })

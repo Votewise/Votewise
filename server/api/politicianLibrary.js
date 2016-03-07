@@ -5,10 +5,10 @@ var Politicians = models.politicians;
 var _ = require('lodash');
 
 function getPoliticianLibrary(req,res){
-    var whereParam = {};
 
+    var whereParam = {};
     whereParam[req.params.whereprop] = req.params.whereval;
-    var response = {}
+    var response = {};
 
     Districts.findAll({
         where: {
@@ -20,34 +20,9 @@ function getPoliticianLibrary(req,res){
         }
     }).then(function(result){
         response.city = result;
-
-        return Districts.findAll({
-            where: {
-                county: 'Malachiteglass Foe',
-            },
-            include: {
-                model: Politicians,
-                as: 'Politicians'
-            }
-        })
-    }).then(function(result){
-        console.log("result: ", result);
-        response.county = result;
-
-        return Districts.findAll({
-            where: {
-                state: 'PA'
-            },
-            include: {
-                model: Politicians,
-                as: 'Politicians'
-            }
-        })
-    }).then(function(result){
-        response.state = result;
         res.send(response)
+        //console.log(result);
     });
-
 }
 
 module.exports = {

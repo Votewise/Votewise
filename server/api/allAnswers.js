@@ -8,14 +8,14 @@ var _ = require('lodash');
 function getAllAnswers(req,res){
 
     var lineup = req.query.lineup.split(",");
-
+    console.log("ALL ANSWERS IS CALLED WITH LINEUP PARAM: ", lineup);
     //var response = {};
     Backgrounds.findAll({
         include: [
             {   model: Answers,
-                where: { user: { $in: lineup } },
+                where: { userId: { $in: lineup } },
                 include: [{ model: RankingAnswerItems }, { model: Questions, attributes: [ 'description' ] }],
-                attributes: [ 'type', 'id', 'question', 'user', 'concurrence', 'comment', 'importance'  ]
+                attributes: [ 'type', 'id', 'questionId', 'userId', 'concurrence', 'comment', 'importance'  ]
             }
         ]
     }).then(function(result){

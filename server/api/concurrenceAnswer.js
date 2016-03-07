@@ -6,11 +6,9 @@ var _ = require('lodash');
 
 function postConcurrenceAnswer(req, res){
 
-    console.log("POST CONCURRENCE ANSWER");
-
     Users.findOne({
         where: {
-            id: req.body.user
+            id: req.body.userId
         },
         include: Politicians
     }).then(function(user){
@@ -18,7 +16,7 @@ function postConcurrenceAnswer(req, res){
         if (user.dataValues.type === 'voter'){
             return user.increment('answerCount', {by:1})
         } else if (user.dataValues.type === 'politician'){
-            return [user.increment('answerCount', {by:1}), user.Politician.increment('answerCount', {by:1})]
+            return [user.increment('answerCount', {by:1}), user.politician.increment('answerCount', {by:1})]
         }
     });
 

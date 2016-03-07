@@ -31,7 +31,7 @@
 
         <div id="concurrence" ng-show="presentedQuestion[0].type === 'concurrence'">
 
-            <p id="politicianCompareQuestion"> {{ presentedQuestion[0].Question.description}} </p>
+            <p id="politicianCompareQuestion"> {{ presentedQuestion[0].question.description}} </p>
 
             <div style="display: flex; justify-content: space-around;">
                 <button class="btn btn-primary" style="width:150px; margin-top:10px" ng-click="traverseSetByQuestion(true)" >
@@ -67,6 +67,7 @@
                             <i class="comparisonCheckBoxes" ng-class="answer.concurrence === 6 ? 'fa fa-check-square-o' : 'fa fa-square-o' "></i>
                         </td>
                         <td ng-show="answer.pol.answerCount >= 10"> {{answer.comment}} </td>
+                        <td ng-show="answer.pol.answerCount <= 10"> Awaiting Comment </td>
                     </tr>
 
                 </table>
@@ -75,7 +76,16 @@
 
         <div id="ranking" ng-show="presentedQuestion[0].type === 'ranking'">
 
-            <p> {{presentedQuestion[0].Question.description}} </p>
+            <div style="display: flex; justify-content: space-around;">
+                <button class="btn btn-primary" style="width:150px; margin-top:10px" ng-click="traverseSetByQuestion(true)" >
+                    Next Question
+                </button>
+                <button class="btn btn-primary" style="width:150px; margin-top:10px" ng-click="traverseSetByQuestion(false)" >
+                    Previous Question
+                </button>
+            </div>
+
+            <p> {{presentedQuestion[0].question.description}} </p>
 
             <div ng-repeat="answer in presentedQuestion" style="display:inline-block; border: 1px black; margin: 10px">
 
@@ -92,7 +102,7 @@
                         Importance: {{answer.importance}}
                     </p>
 
-                    <div ng-repeat="rankedItem in answer.RankingAnswerItems">
+                    <div ng-repeat="rankedItem in answer.rankingAnswerItems">
 
                         {{$index+1}}
                         {{rankedItem.item}}

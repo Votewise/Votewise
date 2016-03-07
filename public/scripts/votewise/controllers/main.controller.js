@@ -44,11 +44,7 @@ module.exports = function(app) {
 
         };
 
-
-
-
     }
-
     controller.$inject = deps;
     app.controller(fullname, controller);
 };
