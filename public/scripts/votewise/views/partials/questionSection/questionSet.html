@@ -1,5 +1,3 @@
-
-
 <div class="questionSetBackground">
     <div ng-show="showBackground">
         <p id="backgroundHeader"> {{$parent.store.backgroundDescription}} Background: </p>
@@ -22,103 +20,96 @@
 
 
     <p id="questionHeader"> Question {{counter + 1}} of {{totalQuestions}}: </p>
-
     <p id="questionDescription">
         {{ store.question.description }}
     </p>
 
-</div>
+    <div class="questionSetConcurrence">
 
-<div class="questionSetConcurrence">
+        <p>Concurrence</p>
 
-    <p>Concurrence</p>
+        <div class="questionSetConcurrenceBtns">
 
-    <div class="questionSetConcurrenceBtns">
-        <div>
             <div class="dBtns">
                 <div class="btn-group">
-                    <label style="width:170px;"
-                           class="btn btn-primary"
-                           ng-click="setConcurrence(3)"
-                           ng-model="store.answer.concurrence"
-                           uib-btn-radio="3"> Somewhat Disagree </label>
+                    <label style="width:170px;" class="btn btn-primary" ng-click="setConcurrence(3)" ng-model="store.answer.concurrence" uib-btn-radio="3"> Somewhat Disagree </label>
                 </div>
                 <div class="btn-group">
-                    <label style="width:185px;"
-                           class="btn btn-primary"
-                           ng-click="setConcurrence(2)"
-                           ng-model="store.answer.concurrence"
-                           uib-btn-radio="2"> Disagree </label>
+                    <label style="width:185px;" class="btn btn-primary" ng-click="setConcurrence(2)" ng-model="store.answer.concurrence" uib-btn-radio="2"> Disagree </label>
                 </div>
                 <div class="btn-group">
-                    <label style="width:200px;"
-                           class="btn btn-primary"
-                           ng-click="setConcurrence(1)"
-                           ng-model="store.answer.concurrence"
-                           uib-btn-radio="1"> Strongly Disagree </label>
+                    <label style="width:200px;" class="btn btn-primary" ng-click="setConcurrence(1)" ng-model="store.answer.concurrence" uib-btn-radio="1"> Strongly Disagree </label>
                 </div>
             </div>
-        </div>
 
-        <div>
             <div class="aBtns">
                 <div class="btn-group">
-                    <label style="width:170px;"
-                           class="btn btn-primary"
-                           ng-click="setConcurrence(4)"
-                           ng-model="store.answer.concurrence"
-                           uib-btn-radio="4"> Somewhat Agree </label>
+                    <label style="width:170px;" class="btn btn-primary" ng-click="setConcurrence(4)" ng-model="store.answer.concurrence" uib-btn-radio="4"> Somewhat Agree </label>
                 </div>
                 <div class="btn-group">
-                    <label style="width:185px;"
-                           class="btn btn-primary"
-                           ng-click="setConcurrence(5)"
-                           ng-model="store.answer.concurrence"
-                           uib-btn-radio="5"> Agree </label>
+                    <label style="width:185px;" class="btn btn-primary" ng-click="setConcurrence(5)" ng-model="store.answer.concurrence" uib-btn-radio="5"> Agree </label>
                 </div>
                 <div class="aBtns btn-group">
-                    <label style="width:200px;"
-                           class="btn btn-primary"
-                           ng-click="setConcurrence(6)"
-                           ng-model="store.answer.concurrence"
-                           uib-btn-radio="6"> Strongly Agree </label>
+                    <label style="width:200px;" class="btn btn-primary" ng-click="setConcurrence(6)" ng-model="store.answer.concurrence" uib-btn-radio="6"> Strongly Agree </label>
                 </div>
             </div>
 
         </div>
 
-
-</div>
-
-<div class="questionSetImportanceAndComment">
-    <div class="questionSetImportance">
-        <p>Importance</p>
-        <div class="btn-group">
-            <label style="width:80%;"
-                   class="btn btn-primary"
-                   ng-model="store.answer.importance"
-                   uib-btn-radio="0"> Not Important </label>
-            <label style="width:80%;"
-                   class="btn btn-primary"
-                   ng-model="store.answer.importance"
-                   uib-btn-radio="1"> Somewhat Important </label>
-            <label style="width:80%;"
-                   class="btn btn-primary"
-                   ng-model="store.answer.importance"
-                   uib-btn-radio="2"> Important </label>
-            <label style="width:80%;"
-                   class="btn btn-primary"
-                   ng-model="store.answer.importance"
-                   uib-btn-radio="3"> Very Important </label>
-        </div>
     </div>
-    <div class="questionSetComment">
-        <p>Input Your Comment Here</p>
+
+    <div class="questionSetImportanceAndComment">
+        <div class="questionSetImportance">
+            <p>Importance</p>
+            <div class="btn-group">
+                <label style="width:80%;"
+                       class="btn btn-primary"
+                       ng-model="store.answer.importance"
+                       uib-btn-radio="0"> Not Important </label>
+                <label style="width:80%;"
+                       class="btn btn-primary"
+                       ng-model="store.answer.importance"
+                       uib-btn-radio="1"> Somewhat Important </label>
+                <label style="width:80%;"
+                       class="btn btn-primary"
+                       ng-model="store.answer.importance"
+                       uib-btn-radio="2"> Important </label>
+                <label style="width:80%;"
+                       class="btn btn-primary"
+                       ng-model="store.answer.importance"
+                       uib-btn-radio="3"> Very Important </label>
+            </div>
+        </div>
+        <div class="questionSetComment">
+            <p>Input Your Comment Here</p>
         <textarea rows="4" cols="30" name="comment" ng-model="store.answer.comment" required>
             Type comment here
         </textarea>
+        </div>
     </div>
+
+    <div class="questionTraversingButtons">
+        <div ng-show="store.question" style="text-align: center">
+            <button class="btn btn-primary" style="align: center; width:200px; margin-top:10px" ng-click="moveThroughQuestions(true)" >
+                Answer & Next Question
+            </button>
+        </div>
+        <div ng-show="store.question" style="text-align: center">
+            <button class="btn btn-primary" style="align: center; width:200px; margin-top:10px" ng-click="moveThroughQuestions(false)" >
+                Previous Question
+            </button>
+        </div>
+    </div>
+
+    <div ng-show="!store.question" style="text-align: center">
+        <button class="btn btn-primary" style="align: center; width:150px; margin-top:10px" ng-click="startQuestions()" >
+            Start questions
+        </button>
+    </div>
+
 </div>
+
+
 
 <div class="question" ng-show="store.question.type === 'ranking'">
 
@@ -171,23 +162,4 @@
         </ul>
     </div>
 
-</div>
-
-<div class="questionTraversingButtons">
-    <div ng-show="store.question" style="text-align: center">
-        <button class="btn btn-primary" style="align: center; width:200px; margin-top:10px" ng-click="moveThroughQuestions(true)" >
-            Answer & Next Question
-        </button>
-    </div>
-    <div ng-show="store.question" style="text-align: center">
-        <button class="btn btn-primary" style="align: center; width:200px; margin-top:10px" ng-click="moveThroughQuestions(false)" >
-            Previous Question
-        </button>
-    </div>
-</div>
-
-<div ng-show="!store.question" style="text-align: center">
-    <button class="btn btn-primary" style="align: center; width:150px; margin-top:10px" ng-click="startQuestions()" >
-        Start questions
-    </button>
 </div>

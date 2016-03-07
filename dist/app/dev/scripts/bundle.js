@@ -70702,8 +70702,6 @@ module.exports = function (app) {
                 });
             } else if ($scope.store.question.type === 'concurrence' && bool) {
 
-                console.log('post new answer');
-
                 var concurrenceAnswer = new ConcurrenceAnswer();
                 concurrenceAnswer.userId = $scope.store.user;
                 concurrenceAnswer.questionId = $scope.store.question.id;
@@ -70714,7 +70712,6 @@ module.exports = function (app) {
                 concurrenceAnswer.type = 'concurrence';
 
                 ConcurrenceAnswer.save(concurrenceAnswer, function (result) {
-
                     console.log(result);
                 });
             } else if ($scope.store.question.type === 'ranking' && $scope.store.answer.id && bool) {
@@ -70768,37 +70765,44 @@ module.exports = function (app) {
             }
 
             if (bool) {
-                $scope.counter += 1;
-                if (!$scope.store.questionSet[$scope.counter].answer) {
-                    $scope.store.questionSet[$scope.counter].answer = {};
-                }
-                $scope.store.question = $scope.store.questionSet[$scope.counter];
 
-                if ($scope.store.question) {
+                if ($scope.store.questionSet[$scope.counter + 1]) {
+                    $scope.counter += 1;
+
+                    if (!$scope.store.questionSet[$scope.counter].answer) {
+                        $scope.store.questionSet[$scope.counter].answer = {};
+                    }
+                    $scope.store.question = $scope.store.questionSet[$scope.counter];
                     $scope.store.answer = $scope.store.question.answer || {};
 
                     var sortThese = $scope.store.answer.RankingAnswerItems || $scope.store.question.RankingQuestionItems || {};
                     $scope.store.items = _.orderBy(sortThese, 'rank', 'asc');
                 } else {
 
-                    delete $scope.store.question;
-                    delete $scope.store.questionSet;
-                    delete $scope.store.backgroundId;
-                    delete $scope.store.backgroundDescription;
-                    delete $scope.store.answer;
-                    delete $scope.store.items;
+                    var proceed = confirm('That was the last question. Hit okay to proceed to last subtopics page.');
 
-                    $state.go('main.topic');
-                };
-            } else {
-                $scope.counter -= 1;
-                if (!$scope.store.questionSet[$scope.counter].answer) {
-                    $scope.store.questionSet[$scope.counter].answer = {};
+                    if (proceed) {
+                        delete $scope.store.question;
+                        delete $scope.store.questionSet;
+                        delete $scope.store.backgroundId;
+                        delete $scope.store.backgroundDescription;
+                        delete $scope.store.answer;
+                        delete $scope.store.items;
+                        $state.go('main.topic');
+                    }
                 }
-                $scope.store.question = $scope.store.questionSet[$scope.counter];
-                $scope.store.answer = $scope.store.question.answer || {};
-                var sortThese = $scope.store.answer.RankingAnswerItems || $scope.store.question.RankingQuestionItems || {};
-            };
+            } else {
+
+                if ($scope.store.questionSet[$scope.counter - 1]) {
+                    $scope.counter -= 1;
+                    if (!$scope.store.questionSet[$scope.counter].answer) {
+                        $scope.store.questionSet[$scope.counter].answer = {};
+                    }
+                    $scope.store.question = $scope.store.questionSet[$scope.counter];
+                    $scope.store.answer = $scope.store.question.answer || {};
+                    var sortThese = $scope.store.answer.RankingAnswerItems || $scope.store.question.RankingQuestionItems || {};
+                }
+            }
         };
 
         //manages the reordering of ranking question items
@@ -72373,9 +72377,7 @@ module.exports = '<div class="topicTopBar">\n' +
     '\n' +
     '<div ui-view> </div>';
 },{}],"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/questionSection/questionSet.html":[function(require,module,exports){
-module.exports = '\n' +
-    '\n' +
-    '<div class="questionSetBackground">\n' +
+module.exports = '<div class="questionSetBackground">\n' +
     '    <div ng-show="showBackground">\n' +
     '        <p id="backgroundHeader"> {{$parent.store.backgroundDescription}} Background: </p>\n' +
     '        <div id="backgroundScroll">\n' +
@@ -72397,103 +72399,96 @@ module.exports = '\n' +
     '\n' +
     '\n' +
     '    <p id="questionHeader"> Question {{counter + 1}} of {{totalQuestions}}: </p>\n' +
-    '\n' +
     '    <p id="questionDescription">\n' +
     '        {{ store.question.description }}\n' +
     '    </p>\n' +
     '\n' +
-    '</div>\n' +
+    '    <div class="questionSetConcurrence">\n' +
     '\n' +
-    '<div class="questionSetConcurrence">\n' +
+    '        <p>Concurrence</p>\n' +
     '\n' +
-    '    <p>Concurrence</p>\n' +
+    '        <div class="questionSetConcurrenceBtns">\n' +
     '\n' +
-    '    <div class="questionSetConcurrenceBtns">\n' +
-    '        <div>\n' +
     '            <div class="dBtns">\n' +
     '                <div class="btn-group">\n' +
-    '                    <label style="width:170px;"\n' +
-    '                           class="btn btn-primary"\n' +
-    '                           ng-click="setConcurrence(3)"\n' +
-    '                           ng-model="store.answer.concurrence"\n' +
-    '                           uib-btn-radio="3"> Somewhat Disagree </label>\n' +
+    '                    <label style="width:170px;" class="btn btn-primary" ng-click="setConcurrence(3)" ng-model="store.answer.concurrence" uib-btn-radio="3"> Somewhat Disagree </label>\n' +
     '                </div>\n' +
     '                <div class="btn-group">\n' +
-    '                    <label style="width:185px;"\n' +
-    '                           class="btn btn-primary"\n' +
-    '                           ng-click="setConcurrence(2)"\n' +
-    '                           ng-model="store.answer.concurrence"\n' +
-    '                           uib-btn-radio="2"> Disagree </label>\n' +
+    '                    <label style="width:185px;" class="btn btn-primary" ng-click="setConcurrence(2)" ng-model="store.answer.concurrence" uib-btn-radio="2"> Disagree </label>\n' +
     '                </div>\n' +
     '                <div class="btn-group">\n' +
-    '                    <label style="width:200px;"\n' +
-    '                           class="btn btn-primary"\n' +
-    '                           ng-click="setConcurrence(1)"\n' +
-    '                           ng-model="store.answer.concurrence"\n' +
-    '                           uib-btn-radio="1"> Strongly Disagree </label>\n' +
+    '                    <label style="width:200px;" class="btn btn-primary" ng-click="setConcurrence(1)" ng-model="store.answer.concurrence" uib-btn-radio="1"> Strongly Disagree </label>\n' +
     '                </div>\n' +
     '            </div>\n' +
-    '        </div>\n' +
     '\n' +
-    '        <div>\n' +
     '            <div class="aBtns">\n' +
     '                <div class="btn-group">\n' +
-    '                    <label style="width:170px;"\n' +
-    '                           class="btn btn-primary"\n' +
-    '                           ng-click="setConcurrence(4)"\n' +
-    '                           ng-model="store.answer.concurrence"\n' +
-    '                           uib-btn-radio="4"> Somewhat Agree </label>\n' +
+    '                    <label style="width:170px;" class="btn btn-primary" ng-click="setConcurrence(4)" ng-model="store.answer.concurrence" uib-btn-radio="4"> Somewhat Agree </label>\n' +
     '                </div>\n' +
     '                <div class="btn-group">\n' +
-    '                    <label style="width:185px;"\n' +
-    '                           class="btn btn-primary"\n' +
-    '                           ng-click="setConcurrence(5)"\n' +
-    '                           ng-model="store.answer.concurrence"\n' +
-    '                           uib-btn-radio="5"> Agree </label>\n' +
+    '                    <label style="width:185px;" class="btn btn-primary" ng-click="setConcurrence(5)" ng-model="store.answer.concurrence" uib-btn-radio="5"> Agree </label>\n' +
     '                </div>\n' +
     '                <div class="aBtns btn-group">\n' +
-    '                    <label style="width:200px;"\n' +
-    '                           class="btn btn-primary"\n' +
-    '                           ng-click="setConcurrence(6)"\n' +
-    '                           ng-model="store.answer.concurrence"\n' +
-    '                           uib-btn-radio="6"> Strongly Agree </label>\n' +
+    '                    <label style="width:200px;" class="btn btn-primary" ng-click="setConcurrence(6)" ng-model="store.answer.concurrence" uib-btn-radio="6"> Strongly Agree </label>\n' +
     '                </div>\n' +
     '            </div>\n' +
     '\n' +
     '        </div>\n' +
     '\n' +
-    '\n' +
-    '</div>\n' +
-    '\n' +
-    '<div class="questionSetImportanceAndComment">\n' +
-    '    <div class="questionSetImportance">\n' +
-    '        <p>Importance</p>\n' +
-    '        <div class="btn-group">\n' +
-    '            <label style="width:80%;"\n' +
-    '                   class="btn btn-primary"\n' +
-    '                   ng-model="store.answer.importance"\n' +
-    '                   uib-btn-radio="0"> Not Important </label>\n' +
-    '            <label style="width:80%;"\n' +
-    '                   class="btn btn-primary"\n' +
-    '                   ng-model="store.answer.importance"\n' +
-    '                   uib-btn-radio="1"> Somewhat Important </label>\n' +
-    '            <label style="width:80%;"\n' +
-    '                   class="btn btn-primary"\n' +
-    '                   ng-model="store.answer.importance"\n' +
-    '                   uib-btn-radio="2"> Important </label>\n' +
-    '            <label style="width:80%;"\n' +
-    '                   class="btn btn-primary"\n' +
-    '                   ng-model="store.answer.importance"\n' +
-    '                   uib-btn-radio="3"> Very Important </label>\n' +
-    '        </div>\n' +
     '    </div>\n' +
-    '    <div class="questionSetComment">\n' +
-    '        <p>Input Your Comment Here</p>\n' +
+    '\n' +
+    '    <div class="questionSetImportanceAndComment">\n' +
+    '        <div class="questionSetImportance">\n' +
+    '            <p>Importance</p>\n' +
+    '            <div class="btn-group">\n' +
+    '                <label style="width:80%;"\n' +
+    '                       class="btn btn-primary"\n' +
+    '                       ng-model="store.answer.importance"\n' +
+    '                       uib-btn-radio="0"> Not Important </label>\n' +
+    '                <label style="width:80%;"\n' +
+    '                       class="btn btn-primary"\n' +
+    '                       ng-model="store.answer.importance"\n' +
+    '                       uib-btn-radio="1"> Somewhat Important </label>\n' +
+    '                <label style="width:80%;"\n' +
+    '                       class="btn btn-primary"\n' +
+    '                       ng-model="store.answer.importance"\n' +
+    '                       uib-btn-radio="2"> Important </label>\n' +
+    '                <label style="width:80%;"\n' +
+    '                       class="btn btn-primary"\n' +
+    '                       ng-model="store.answer.importance"\n' +
+    '                       uib-btn-radio="3"> Very Important </label>\n' +
+    '            </div>\n' +
+    '        </div>\n' +
+    '        <div class="questionSetComment">\n' +
+    '            <p>Input Your Comment Here</p>\n' +
     '        <textarea rows="4" cols="30" name="comment" ng-model="store.answer.comment" required>\n' +
     '            Type comment here\n' +
     '        </textarea>\n' +
+    '        </div>\n' +
     '    </div>\n' +
+    '\n' +
+    '    <div class="questionTraversingButtons">\n' +
+    '        <div ng-show="store.question" style="text-align: center">\n' +
+    '            <button class="btn btn-primary" style="align: center; width:200px; margin-top:10px" ng-click="moveThroughQuestions(true)" >\n' +
+    '                Answer & Next Question\n' +
+    '            </button>\n' +
+    '        </div>\n' +
+    '        <div ng-show="store.question" style="text-align: center">\n' +
+    '            <button class="btn btn-primary" style="align: center; width:200px; margin-top:10px" ng-click="moveThroughQuestions(false)" >\n' +
+    '                Previous Question\n' +
+    '            </button>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '\n' +
+    '    <div ng-show="!store.question" style="text-align: center">\n' +
+    '        <button class="btn btn-primary" style="align: center; width:150px; margin-top:10px" ng-click="startQuestions()" >\n' +
+    '            Start questions\n' +
+    '        </button>\n' +
+    '    </div>\n' +
+    '\n' +
     '</div>\n' +
+    '\n' +
+    '\n' +
     '\n' +
     '<div class="question" ng-show="store.question.type === \'ranking\'">\n' +
     '\n' +
@@ -72547,25 +72542,7 @@ module.exports = '\n' +
     '    </div>\n' +
     '\n' +
     '</div>\n' +
-    '\n' +
-    '<div class="questionTraversingButtons">\n' +
-    '    <div ng-show="store.question" style="text-align: center">\n' +
-    '        <button class="btn btn-primary" style="align: center; width:200px; margin-top:10px" ng-click="moveThroughQuestions(true)" >\n' +
-    '            Answer & Next Question\n' +
-    '        </button>\n' +
-    '    </div>\n' +
-    '    <div ng-show="store.question" style="text-align: center">\n' +
-    '        <button class="btn btn-primary" style="align: center; width:200px; margin-top:10px" ng-click="moveThroughQuestions(false)" >\n' +
-    '            Previous Question\n' +
-    '        </button>\n' +
-    '    </div>\n' +
-    '</div>\n' +
-    '\n' +
-    '<div ng-show="!store.question" style="text-align: center">\n' +
-    '    <button class="btn btn-primary" style="align: center; width:150px; margin-top:10px" ng-click="startQuestions()" >\n' +
-    '        Start questions\n' +
-    '    </button>\n' +
-    '</div>';
+    '';
 },{}],"/Users/jamesfoley/Desktop/Folder/Depot/votewise/public/scripts/votewise/views/partials/settings/settings.html":[function(require,module,exports){
 module.exports = '<div>\n' +
     '    <div class="settings">\n' +

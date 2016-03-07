@@ -75,7 +75,6 @@ module.exports = function(app) {
 
         $scope.moveThroughQuestions = function(bool) {
 
-
             if ($scope.store.question.type === 'concurrence' && $scope.store.answer.id && bool) {
 
                 var concurrenceAnswer = new ConcurrenceAnswer();
@@ -98,8 +97,6 @@ module.exports = function(app) {
 
             } else if ($scope.store.question.type === 'concurrence' && bool) {
 
-                console.log('post new answer');
-
                 var concurrenceAnswer = new ConcurrenceAnswer();
                 concurrenceAnswer.userId = $scope.store.user;
                 concurrenceAnswer.questionId = $scope.store.question.id;
@@ -110,7 +107,6 @@ module.exports = function(app) {
                 concurrenceAnswer.type = 'concurrence';
 
                 ConcurrenceAnswer.save(concurrenceAnswer, function (result) {
-
                     console.log(result);
                 });
 
@@ -163,16 +159,15 @@ module.exports = function(app) {
                 RankingAnswer.save(rankingAnswer, function (result) {
                     console.log("result from ranking answer save:", result);
                 });
-
-
             }
 
             if (bool) {
-                $scope.counter += 1;
-                if (!$scope.store.questionSet[$scope.counter].answer) { $scope.store.questionSet[$scope.counter].answer = {} }
-                $scope.store.question = $scope.store.questionSet[$scope.counter];
 
-                if ($scope.store.question) {
+                if ($scope.store.questionSet[$scope.counter+1]){
+                    $scope.counter += 1;
+
+                    if (!$scope.store.questionSet[$scope.counter].answer) { $scope.store.questionSet[$scope.counter].answer = {} }
+                    $scope.store.question = $scope.store.questionSet[$scope.counter];
                     $scope.store.answer = $scope.store.question.answer || {};
 
                     var sortThese = $scope.store.answer.RankingAnswerItems || $scope.store.question.RankingQuestionItems || {};
@@ -180,25 +175,29 @@ module.exports = function(app) {
 
                 } else {
 
-                    delete $scope.store.question;
-                    delete $scope.store.questionSet;
-                    delete $scope.store.backgroundId;
-                    delete $scope.store.backgroundDescription;
-                    delete $scope.store.answer;
-                    delete $scope.store.items;
+                    var proceed = confirm("That was the last question. Hit okay to proceed to last subtopics page.");
 
-                    $state.go('main.topic');
-
-                };
-
+                    if (proceed){
+                        delete $scope.store.question;
+                        delete $scope.store.questionSet;
+                        delete $scope.store.backgroundId;
+                        delete $scope.store.backgroundDescription;
+                        delete $scope.store.answer;
+                        delete $scope.store.items;
+                        $state.go('main.topic');
+                    }
+                }
 
             } else {
-                $scope.counter -= 1;
-                if (!$scope.store.questionSet[$scope.counter].answer) { $scope.store.questionSet[$scope.counter].answer = {} }
-                $scope.store.question = $scope.store.questionSet[$scope.counter];
-                $scope.store.answer = $scope.store.question.answer || {};
-                var sortThese = $scope.store.answer.RankingAnswerItems || $scope.store.question.RankingQuestionItems || {};
-            };
+
+                if ($scope.store.questionSet[$scope.counter-1]) {
+                    $scope.counter -= 1;
+                    if (!$scope.store.questionSet[$scope.counter].answer) { $scope.store.questionSet[$scope.counter].answer = {} }
+                    $scope.store.question = $scope.store.questionSet[$scope.counter];
+                    $scope.store.answer = $scope.store.question.answer || {};
+                    var sortThese = $scope.store.answer.RankingAnswerItems || $scope.store.question.RankingQuestionItems || {};
+                }
+            }
 
         };
 
