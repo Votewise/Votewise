@@ -12,6 +12,8 @@ var _ = require('lodash');
 
 function login(req, res){
 
+	console.log("REQ", req.body);
+
 	Users.find({
 		where: {
 			userName: req.body.userName,
@@ -24,26 +26,43 @@ function login(req, res){
 
 	}).then(function(result){
 
-		if (result.verifyPassword(req.body.password)) {
+		if (result){
 
-			var token = jwt.sign({
-				userName: req.body.userName,
-				exp: 10800000,
-			}, 'noTelling');
-			var userInfo = result.dataValues;
-			userInfo.Groups = _(userInfo.Groups).groupBy('category').values().value();
+			if (result.verifyPassword(req.body.password)) {
 
-			var jsonResponse = {
-				token: token,
-				userId: result.dataValues.id,
-				userInfo: userInfo
-			};
+				var token = jwt.sign({
+					userName: req.body.userName,
+					exp: 10800000,
+				}, 'noTelling');
+				var userInfo = result.dataValues;
+				userInfo.Groups = _(userInfo.Groups).groupBy('category').values().value();
 
-			res.status(200).json(jsonResponse);
+				var jsonResponse = {
+					token: token,
+					userId: result.dataValues.id,
+					userInfo: userInfo
+				};
+
+				res.status(200).json(jsonResponse);
+
+			} else {
+				throw new Error("Wrong Password");
+			}
 
 		} else {
-			res.status(400).send("wrong password");
+			throw new Error("User Not Found");
 		}
+
+
+
+	}).catch(function(error){
+
+		if (error.message === "Wrong Password"){
+			res.status(400).send(error.message);
+		} else if (error.message === "User Not Found"){
+			res.status(400).send(error.message);
+		}
+
 	})
 }
 

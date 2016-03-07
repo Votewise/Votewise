@@ -164,6 +164,12 @@ module.exports = function(app) {
                 $scope.store.user = result.userId;
                 $state.go('main.topics');
 
+            }, function(error){
+                if (error.data === "Wrong Password"){
+                    alert("Wrong password, try again.");
+                } else if (error.data === "User Not Found"){
+                    alert("User not found.");
+                }
             });
 
         };

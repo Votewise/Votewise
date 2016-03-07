@@ -71097,13 +71097,9 @@ module.exports = function (app) {
 
             QuestionSet.get({ backgroundId: backgroundId, userId: userId }, function (result) {
 
-                console.log('RESULT', result);
                 var sortThese = _.map(result.questions, function (question) {
 
-                    console.log('QUESTION', question);
-
                     _.forEach(result.answers, function (answer) {
-                        console.log('ANSWERS', answer);
                         if (question.id === answer.questionId) {
                             question.answer = answer;
                             return false;
@@ -71120,6 +71116,8 @@ module.exports = function (app) {
                 $scope.store.backgroundDescription = result.shortdescription;
                 $scope.store.background = result.description;
                 $state.go('main.questionSection.questionSet');
+            }, function (error) {
+                console.log(error);
             });
         };
     }
@@ -71324,6 +71322,12 @@ module.exports = function (app) {
                 $rootScope.testUser = result.userId;
                 $scope.store.user = result.userId;
                 $state.go('main.topics');
+            }, function (error) {
+                if (error.data === 'Wrong Password') {
+                    alert('Wrong password, try again.');
+                } else if (error.data === 'User Not Found') {
+                    alert('User not found.');
+                }
             });
         };
     }
@@ -71512,17 +71516,19 @@ module.exports = function (namespace) {
     // Specifically including auth interceptor service here so it can be pushed onto the $httpProvider below.
     //var AuthInterceptor = require('./services/http/authInterceptor.service.js');
 
-    app.constant('URLS', { BASE_API: 'http://localhost:3000/' });
-    //app.constant('URLS', { BASE_API: '/' });
+    //app.constant('URLS', { BASE_API: 'http://localhost:3000/' });
+    app.constant('URLS', { BASE_API: '/' });
 
-    app.service('AuthInterceptor', ['$rootScope', '$localStorage', function ($rootScope, $localStorage) {
+    app.service('AuthInterceptor', ['$rootScope', '$localStorage', '$q', function ($rootScope, $localStorage, $q) {
         var service = this;
         service.request = function (config) {
-
             if ($localStorage.token) {
                 config.headers.authorization = 'Bearer ' + $localStorage.token;
             }
             return config;
+        };
+        service.requestError = function (rejection) {
+            return $q.reject(rejection);
         };
         service.response = function (response) {
             if (response.data.token) {
@@ -71533,8 +71539,8 @@ module.exports = function (namespace) {
             }
             return response;
         };
-        service.responseError = function (response) {
-            return response;
+        service.responseError = function (rejection) {
+            return $q.reject(rejection);
         };
     }]);
 

@@ -34,17 +34,19 @@ require('./services')(app);
     // Specifically including auth interceptor service here so it can be pushed onto the $httpProvider below.
     //var AuthInterceptor = require('./services/http/authInterceptor.service.js');
 
-    app.constant('URLS', { BASE_API: 'http://localhost:3000/' });
-    //app.constant('URLS', { BASE_API: '/' });
+    //app.constant('URLS', { BASE_API: 'http://localhost:3000/' });
+    app.constant('URLS', { BASE_API: '/' });
 
-    app.service('AuthInterceptor', [ '$rootScope', '$localStorage', function($rootScope, $localStorage) {
+    app.service('AuthInterceptor', [ '$rootScope', '$localStorage', '$q', function($rootScope, $localStorage, $q) {
             var service = this;
             service.request = function(config) {
-
                 if ($localStorage.token){
                     config.headers.authorization = "Bearer " + $localStorage.token;
                 }
                 return config;
+            };
+            service.requestError = function(rejection){
+                return $q.reject(rejection);
             };
             service.response = function(response){
                 if (response.data.token){
@@ -55,8 +57,8 @@ require('./services')(app);
                 }
                 return response;
             };
-            service.responseError = function(response) {
-                return response;
+            service.responseError = function(rejection) {
+                return $q.reject(rejection);
             };
         } ]
     );
